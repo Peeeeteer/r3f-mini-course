@@ -1,0 +1,6 @@
+- work on layout/wireframe of the site ( )
+-> home page ( )
+-> code pages ( )
+
+Figma here:
+https://www.figma.com/file/SUsXH2ltKWWS1aXrn6F0rY/justcode.lol?type=design&node-id=16-27&mode=design&t=CQuMexVUgjcP3sjm-0
