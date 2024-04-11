@@ -1,6 +1,15 @@
 - work on layout/wireframe of the site ( )
 -> home page ( )
 -> code pages ( )
+-> buy page ( )
 
 Figma here:
 https://www.figma.com/file/SUsXH2ltKWWS1aXrn6F0rY/justcode.lol?type=design&node-id=16-27&mode=design&t=CQuMexVUgjcP3sjm-0
+
+
+
+
+Template to build/add:
+- RGB Colour guesser game
+- Character customizer 2D.
+- AI quote generator
