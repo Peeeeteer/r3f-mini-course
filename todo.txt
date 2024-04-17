@@ -19,3 +19,4 @@ Template to build/add:
 - RGB Colour guesser game
 - Character customizer 2D.
 - AI quote generator
+- Voice game for fun: https://www.youtube.com/shorts/a6Ldtk1CoM4
