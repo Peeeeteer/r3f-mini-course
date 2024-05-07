@@ -6,10 +6,15 @@ Step 2:
 - Create NavBar with and without logged in? (  )
 - Add supabase to the project ( )
 -> Check and make sure that only authenticated users can access product/documentation page ( )
+-> Check only if "paid" users can access the documentation page ( )
 
 
 Figma here:
 https://www.figma.com/file/SUsXH2ltKWWS1aXrn6F0rY/justcode.lol?type=design&node-id=16-27&mode=design&t=CQuMexVUgjcP3sjm-0
+
+- Landing page wip ( )
+- Individual project page ( )
+- Projects page ( )
 
 
 
