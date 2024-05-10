@@ -17,19 +17,23 @@ https://www.figma.com/file/SUsXH2ltKWWS1aXrn6F0rY/justcode.lol?type=design&node-
 - Projects page ( )
 
 
-
 To make currently:
 - Portfolio Page, frontend, free ( )
+
 - Chrome plugin, fullstack, free ( )
-- Pofolio Fullstack, fullstack, free ( )
+-> Finished til milestone 3 ( X )
+
 - Robot landing page, frontend, paid ( )
+
+- Porfolio Fullstack, fullstack, free ( )
+
 - Box customizer, frontend, paid ( )
 - Figma Plugin, fullstack, paid ( )
 
 Template to build/add in future:
 - RGB Colour guesser game
 - Character customizer 2D.
-- AI quote generator
+- AI quote generator or something ( )
 - Voice game for fun: https://www.youtube.com/shorts/a6Ldtk1CoM4
 - Dashboard
 - Best price checker, scripts, paid ( )
