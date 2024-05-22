@@ -22,6 +22,7 @@ To make currently:
 
 - Chrome plugin, fullstack, free ( )
 -> Finished til milestone 3 ( X )
+-> Finished til milestone 6, almost 7 ( X )
 
 - Robot landing page, frontend, paid ( )
 
@@ -32,6 +33,8 @@ To make currently:
 
 Template to build/add in future:
 - RGB Colour guesser game
+- AI room generator
+- Full product preview. ( )
 - Character customizer 2D.
 - AI quote generator or something ( )
 - Voice game for fun: https://www.youtube.com/shorts/a6Ldtk1CoM4
