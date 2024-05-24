@@ -23,6 +23,10 @@ To make currently:
 - Chrome plugin, fullstack, free ( )
 -> Finished til milestone 3 ( X )
 -> Finished til milestone 6, almost 7 ( X )
+-> Finished til milestone 8, ( X )
+-> Finished (  )
+-> Revision round ( )
+
 
 - Robot landing page, frontend, paid ( )
 
@@ -32,6 +36,7 @@ To make currently:
 - Figma Plugin, fullstack, paid ( )
 
 Template to build/add in future:
+- Medical Site thing: https://www.biodigital.com/
 - RGB Colour guesser game
 - AI room generator
 - Full product preview. ( )
