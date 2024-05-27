@@ -12,9 +12,14 @@ Step 2:
 Figma here:
 https://www.figma.com/file/SUsXH2ltKWWS1aXrn6F0rY/justcode.lol?type=design&node-id=16-27&mode=design&t=CQuMexVUgjcP3sjm-0
 
+Design:
 - Landing page wip ( )
-- Individual project page ( )
+-> 90% finished
+
+- Individual project page ( X )
+
 - Projects page ( )
+-> 90% finished
 
 
 To make currently:
