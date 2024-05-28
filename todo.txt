@@ -29,7 +29,8 @@ To make currently:
 -> Finished til milestone 3 ( X )
 -> Finished til milestone 6, almost 7 ( X )
 -> Finished til milestone 8, ( X )
--> Finished (  )
+-> Finished ( X )
+-> Go over milestone, final commments ( )
 -> Revision round ( )
 
 
