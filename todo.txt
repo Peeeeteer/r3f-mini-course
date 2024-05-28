@@ -18,8 +18,9 @@ Design:
 
 - Individual project page ( X )
 
-- Projects page ( )
+- Projects page (  )
 -> 90% finished
+-> Make individual components to reuse later ( )
 
 
 To make currently:
@@ -35,6 +36,8 @@ To make currently:
 
 
 - Robot landing page, frontend, paid ( )
+-> Finished til milestone 3 ( X )
+->
 
 - Porfolio Fullstack, fullstack, free ( )
 
