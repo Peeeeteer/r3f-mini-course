@@ -1,5 +1,7 @@
+import AuthButton from "@/components/AuthButton";
 import Footer from "@/components/Footer";
 import NavBar from "@/components/Navbar";
+import Link from "next/link";
 
 interface CardProps {
     title: string;
@@ -15,11 +17,39 @@ function Card({ title }: CardProps) {
 
 export default function Index() {
     return (
-        <div>
-            {/* <NavBar /> */}
+        <div className="flex-1 w-full flex flex-col gap-20 items-center">
+
+            <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
+                <div className="w-full max-w-4xl flex justify-between items-center p-3 text-sm">
+                    <h1>
+                        <a
+                            href="/"
+                            className="font-bold hover:underline"
+                        >
+                            justcode
+                        </a>
+                        <span className="mx-2">/</span>
+
+                        <a
+                            href="projects"
+                            className="font-bold hover:underline"
+                        >
+                            projects
+                        </a>
+
+                    </h1>
+                    <AuthButton />
+                </div>
+            </nav>
+
+
             <div className="cards flex justify-center">
-                <Card title="Free" />
-                <Card title="Paid" />
+                <Link href="/projects/i-like-content">
+                    <Card title="Free" />
+                </Link>
+                <Link href="/projects/robot-landing">
+                    <Card title="Paid" />
+                </Link>
             </div>
         </div>
     );

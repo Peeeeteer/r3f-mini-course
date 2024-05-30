@@ -1,12 +1,10 @@
-Step 1:
-- Create simple layout for homepage/navbar/projects etc.. ( X )
 
+Next steps:
 
-Step 2:
-- Create NavBar with and without logged in? (  )
-- Add supabase to the project ( )
--> Check and make sure that only authenticated users can access product/documentation page ( )
--> Check only if "paid" users can access the documentation page ( )
+- More dynamic routes for projects/individual/introduction or /milestone 1 ( )
+-> Free version user can view milestone1 etc.. ( )
+-> Paid version can view Introduction, but cannot view milestone1 etc... ( )
+
 
 
 Figma here:
