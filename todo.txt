@@ -1,9 +1,13 @@
 
 Next steps:
 
-- More dynamic routes for projects/individual/introduction or /milestone 1 ( )
--> Free version user can view milestone1 etc.. ( )
--> Paid version can view Introduction, but cannot view milestone1 etc... ( )
+- Create routing for multiple instroduction,milestones etc.. ( X ) <- very hard for some reason 2h+ 
+-> Use simple data.json ( )
+
+-> Add dummy data from supabase.
+--> Add RLS for Free & Paid based on if user has paid or not.
+--> Add Stripe for payment.
+
 
 
 

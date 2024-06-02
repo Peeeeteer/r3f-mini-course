@@ -44,7 +44,7 @@ export default function Index() {
 
 
             <div className="cards flex justify-center">
-                <Link href="/projects/i-like-content">
+                <Link href="/projects/i-like-content/introduction">
                     <Card title="Free" />
                 </Link>
                 <Link href="/projects/robot-landing">
