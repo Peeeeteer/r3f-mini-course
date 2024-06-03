@@ -14,26 +14,27 @@ Next steps:
 Figma here:
 https://www.figma.com/file/SUsXH2ltKWWS1aXrn6F0rY/justcode.lol?type=design&node-id=16-27&mode=design&t=CQuMexVUgjcP3sjm-0
 
-Design:
-- Landing page wip ( )
--> 90% finished
+Extra Designs needed:
+- Login/Sign up page ( )
+- Dashboard/Purchase history page ( )
+- Landing page ( ) 90% finished
 
-- Individual project page ( X )
+Coding frontend:
+- Projects page __80%__ (  )
+- Individual page, __30%__ finished. ( )
+- Landing page, __5%__ ( )
+- Login/Sign up page, __0%__ ( )
+- Dashboard/Purchase history page, __0%__ ( )
 
-- Projects page (  )
--> 90% finished
--> Make individual components to reuse later ( )
+
+
 
 
 To make currently:
 - Portfolio Page, frontend, free ( )
 
 - Chrome plugin, fullstack, free ( )
--> Finished til milestone 3 ( X )
--> Finished til milestone 6, almost 7 ( X )
--> Finished til milestone 8, ( X )
 -> Finished ( X )
--> Go over milestone, final commments ( )
 -> Revision round ( )
 
 
