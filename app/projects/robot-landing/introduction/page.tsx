@@ -32,15 +32,16 @@ const Introduction = () => {
             </nav>
 
             <div className="flex flex-col items-start space-y-4">
-                <Link href="/projects/i-like-content/[milestone]" as="/projects/i-like-content/introduction"><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Introduction</button></Link>
-                <Link href="/projects/i-like-content/[milestone]" as="/projects/i-like-content/milestone1"><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Milestone 1</button></Link>
-                <Link href="/projects/i-like-content/[milestone]" as="/projects/i-like-content/milestone2"><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Milestone 2</button></Link>
+                <Link href="/projects/robot-landing/[milestone]" as="/projects/robot-landing/introduction"><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Introduction</button></Link>
+                <Link href="/projects/robot-landing/[milestone]" as="/projects/robot-landing/milestone1"><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Milestone 1</button></Link>
+                <Link href="/projects/robot-landing/[milestone]" as="/projects/robot-landing/milestone2"><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Milestone 2</button></Link>
+
             </div>
             <p className="">
                 Welcome to the introduction page. Today we will be making this.
             </p>
             <Image
-                src="https://gyazo.com/5c341af5342884282b069bf82acb19fd.png"
+                src="https://gyazo.com/03d2435a3215d673d3d089474f5536b4.png"
                 alt="Error message screenshot"
                 width={800}
                 height={450}
@@ -53,7 +54,7 @@ const Introduction = () => {
                 and ofcourse if you want to, you will be able to make it even better to this:
             </p>
             <Image
-                src="https://gyazo.com/5c341af5342884282b069bf82acb19fd.png"
+                src="https://gyazo.com/ed6bffbdca12a1839acda981f4c5a231.png"
                 alt="Error message screenshot"
                 width={800}
                 height={450}

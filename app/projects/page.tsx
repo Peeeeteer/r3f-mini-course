@@ -47,7 +47,7 @@ export default function Index() {
                 <Link href="/projects/i-like-content/introduction">
                     <Card title="Free" />
                 </Link>
-                <Link href="/projects/robot-landing">
+                <Link href="/projects/robot-landing/introduction">
                     <Card title="Paid" />
                 </Link>
             </div>
