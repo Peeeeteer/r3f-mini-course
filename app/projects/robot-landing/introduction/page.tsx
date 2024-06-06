@@ -35,7 +35,6 @@ const Introduction = () => {
                 <Link href="/projects/robot-landing/[milestone]" as="/projects/robot-landing/introduction"><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Introduction</button></Link>
                 <Link href="/projects/robot-landing/[milestone]" as="/projects/robot-landing/milestone1"><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Milestone 1</button></Link>
                 <Link href="/projects/robot-landing/[milestone]" as="/projects/robot-landing/milestone2"><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Milestone 2</button></Link>
-
             </div>
             <p className="">
                 Welcome to the introduction page. Today we will be making this.

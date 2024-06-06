@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Milestone2 = () => {
+const RobotMilestone2 = () => {
     return (
-        <div>This is milestone2 for robot</div>
+        <div>This is RobotMilestone2 for robot</div>
     )
 }
 
-export default Milestone2
+export default RobotMilestone2

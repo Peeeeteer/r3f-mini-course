@@ -9,7 +9,7 @@ interface Hint {
     link?: string;
 }
 
-const Milestone1: React.FC = () => {
+const RobotMilestone1: React.FC = () => {
 
     const [hints, setHints] = useState<boolean[]>([false, false, false]);
 
@@ -96,4 +96,4 @@ const Milestone1: React.FC = () => {
     );
 };
 
-export default Milestone1;
+export default RobotMilestone1;

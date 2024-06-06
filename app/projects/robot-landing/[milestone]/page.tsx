@@ -1,6 +1,6 @@
 import AuthButton from '@/components/AuthButton'
-import Milestone1 from '../_components/Milestone1';
-import Milestone2 from '../_components/Milestone2';
+import RobotMilestone1 from '../_components/Milestone1';
+import RobotMilestone2 from '../_components/Milestone2';
 import Link from 'next/link';
 
 
@@ -11,10 +11,10 @@ export default function IlikeContent({ params }: { params: { milestone: string }
     let milestoneComponent;
     switch (path) {
         case 'milestone1':
-            milestoneComponent = <Milestone1 />;
+            milestoneComponent = <RobotMilestone1 />;
             break;
         case 'milestone2':
-            milestoneComponent = <Milestone2 />;
+            milestoneComponent = <RobotMilestone2 />;
             break;
         // add other cases for other milestones...
         default:
@@ -34,9 +34,9 @@ export default function IlikeContent({ params }: { params: { milestone: string }
                 </div>
             </nav>
             <div className="flex flex-col items-start space-y-4">
-                <Link href="/projects/i-like-content/[milestone]" as="/projects/i-like-content/introduction"><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Introduction</button></Link>
-                <Link href="/projects/i-like-content/[milestone]" as="/projects/i-like-content/milestone1"><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Milestone 1</button></Link>
-                <Link href="/projects/i-like-content/[milestone]" as="/projects/i-like-content/milestone2"><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Milestone 2</button></Link>
+                <Link href="/projects/robot-landing/[milestone]" as="/projects/robot-landing/introduction"><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Introduction</button></Link>
+                <Link href="/projects/robot-landing/[milestone]" as="/projects/robot-landing/milestone1"><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Milestone 1</button></Link>
+                <Link href="/projects/robot-landing/[milestone]" as="/projects/robot-landing/milestone2"><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Milestone 2</button></Link>
             </div>
             {milestoneComponent}
         </div>
