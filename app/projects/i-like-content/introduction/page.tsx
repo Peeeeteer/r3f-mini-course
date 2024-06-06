@@ -22,7 +22,7 @@ const Introduction = () => {
                         <p
                             className="font-bold hover:underline"
                         >
-                            Milestone 1. Make a NavBar
+                            introduction
                         </p>
 
                     </h1>
