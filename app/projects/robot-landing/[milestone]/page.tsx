@@ -1,11 +1,24 @@
 import AuthButton from '@/components/AuthButton'
 import RobotMilestone1 from '../_components/Milestone1';
 import RobotMilestone2 from '../_components/Milestone2';
+import { createClient } from "@/utils/supabase/server";
+import { redirect } from "next/navigation";
 import Link from 'next/link';
 
 
 
-export default function IlikeContent({ params }: { params: { milestone: string } }) {
+export default async function IlikeContent({ params }: { params: { milestone: string } }) {
+
+    const supabase = createClient();
+
+    const {
+        data: { user },
+    } = await supabase.auth.getUser();
+
+    if (!user) {
+        return redirect("/login");
+    }
+
     const path = params.milestone;
 
     let milestoneComponent;

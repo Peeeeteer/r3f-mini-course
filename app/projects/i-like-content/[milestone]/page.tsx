@@ -1,11 +1,15 @@
 import AuthButton from '@/components/AuthButton'
 import Milestone1 from '../_components/Milestone1';
 import Milestone2 from '../_components/Milestone2';
+
 import Link from 'next/link';
 
 
 
 export default function IlikeContent({ params }: { params: { milestone: string } }) {
+
+
+
     const path = params.milestone;
 
     let milestoneComponent;
