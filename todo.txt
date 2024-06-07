@@ -1,12 +1,14 @@
 
 Next steps:
 
-- Create routing for multiple instroduction,milestones etc.. ( X ) <- very hard for some reason 2h+ 
--> We will be adding the data staticly for now. ( X )
---> Cannt acces if not auth. ( X )
+- test adding stripe and if user auth but not paid, redirect to payment page. ( X )
+-> I will do this later in the main frontend page (  )
 
-- test adding stripe and if user auth but not paid, redirect to payment page. (  )
+- Focus now simple:
+-> Once frontend is somewhat finished, start adding the content under /projects/i-like-content etc.. and do rest of the pages later. ( )
 
+-> Chrome plugin content ( )
+-> Robot-landing content ( )
 
 
 
@@ -23,7 +25,7 @@ Coding frontend:
 - Projects page __80%__ (  )
 - Individual page, __30%__ finished. ( )
 - Landing page, __5%__ ( )
-- Login/Sign up page, __0%__ ( )
+- Login/Sign up page, __35%__ ( )
 - Dashboard/Purchase history page, __0%__ ( )
 
 
