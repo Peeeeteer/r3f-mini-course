@@ -2,10 +2,11 @@
 Next steps:
 
 - Create routing for multiple instroduction,milestones etc.. ( X ) <- very hard for some reason 2h+ 
--> We will be adding the data staticly for now. (  )
---> Cannt acces if not auth. ( )
---> Add RLS for Free & Paid based on if user has paid or not. ( )
---> Add Stripe for payment. ( )
+-> We will be adding the data staticly for now. ( X )
+--> Cannt acces if not auth. ( X )
+
+- test adding stripe and if user auth but not paid, redirect to payment page. (  )
+
 
 
 
@@ -54,3 +55,4 @@ Template to build/add in future:
 - Voice game for fun: https://www.youtube.com/shorts/a6Ldtk1CoM4
 - Dashboard
 - Best price checker, scripts, paid ( )
+- Stripe checkout 
