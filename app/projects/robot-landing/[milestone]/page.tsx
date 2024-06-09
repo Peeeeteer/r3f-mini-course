@@ -21,6 +21,7 @@ export default async function IlikeContent({ params }: { params: { milestone: st
 
     const path = params.milestone;
 
+
     let milestoneComponent;
     switch (path) {
         case 'milestone1':

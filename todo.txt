@@ -16,11 +16,6 @@ Next steps:
 Figma here:
 https://www.figma.com/file/SUsXH2ltKWWS1aXrn6F0rY/justcode.lol?type=design&node-id=16-27&mode=design&t=CQuMexVUgjcP3sjm-0
 
-Extra Designs needed:
-- Login/Sign up page ( )
-- Dashboard/Purchase history page ( )
-- Landing page ( ) 90% finished
-
 Coding frontend:
 - Projects page __80%__ (  )
 - Individual page, __30%__ finished. ( )
@@ -36,11 +31,12 @@ To make currently:
 - Chrome plugin, fullstack, free ( )
 -> Finished ( X )
 -> Revision round ( )
+--> __ 40% __ ( X )
 
 
 - Robot landing page, frontend, paid ( )
 -> Finished til milestone 3 ( X )
-->
+-> Waiting new robot, but I can start just working on it so I know what/how to do. ( )
 
 - Porfolio Fullstack, fullstack, free ( )
 
