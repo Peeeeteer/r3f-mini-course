@@ -1,0 +1,7 @@
+
+.image-container:hover .hover-image {
+  display: block;
+}
+.image-container:hover .primary-image {
+  display: none;
+}

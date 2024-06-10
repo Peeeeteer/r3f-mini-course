@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+  --background-main: #232627;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  background-color: var(--background-main);
+}
+.nanum-pen-script-regular {
+  font-family: "Nanum Pen Script", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+/* hover color lighter */
+.hash-tag:hover .bg-orangeRed {
+  background-color: #f21b1b;
+}
+
+/* hover color lighter */
+.hash-tag:hover .bg-lightBlue {
+  background-color: #03a0bb;
+}
+/* hover color lighter */
+.hash-tag:hover .bg-lightYellow {
+  background-color: #faaf24;
+}
+/* hover color lighter */
+.hash-tag:hover .bg-lightPurple {
+  background-color: #3939f8;
+}
+
+.hover-purple-parent:hover .hover-purple {
+  stroke: #3939f8;
+}
+
+/* custom hover to lighter */
+.hover-lighter:hover path {
+  stroke: #fff;
+}
+.hover-lighter:hover button {
+  color: #fff!important;
+}

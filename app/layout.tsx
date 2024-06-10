@@ -1,28 +1,33 @@
-import { GeistSans } from "geist/font/sans";
-import "./globals.css";
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+export const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
-const defaultUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : "http://localhost:3000";
+import { Nanum_Pen_Script } from "next/font/google";
+export const nanum_pen_script = Nanum_Pen_Script({
+  subsets: ["latin"],
+  variable: "--font-nanum-pen-script",
+  weight: "400",
+});
 
-export const metadata = {
-  metadataBase: new URL(defaultUrl),
-  title: "Next.js and Supabase Starter Kit",
-  description: "The fastest way to build apps with Next.js and Supabase",
+import "@/styles/global.css";
+
+export const metadata: Metadata = {
+  title: "Just code",
+  description: "No tutorials, No courses. Just code projects.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
+
   return (
-    <html lang="en" className={GeistSans.className}>
-      <body className="bg-background text-foreground">
-        <main className="min-h-screen flex flex-col items-center">
-          {children}
-        </main>
-      </body>
+    <html
+      lang="en"
+      className={`${nanum_pen_script.variable} ${inter.variable}`}
+    >
+      <body className={`${inter.className}`}>{children}</body>
     </html>
   );
 }
