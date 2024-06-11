@@ -1,6 +1,6 @@
 "use client";
 import React, { FC } from "react";
-import HeadPhoneSvg from "../../../components/Icons/HeadPhoneSvg";
+import HeadPhoneSvg from "../../../../components/Icons/HeadPhoneSvg";
 import Link from "next/link";
 import Brand from "@/components/Brand";
 import IndividualSelectProcess from "./SidebarSelectProcess";

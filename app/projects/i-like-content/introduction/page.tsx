@@ -2,10 +2,10 @@
 
 import CodeSyntaxHighlighter from "@/components/CodeBlock";
 import Stepper from "@/components/Stepper";
-import DescriptionMilestone from "@/containers/individual-page/components/DescriptionMilestone";
-import Hint1 from "@/containers/individual-page/Hint/Hint1";
-import Hint2 from "@/containers/individual-page/Hint/Hint2";
-import Hint3 from "@/containers/individual-page/Hint/Hint3";
+import DescriptionMilestone from "@/containers/project-page/components/DescriptionMilestone";
+import Hint1 from "@/containers/project-page/Hint/Hint1";
+import Hint2 from "@/containers/project-page/Hint/Hint2";
+import Hint3 from "@/containers/project-page/Hint/Hint3";
 import { useMilestoneStore } from "@/store/useMilestoneStore";
 import Link from "next/link";
 import { useMemo, useState } from "react";
