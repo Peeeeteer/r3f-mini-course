@@ -8,4 +8,5 @@ export interface TProject {
   tags: string[];
   price: string;
   image: string;
+  url: string;
 }

@@ -4,16 +4,16 @@ export const HeaderNavs: HeaderNav[] = [
   {
     id: 1,
     value: "Do frontend",
-    href: "/frontend",
+    href: "/projects",
   },
   {
     id: 2,
     value: "Do fullstack",
-    href: "/fullstack",
+    href: "/projects",
   },
   {
     id: 3,
     value: "Do scripts ",
-    href: "/scripts",
+    href: "/projects",
   },
 ];
