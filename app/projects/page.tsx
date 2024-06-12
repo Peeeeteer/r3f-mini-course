@@ -30,7 +30,7 @@ const mockProjects: TProject[] = [
             "You will be making the same landing page as on justcode",
         difficulty: "Easy",
         category: "Frontend",
-        tags: ["React-Three-Fiber"],
+        tags: ["React", "Figma", "Three.js", "Tailwindcss",],
         price: "4.99",
         image: "/project-2.png",
         url: "projects/robot-landing/introduction",
