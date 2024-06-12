@@ -6,11 +6,11 @@ import { TUser } from "@/types/User";
 import { User } from "@supabase/supabase-js";
 import { FC } from "react";
 
-interface IndividualHeaderSectionProps {
+interface ProjectPageHeaderSectionProps {
   user: User | null;
 }
 
-const IndividualHeaderSection: FC<IndividualHeaderSectionProps> =  ({
+const ProjectPageHeaderSection: FC<ProjectPageHeaderSectionProps> =  ({
   user,
 }) => {
   const { milestone } = useMilestoneStore();
@@ -49,4 +49,4 @@ const IndividualHeaderSection: FC<IndividualHeaderSectionProps> =  ({
   );
 };
 
-export default IndividualHeaderSection;
+export default ProjectPageHeaderSection;
