@@ -1,3 +1,5 @@
+import { TMilestone, TPureMilestone } from "./Milestonne";
+
 export interface TProject {
   type: "purple" | "yellow" | "danger";
   date: string;
@@ -9,4 +11,6 @@ export interface TProject {
   price: string;
   image: string;
   url: string;
+  projectName: string;
+  milestones: TPureMilestone[];
 }

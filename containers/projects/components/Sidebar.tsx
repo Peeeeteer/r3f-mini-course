@@ -3,6 +3,7 @@ import React, { FC } from "react";
 import Link from "next/link";
 import Brand from "@/components/Brand";
 import HeadPhoneSvg from "@/components/Icons/HeadPhoneSvg";
+import { useMilestoneStore } from "@/store/useMilestoneStore";
 
 interface SidebarProps {}
 
