@@ -69,7 +69,8 @@ const ProjectsSection: FC<ProjectsSectionProps> = (
                                     tag.toLowerCase() === "figma" && "text-lightYellow",
                                     tag.toLowerCase() === "tailwindcss" && "text-lightBlue",
                                     tag.toLowerCase() === "chrome" && "text-white",
-                                    tag.toLowerCase() === "react-three-fiber" && "text-lightGreen"
+                                    tag.toLowerCase() === "three.js" && "text-blue-500",
+                                    tag.toLowerCase() === "three" && "text-lightGreen"
                                   )}
                                 >
                                   {tag}
