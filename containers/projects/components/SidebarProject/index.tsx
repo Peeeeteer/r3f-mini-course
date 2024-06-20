@@ -10,10 +10,11 @@ import SidebarProcess from "./SidebarProcess";
 
 interface SidebarProps {}
 
-const Sidebar: FC<SidebarProps> = ({}) => {
+const SidebarProject: FC<SidebarProps> = ({}) => {
   const [headPhoneColor, setHeadPhoneColor] = React.useState<string>("#8996A9");
-  const { totalMilestoneLeft, listMilestone, introduction } =
-    useMilestoneStore();
+  const { projectNameSelected, currentProject, listMilestone } = useMilestoneStore();
+
+  const { milestones = [],  } = currentProject || {};
 
   return (
     <div className="w-[250px] bg[#232627 ] max-w-[250px] h-screen fixed left-0 top-0 z-40 border-r border-[#303334] ">
@@ -24,7 +25,7 @@ const Sidebar: FC<SidebarProps> = ({}) => {
               <Brand />
             </Link>
           </div>
-          <Link href={introduction.url}>
+          <Link href={`/projects/${projectNameSelected}/introduction`}>
             <div
               className="p-4 cursor-pointer relative "
               onMouseOver={() => setHeadPhoneColor("#635AFF")}
@@ -36,7 +37,7 @@ const Sidebar: FC<SidebarProps> = ({}) => {
                   className="relative z-10"
                 />
                 <span className="text-white font-bold text-sm">
-                  {introduction.displayName}
+                  Introduction
                 </span>
               </div>
               <div className="absolute w-full h-full top-0 left-0 hover:bg-[#1d202179]"></div>
@@ -44,13 +45,12 @@ const Sidebar: FC<SidebarProps> = ({}) => {
           </Link>
           <div className="border-b border-[#303334] border-dashed mb-4"></div>
           <div className="pl-[14px] pr-[12px] flex flex-col gap-y-4">
-            {(listMilestone === null ? [] : listMilestone)
-              .filter(({ id }) => id !== "0")
+            {(milestones === null ? [] : milestones)
               .map((milestone, index) => {
                 return (
                   <SidebarItem
                     milestone={milestone}
-                    order={listMilestone?.length - index}
+                    order={milestones?.length - index}
                     key={milestone.id}
                   />
                 );
@@ -59,11 +59,11 @@ const Sidebar: FC<SidebarProps> = ({}) => {
         </div>
         <SidebarProcess
           totalStep={listMilestone.length}
-          totalMilestoneLeft={totalMilestoneLeft}
+          totalMilestoneLeft={1}
         />
       </div>
     </div>
   );
 };
 
-export default Sidebar;
+export default SidebarProject;

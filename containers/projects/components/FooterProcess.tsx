@@ -2,7 +2,8 @@
 import ArrowLeftSvg from "@/components/Icons/ArrowLeftSvg";
 import ArrowRightSvg from "@/components/Icons/ArrowRightSvg";
 import { useMilestoneStore } from "@/store/useMilestoneStore";
-import { FC } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { FC, useMemo } from "react";
 
 interface FooterProcessProps {
   labelNextBtn?: string;
@@ -13,8 +14,36 @@ const FooterProcess: FC<FooterProcessProps> = ({
   labelNextBtn = "Reveal Hint",
   labelPrevBtn = "Back",
 }) => {
-  const { milestone, nextStepMilestone, prevStepMilestone, setShowCode } =
-    useMilestoneStore();
+  const {
+    currentProject,
+    milestone,
+    nextStepMilestone,
+    prevStepMilestone,
+    setShowCode,
+  } = useMilestoneStore();
+
+  const params = usePathname();
+  const navigation = useRouter();
+
+  const currentHint = useMemo(() => {
+    if (!milestone) return 0;
+    return milestone?.currentHint || 0;
+  }, [milestone]);
+
+  const totalHint = useMemo(() => {
+    if (!milestone) return 0;
+    return milestone?.totalHint || 0;
+  }, [milestone]);
+
+  const process = useMemo(() => {
+    if (!milestone) return 0;
+    return (
+      ((currentHint + 1 < totalHint ? currentHint + 1 : totalHint) /
+        totalHint) *
+      100
+    );
+  }, [currentHint, milestone, totalHint]);
+
   return (
     <div className="fixed bottom-0 right-0 w-[calc(100%-250px)] z-50 bg-[#232627]">
       <div className="pb-8 px-5">
@@ -22,9 +51,7 @@ const FooterProcess: FC<FooterProcessProps> = ({
           <div
             className="absolute h-[2px] left-0 top-0 bg-[#5533FF]"
             style={{
-              width: `${
-                (milestone.currentStep / (milestone.totalSteps - 1)) * 100
-              }%`,
+              width: `${process}%`,
             }}
           ></div>
         </div>
@@ -62,16 +89,24 @@ const FooterProcess: FC<FooterProcessProps> = ({
             <div className="flex gap-x-2 px-3 py-2 items-center w-fit cursor-pointer hover-lighter">
               <ArrowLeftSvg
                 strokeWidth={"1.2"}
-                stroke={milestone.currentStep === 0 ? "#FFFFFF33" : "#FFFFFF"}
+                stroke={currentHint === 0 ? "#FFFFFF33" : "#FFFFFF"}
               ></ArrowLeftSvg>
               <button
                 onClick={() => {
-                  prevStepMilestone();
+                  if (!milestone || currentHint === 0) return;
+                  const urlSplit = params.split("/");
+                  urlSplit.shift();
+                  urlSplit.pop();
+                  urlSplit.push(
+                    milestone.hints[currentHint - 1].label.toLocaleLowerCase()
+                  );
+                  const newUrl = urlSplit.join("/");
+                  navigation.push("/" + newUrl);
                 }}
                 className="text-[#FFFFFF33] text-sm"
                 style={{
                   cursor: "pointer",
-                  color: milestone.currentStep === 0 ? "#FFFFFF33" : "#FFFFFF",
+                  color: currentHint === 0 ? "#FFFFFF33" : "#FFFFFF",
                 }}
               >
                 {labelPrevBtn}
@@ -80,16 +115,24 @@ const FooterProcess: FC<FooterProcessProps> = ({
             <div className="">
               <button
                 onClick={() => {
-                  nextStepMilestone();
+                  if (!milestone || currentHint > milestone.hints.length - 2)
+                    return;
+                  const urlSplit = params.split("/");
+                  urlSplit.shift();
+                  urlSplit.pop();
+                  urlSplit.push(
+                    milestone.hints[currentHint + 1].label.toLocaleLowerCase()
+                  );
+                  const newUrl = urlSplit.join("/");
+                  navigation.push("/" + newUrl);
                 }}
+                disabled={currentHint > (milestone?.hints?.length || 0) - 2}
                 className="hover:text-white56 flex items-center gap-x-2 bg-[#635AFF] rounded-md px-3 py-[6px] w-fit text-white "
               >
                 <span className="text-sm font-bold block ">
                   {labelNextBtn}{" "}
-                  {milestone.currentStep + 1 < milestone.totalSteps
-                    ? milestone.currentStep + 1
-                    : milestone.totalSteps}{" "}
-                  / {milestone.totalSteps}
+                  {currentHint + 1 < totalHint ? currentHint + 1 : totalHint} /{" "}
+                  {totalHint}
                 </span>
                 <ArrowRightSvg
                   color="#FFFFFF"

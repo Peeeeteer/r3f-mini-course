@@ -12,8 +12,7 @@ interface SidebarItemProps {
 }
 
 const SidebarItem: FC<SidebarItemProps> = ({ milestone, order }) => {
-  const { displayName, status, url } = milestone;
-  const { handleMilestone } = useMilestoneStore();
+  const { currentHint, status, url, label } = milestone!;
   const bgColor = useMemo(() => {
     switch (status) {
       case MilestoneStatus.TO_DO:
@@ -31,9 +30,7 @@ const SidebarItem: FC<SidebarItemProps> = ({ milestone, order }) => {
     <div className="cursor-pointer hover:bg-[#42424240] rounded-md">
       <Link
         href={url}
-        onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-          handleMilestone(milestone);
-        }}
+        onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {}}
       >
         <div className="flex justify-between items-center p-[2px]">
           <div className="flex justify-between items-center gap-x-[6px]">
@@ -45,12 +42,12 @@ const SidebarItem: FC<SidebarItemProps> = ({ milestone, order }) => {
             ></label>
             <div className="flex gap-x-3">
               <span className="text-white font-bold text-sm">
-                {displayName}
+                {label}
               </span>
             </div>
           </div>
           <SidebarSelectProcess
-            name={displayName}
+            name={label}
             status={status}
             order={order}
           />

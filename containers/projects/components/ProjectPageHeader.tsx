@@ -10,7 +10,7 @@ interface ProjectPageHeaderSectionProps {
   user: User | null;
 }
 
-const ProjectPageHeaderSection: FC<ProjectPageHeaderSectionProps> =  ({
+const ProjectPageHeaderSection: FC<ProjectPageHeaderSectionProps> = ({
   user,
 }) => {
   const { milestone } = useMilestoneStore();
@@ -23,7 +23,7 @@ const ProjectPageHeaderSection: FC<ProjectPageHeaderSectionProps> =  ({
     <header className="w-full bg-[#232627] flex justify-center border-b border-[#FFFFFF1A]  sticky top-0 left-0 z-[41] ">
       <div className="w-full flex items-center justify-between">
         <nav className="p-6 flex items-center gap-x-1 h-[80px]">
-          <span className="text-[#9CA3AF]">{milestone.displayName}</span>
+          <span className="text-[#9CA3AF]">{milestone?.label}</span>
           <svg
             width="14"
             height="14"
@@ -40,7 +40,7 @@ const ProjectPageHeaderSection: FC<ProjectPageHeaderSectionProps> =  ({
             />
           </svg>
           <span className="text-[#f3f4f6] hover:text-[#f3f4f6c2] text-sm font-medium cursor-pointer">
-            Make a Navbar
+            {milestone?.description}
           </span>
         </nav>
         <HeaderUserActions targetUser={targetUser} />

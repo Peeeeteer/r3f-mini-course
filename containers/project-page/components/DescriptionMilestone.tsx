@@ -6,9 +6,11 @@ const meta = {
   contact: "Contact Us",
   about: "About Us",
 };
-interface DescriptionMilestoneProps {}
+interface DescriptionMilestoneProps {
+  markdown?: string;
+}
 
-const DescriptionMilestone: FC<DescriptionMilestoneProps> = ({}) => {
+const DescriptionMilestone: FC<DescriptionMilestoneProps> = ({ markdown }) => {
   return (
     <div>
       <div className="mb-5">
