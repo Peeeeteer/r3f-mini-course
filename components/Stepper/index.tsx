@@ -5,7 +5,7 @@ import { twJoin } from "tailwind-merge";
 interface StepperProps {
   steps: Array<string>;
   activeStep: number;
-  onChangeStep?: (index: number) => void;
+  onChangeStep?: (step: string) => void;
 }
 
 const Stepper: FC<StepperProps> = ({ steps, activeStep, onChangeStep }) => {
@@ -16,7 +16,7 @@ const Stepper: FC<StepperProps> = ({ steps, activeStep, onChangeStep }) => {
           <div
             key={step}
             className="flex items-center justify-between text-white56 cursor-pointer"
-            onClick={() => onChangeStep && onChangeStep(index)}
+            onClick={() => onChangeStep && onChangeStep(step)}
           >
             <div className="flex items-center">
               <div

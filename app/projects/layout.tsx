@@ -2,7 +2,7 @@
 
 import ProjectPageHeader from "@/containers/projects/components/ProjectPageHeader";
 import Sidebar from "@/containers/projects/components/Sidebar";
-import { useParams, usePathname } from "next/navigation";
+import { useParams, usePathname, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import { useMilestoneStore } from "@/store/useMilestoneStore";
 import FooterProcess from "@/containers/projects/components/FooterProcess";
@@ -14,21 +14,35 @@ export default function ProjectLayout({
   children: React.ReactNode;
 }>) {
   const params = usePathname();
-  const { setProjectNameSelected } = useMilestoneStore();
+  const { step, milestone } = useParams<{ milestone: string; step: string }>();
+  console.log("🚀 ~ x:", step, milestone);
+
+  const { setProjectNameSelected, setCurrentHintByStepperName } =
+    useMilestoneStore();
+
   useEffect(() => {
     if (params.startsWith("/projects")) {
       const urlSplit = params.split("/");
+      if (urlSplit.length < 3) return;
       const project = urlSplit[2];
       setProjectNameSelected(project);
     }
-  }, [params, setProjectNameSelected]);
+  }, [params]);
+
+  useEffect(() => {
+    if (step) {
+      setCurrentHintByStepperName(step);
+    }
+  }, [step]);
 
   return (
     <section>
       <SidebarProject />
       <main className="ml-[250px] min-h-screen">
         <ProjectPageHeader user={null} />
-        <div className="px-5 pt-8 h-[calc(100dvh-130px)]">{children}</div>
+        <div className="px-5 pt-8 h-[calc(100dvh-200px)] overflow-y-auto">
+          {children}
+        </div>
         <FooterProcess />
       </main>
     </section>

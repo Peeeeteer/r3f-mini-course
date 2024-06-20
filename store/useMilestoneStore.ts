@@ -18,6 +18,7 @@ export type MilestoneStore = {
   prevStepMilestone: () => void;
   setShowCode: (isShowCode: boolean) => void;
   setProjectNameSelected(projectName: string): void;
+  setCurrentHintByStepperName: (stepName: string) => void;
   projects: TProject[];
   currentProject: TProject | null;
   projectNameSelected: string | null;
@@ -84,6 +85,22 @@ export const useMilestoneStore = create<MilestoneStore>()((set) => ({
         projectNameSelected: projectName,
         listMilestone: project?.milestones || [],
         milestone: project?.milestones[0],
+      };
+    }),
+  setCurrentHintByStepperName: (stepName: string) =>
+    set((state) => {
+      const currentHint = state.milestone?.hints.findIndex(
+        (hint) =>
+          hint.label.toLocaleLowerCase() === stepName.toLocaleLowerCase()
+      );
+      if (currentHint === -1) {
+        return state;
+      }
+      return {
+        milestone: {
+          ...state.milestone,
+          currentHint,
+        },
       };
     }),
 }));

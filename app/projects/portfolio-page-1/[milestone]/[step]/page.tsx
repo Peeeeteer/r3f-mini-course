@@ -1,28 +1,51 @@
 import fs from "fs";
-import path from "path";
 import matter from "gray-matter";
+import path from "path";
 import ReactMarkdown from "react-markdown";
-import Image from "next/legacy/image";
 // syntax-highlighter
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { atomDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
-import { Para } from "@/components/MarkdownElement/Para";
 import CustomImage from "@/components/CustomImage";
 import { Heading } from "@/components/MarkdownElement/Heading";
+import { Para } from "@/components/MarkdownElement/Para";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { atomDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
-export default function Description({
+export default function Page({
   params,
+  searchParams,
 }: {
-  params: { milestone: string };
+  params: { milestone: string; step: string };
+  searchParams: {
+    step: string;
+  };
 }) {
+  if (!params.milestone || !params.step) {
+    return null;
+  }
+  console.log(
+    path.join(
+      process.cwd(),
+      "database",
+      "portfolio-page-1",
+      params.milestone,
+      params.step + ".md"
+    )
+  );
+
   const source = fs.readFileSync(
-    path.join(process.cwd(), "database", "portfolio-page-1", "introduction.md"),
+    path.join(
+      process.cwd(),
+      "database",
+      "portfolio-page-1",
+      params.milestone,
+      params.step + ".md"
+    ),
     "utf8"
   );
   const { data, content } = matter(source);
   return (
-    <main className="flex items-start flex-col pb-[20px] gap-y-5">
+    <main className="flex items-start flex-col pb-[20px] gap-y-4">
       <ReactMarkdown
+        skipHtml={false}
         children={content}
         components={{
           p: Para.P,

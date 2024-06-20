@@ -2,6 +2,7 @@
 import ArrowLeftSvg from "@/components/Icons/ArrowLeftSvg";
 import ArrowRightSvg from "@/components/Icons/ArrowRightSvg";
 import { useMilestoneStore } from "@/store/useMilestoneStore";
+import { usePathname, useRouter } from "next/navigation";
 import { FC, useMemo } from "react";
 
 interface FooterProcessProps {
@@ -21,6 +22,9 @@ const FooterProcess: FC<FooterProcessProps> = ({
     setShowCode,
   } = useMilestoneStore();
 
+  const params = usePathname();
+  const navigation = useRouter();
+
   const currentHint = useMemo(() => {
     if (!milestone) return 0;
     return milestone?.currentHint || 0;
@@ -33,7 +37,11 @@ const FooterProcess: FC<FooterProcessProps> = ({
 
   const process = useMemo(() => {
     if (!milestone) return 0;
-    return (currentHint / totalHint) * 100;
+    return (
+      ((currentHint + 1 < totalHint ? currentHint + 1 : totalHint) /
+        totalHint) *
+      100
+    );
   }, [currentHint, milestone, totalHint]);
 
   return (
@@ -85,7 +93,15 @@ const FooterProcess: FC<FooterProcessProps> = ({
               ></ArrowLeftSvg>
               <button
                 onClick={() => {
-                  prevStepMilestone();
+                  if (!milestone || currentHint === 0) return;
+                  const urlSplit = params.split("/");
+                  urlSplit.shift();
+                  urlSplit.pop();
+                  urlSplit.push(
+                    milestone.hints[currentHint - 1].label.toLocaleLowerCase()
+                  );
+                  const newUrl = urlSplit.join("/");
+                  navigation.push("/" + newUrl);
                 }}
                 className="text-[#FFFFFF33] text-sm"
                 style={{
@@ -99,8 +115,18 @@ const FooterProcess: FC<FooterProcessProps> = ({
             <div className="">
               <button
                 onClick={() => {
-                  nextStepMilestone();
+                  if (!milestone || currentHint > milestone.hints.length - 2)
+                    return;
+                  const urlSplit = params.split("/");
+                  urlSplit.shift();
+                  urlSplit.pop();
+                  urlSplit.push(
+                    milestone.hints[currentHint + 1].label.toLocaleLowerCase()
+                  );
+                  const newUrl = urlSplit.join("/");
+                  navigation.push("/" + newUrl);
                 }}
+                disabled={currentHint > (milestone?.hints?.length || 0) - 2}
                 className="hover:text-white56 flex items-center gap-x-2 bg-[#635AFF] rounded-md px-3 py-[6px] w-fit text-white "
               >
                 <span className="text-sm font-bold block ">

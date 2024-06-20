@@ -33,7 +33,7 @@ const listMilestone: TPureMilestone[] = [
     isReveal: false,
     label: "Milestone 1",
     totalHint: 4,
-    url: "/projects/portfolio-page-1/1",
+    url: "/projects/portfolio-page-1/1/description",
   },
   {
     id: "1",
@@ -61,7 +61,7 @@ const listMilestone: TPureMilestone[] = [
     isReveal: false,
     label: "Milestone 2",
     totalHint: 4,
-    url: "/projects/portfolio-page-1/2",
+    url: "/projects/portfolio-page-1/2/description",
   },
 ];
 
