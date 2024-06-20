@@ -1,0 +1,12 @@
+###### Milestone 3: Setting Up the Project.
+
+**Description:** Set up the initial React project with TailwindCSS and create a basic file structure.
+
+**Expect:** By the end of this milestone, you should have a React project set up with TailwindCSS and a file structure ready for development.
+
+**Tasks:** Set up a new React project.
+
+
+* **HINT 1:** Use Create React App to set up your project. Run `npx create-react-app my-portfolio`.
+* **HINT 2:**  Install TailwindCSS by following the [TailwindCSS installation guide for Create React App](https://tailwindcss.com/docs/guides/create-react-app).
+* **HINT 3:** Create a basic folder structure in the **src** directory **components**, and **styles**.

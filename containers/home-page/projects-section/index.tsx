@@ -70,7 +70,8 @@ const ProjectsSection: FC<ProjectsSectionProps> = (
                                     tag.toLowerCase() === "tailwindcss" && "text-lightBlue",
                                     tag.toLowerCase() === "chrome" && "text-white",
                                     tag.toLowerCase() === "three.js" && "text-blue-500",
-                                    tag.toLowerCase() === "three" && "text-lightGreen"
+                                    tag.toLowerCase() === "three" && "text-lightGreen",
+
                                   )}
                                 >
                                   {tag}

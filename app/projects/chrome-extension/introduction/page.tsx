@@ -16,7 +16,7 @@ export default function Description({
   params: { milestone: string };
 }) {
   const source = fs.readFileSync(
-    path.join(process.cwd(), "database", "robot-landing", "introduction.md"),
+    path.join(process.cwd(), "database", "portfolio-page-1", "introduction.md"),
     "utf8"
   );
   const { data, content } = matter(source);
