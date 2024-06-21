@@ -1,25 +1,18 @@
-###### Hint 2: Install tailwind CSS
+###### Hint 2: Two ways to use the boilerplate
+
+
+**Option 1:**
 > Run the following commands in your terminal:
 ```bash
-npm install -D tailwindcss
-npx tailwindcss init
+  cd directory/where/you/want/to/clone
+  git clone https://github.com/lxieyang/chrome-extension-boilerplate-react.git
 ```
-![hint2-1](/portfolio-page-1/milestone-1/hint2-1.png "using npm to install tailwindcss")
 
-![hint2-2](/portfolio-page-1/milestone-1/hint2-2.png "install tailwind config")
+**Option 2:**  
+If you don't have git, you can just download the zip
 
-> Update **tailwind.config.js**:
-```js
-module.exports = {
-  purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
-  darkMode: false,
-  theme: {
-    extend: {},
-  },
-  variants: {
-    extend: {},
-  },
-  plugins: [],
-};
-```
-![hint2-2](/portfolio-page-1/milestone-1/hint2-3.png "")
+![hint2](/chrome-extension/image9.png "Download the zip")
+
+And after that do these steps:
+![hint1-1](/chrome-extension/image3.png "Steps of boilerplate")
+

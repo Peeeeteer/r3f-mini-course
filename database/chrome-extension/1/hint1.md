@@ -1,9 +1,8 @@
-###### Hint 1: Use Create React App to set up your project
-Run the following commands in your terminal:
-```bash
-npx create-react-app my-portfolio
-cd my-portfolio
-```
-![hint1-1](/portfolio-page-1/milestone-1/hint1-1.png "Create project with create-react-app")
+###### Hint 1: Boring but true.
 
-![hint1-2](/portfolio-page-1/milestone-1/hint1-2.png "Go to the project")
+I know it might sound boring,   
+but really try reading through all of the instructions provided on Github. 
+  It is fairly detailed and really good… but you mostly need this steps:
+
+![hint1-1](/chrome-extension/image3.png "Steps of boilerplate")
+

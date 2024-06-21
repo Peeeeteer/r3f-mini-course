@@ -25,7 +25,7 @@ export default function Page({
     path.join(
       process.cwd(),
       "database",
-      "portfolio-page-1",
+      "chrome-extension",
       params.milestone,
       params.step + ".md"
     )
@@ -35,7 +35,7 @@ export default function Page({
     path.join(
       process.cwd(),
       "database",
-      "portfolio-page-1",
+      "chrome-extension",
       params.milestone,
       params.step + ".md"
     ),

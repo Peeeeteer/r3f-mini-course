@@ -1,12 +1,19 @@
-###### Milestone 1: Setting Up the Project.
+###### Milestone 1: Initial setup
 
-**Description:** Set up the initial React project with TailwindCSS and create a basic file structure.
-
-**Expect:** By the end of this milestone, you should have a React project set up with TailwindCSS and a file structure ready for development.
-
-**Tasks:** Set up a new React project.
+There are many ways how to code a chrome plugin, but I just used <u>[this template](https://github.com/lxieyang/chrome-extension-boilerplate-react)</u>
 
 
-* **HINT 1:** Use Create React App to set up your project. Run `npx create-react-app my-portfolio`.
-* **HINT 2:**  Install TailwindCSS by following the [TailwindCSS installation guide for Create React App](https://tailwindcss.com/docs/guides/create-react-app).
-* **HINT 3:** Create a basic folder structure in the **src** directory **components**, and **styles**.
+It's basic
+built with webpack & react and has all the pages pre-built for you. 
+What pages? What is happening? Will handle that in Milestone 2
+
+So go ahead and set it up and add the extension to chrome, the github link has all the info you need.
+
+By the end you should have something like this:
+![Project 1](/chrome-extension/image15.png "What we will be making")
+ Replace with a video after it.
+
+
+**Todo:** 
+- Setup the project using the boilerplate
+

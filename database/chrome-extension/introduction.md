@@ -1,28 +1,29 @@
 ##### Introduction:
 
-Welcome to this tutorial on building a Chrome Extension. This guide will help you create a sleek and functional personal website by breaking the process into manageable milestones. Each milestone includes tasks, hints, sample code, and explanations to ensure you understand every step.
+You will build a chrome extension that helps you with your addictions.
+You will track domain changes and open a quiz after a certain amount and when the user answers, continue browsing… of course you can change that to be anything else you want!
 
-##### Tools and Languages:
+Basicly, we will be building this. VIDEO INSTEAD OF IMAGE
+![Project 1](/chrome-extension/image11.png "What we will be making")
 
-* **React**: A JavaScript library for building user interfaces. Docs: [React Documentation](https://react.dev/).
-* **Tailwind CSS**: A CSS framework that allows you to style your site without writing lots of custom CSS. Docs: [TailwindCSS Documentation](https://tailwindcss.com/docs/installation).
-* **Node.js**: JavaScript runtime environment. Download: [Node.js](Node.js).
-* **Visual Studio Code**: Recommended IDE. Download: [VS Code](https://code.visualstudio.com/download).
 
-##### Requirement:
+**You will do it the justcode way**
+- 10 milestones
+- each milestone has 3 hints
 
-* Set up a development environment for React (Node.js, npm/yarn)
-* Understanding of HTML structure and **[semantics](https://www.w3schools.com/html/html5_semantic_elements.asp)**.
-* Basic knowledge of **[CSS for styling](https://www.w3schools.com/css/default.asp)** web pages.
-* How to create and use **[React components](https://legacy.reactjs.org/docs/components-and-props.html)**.
-* Familiarity with how **[TailwindCSS](https://tailwindcss.com/docs/utility-first) **provides utility classes for styling.
-* Understanding how to customize TailwindCSS configuration to suit project needs.
-* Knowledge of **[designing responsive](https://www.w3schools.com/css/css_rwd_intro.asp)** interfaces so the website displays well on various devices and screen sizes.
+The milestone will have a brief description and you need to try to solve them any means possible, either by googling,using ai, watching a video or  just solving it on your own…
 
-##### Note:
 
-![Project 1](/project-1.png "title")
+##### Requirement/Difficulty
 
-* No tutorials or courses.
-* 10 milestones or more.
-* Each milestone has 3 hints and reveals the final code.
+We will be working with: 
+* **React**
+* **Tailwind CSS**
+
+I would consider this to be **“EASY”** difficulty.     
+If you know a little React & Tailwind you should be all good, but **If** this is your first time touching Javascript or React then it will be a little harder.
+
+Basically,     
+This shit is **free…** just try it man. You literally have nothing to lose.
+
+

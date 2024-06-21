@@ -182,7 +182,94 @@ const robotMilestone: TPureMilestone[] = [
   },
 ];
 
+const chromePluginMilestone: TPureMilestone[] = [
+  {
+    id: "0",
+    currentHint: 0,
+    description: "Initial setup",
+    status: MilestoneStatus.TO_DO,
+    hints: [
+      {
+        label: MilestoneDetailLabel.description,
+        markdown: "Introduction",
+      },
+      {
+        label: MilestoneDetailLabel.hint1,
+        markdown: "Add socks",
+      },
+      {
+        label: MilestoneDetailLabel.hint2,
+        markdown: "Add shoes",
+      },
+      {
+        label: MilestoneDetailLabel.hint3,
+        markdown: "Add laces",
+      },
+    ],
+    isReveal: false,
+    label: "Milestone 1",
+    totalHint: 4,
+    url: "/projects/chrome-extension/1/description",
+  },
 
+  {
+    id: "1",
+    currentHint: 0,
+    description: "Understand the template",
+    status: MilestoneStatus.TO_DO,
+    hints: [
+      {
+        label: MilestoneDetailLabel.description,
+        markdown: "This is the introduction",
+      },
+      {
+        label: MilestoneDetailLabel.hint1,
+        markdown: "This is the introduction",
+      },
+      {
+        label: MilestoneDetailLabel.hint2,
+        markdown: "This is the introduction",
+      },
+      {
+        label: MilestoneDetailLabel.hint3,
+        markdown: "This is the introduction",
+      },
+    ],
+    isReveal: false,
+    label: "Milestone 2",
+    totalHint: 4,
+    url: "/projects/chrome-extension/2/description",
+  },
+
+  {
+    id: "1",
+    currentHint: 0,
+    description: "Updating Popup",
+    status: MilestoneStatus.TO_DO,
+    hints: [
+      {
+        label: MilestoneDetailLabel.description,
+        markdown: "This is the introduction",
+      },
+      {
+        label: MilestoneDetailLabel.hint1,
+        markdown: "This is the introduction",
+      },
+      {
+        label: MilestoneDetailLabel.hint2,
+        markdown: "This is the introduction",
+      },
+      {
+        label: MilestoneDetailLabel.hint3,
+        markdown: "This is the introduction",
+      },
+    ],
+    isReveal: false,
+    label: "Milestone 3",
+    totalHint: 4,
+    url: "/projects/chrome-extension/3/description",
+  },
+];
 
 
 const mockProjects: TProject[] = [
@@ -196,9 +283,9 @@ const mockProjects: TProject[] = [
     tags: ["React", "Figma", "Tailwindcss", "Chrome"],
     price: "Free",
     image: "/project-1.png",
-    url: "projects/i-like-content/introduction",
-    milestones: listMilestone,
-    projectName: "i-like-content",
+    url: "projects/chrome-extension/introduction",
+    milestones: chromePluginMilestone,
+    projectName: "chrome-extension",
   },
   {
     type: "yellow",
@@ -222,7 +309,7 @@ const mockProjects: TProject[] = [
     difficulty: "Easy",
     category: "Frontend",
     tags: ["React", "Figma", "Tailwindcss", "Chrome"],
-    price: "4.99$",
+    price: "Free",
     image: "/project-1.png",
     url: "projects/portfolio-page-1/introduction",
     milestones: listMilestone,
