@@ -1,9 +1,5 @@
-###### Hint 1: Try Googling
-Search in Google
-```bash
-chrome extension newtab stackoverflow
-```
+###### Hint 1: index.js
+`index.js` in the background folder is the file we should work in.
 
-You will get a lot of really good information on the topic and I'm sure you'll be able to solve it.
 
-You got this 💪
+![hint-1](/chrome-extension/image1.png "index.js")

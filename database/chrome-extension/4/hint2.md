@@ -1,6 +1,10 @@
-###### Hint 2: manifest.json
+###### Hint 2: Google is your friend
 
-👑 manifest.json is the whatsapp group leader 👑
+Try googling this
+```bash
+chrome extension check url change
+```
 
-You need to do some changes inside manifest to tell chrome not to set `newtab.jsx` when we open a newtab inside google.
+I found a lot of useful information, do some googling and researching.   
 
+You Got This. 🙌
