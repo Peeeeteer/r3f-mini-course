@@ -1,6 +1,7 @@
-###### Hint 2: manifest.json
+###### Hint 2: It's like a TODO app
+Play around with the values in `Popup.jsx` and `Popup.css` to see how they change the popup.
 
-👑 manifest.json is the whatsapp group leader 👑
+Then, check out some YouTube videos on "How to make a TODO in React" and apply what you learn to achiev or target/goal    
+🎯Creating an input for domains and displaying a list of those domains🎯
 
-You need to do some changes inside manifest to tell chrome not to set `newtab.jsx` when we open a newtab inside google.
-
+You got this! 💪

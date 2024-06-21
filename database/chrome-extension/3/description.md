@@ -1,22 +1,22 @@
-###### Milestone 2: Understanding the template
+###### Milestone 3: Updating Popup
+
+📄 **From this:**
+![Project 1](/chrome-extension/image4.png "What we will be making")
+
+➡️ **To this:**
+![Project 1](/chrome-extension/image14.png "What we will be making")
 
 
-You probably got the same message as me when you opened a new tab.
-[Video of what the issue is](https://www.dropbox.com/scl/fi/jr386x4sgwd5etsh8yp92/2024-06-09-13-04-28.mp4?rlkey=70t7dwxhjfqsvhziihns27iqc&st=1nw2hnxl&dl=0).
+Yea.. that's it.   
+Transform the default setup we started with into a version that includes an input field and displays a list.
 
-![Project 1](/chrome-extension/image5.png "What we will be making")
-
-
-Let's fix that! 😊  
-By that I mean disable `newtab.html` being the default when opening a new tab in Chrome.  
-Doing this will help us learn about how the template works. You can also poke around the other pages as well to see how everything works.
 
 **Tip 💡**  
-If you update the `manifest.json` & `index.js` in the background folder, you need to refresh the plugin manually by clicking this:
-
-![Project 1](/chrome-extension/image6.png "What we will be making")
-
+To open the chrome console of the popup.jsx, you have to click on it and then inspect. 
+[Video of what the issue is](https://www.dropbox.com/scl/fi/c41r0ks0c9nnc68pdziqe/2024-06-09-10-01-54.mp4?rlkey=ygpoleznjmbmvejl275egpuqh&st=adwyotzv&dl=0).
 
 **Task ✅**
-- Disable `newtab.html` as the Chrome new tab page. 
+- Modify height of popup
+- Add Input & add button
+- Display a list of domains
 

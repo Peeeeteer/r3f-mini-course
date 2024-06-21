@@ -1,12 +1,44 @@
-###### Hint 3: manifest.json & newtab
+###### Hint 3: Fill in the blanks
 
-In the `manifest.json`,  
-there is just one item that starts with "newtab"—you'll need to make a change to it.
+Here's what my code looks like so far; fill in the blanks.
 
-Perhaps this Stack Overflow post might help!   
-I found it by googling.
-```bash
-chrome extension newtab Stack Overflow
+
+Popup.jsx
+```javascript
+import React, { useState } from 'react';
+import './Popup.css';
+
+const Popup = () => {
+  const [url, setUrl] = useState('');
+  const [blockedUrls, setBlockedUrls] = useState([]);
+
+  const handleSubmit = () => {
+  };
+
+  const handleRemoveUrl = (urlToRemove) => {
+  };
+
+  return (
+    <div className="App">
+      <header className="App-header">
+        <input/>
+        <button>Add</button>
+        <ul>
+        </ul>
+      </header>
+    </div>
+  );
+};
+
+export default Popup;
+```
+
+```css
+.body {
+  width: 300px; /* Adjust the width as needed */
+  height: 400px; /* Adjust the height as needed */
+}
+...
 ```
 
 

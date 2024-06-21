@@ -242,7 +242,7 @@ const chromePluginMilestone: TPureMilestone[] = [
   },
 
   {
-    id: "1",
+    id: "2",
     currentHint: 0,
     description: "Updating Popup",
     status: MilestoneStatus.TO_DO,
@@ -268,6 +268,64 @@ const chromePluginMilestone: TPureMilestone[] = [
     label: "Milestone 3",
     totalHint: 4,
     url: "/projects/chrome-extension/3/description",
+  },
+
+  {
+    id: "3",
+    currentHint: 0,
+    description: "Lets count till BINGO!",
+    status: MilestoneStatus.TO_DO,
+    hints: [
+      {
+        label: MilestoneDetailLabel.description,
+        markdown: "This is the introduction",
+      },
+      {
+        label: MilestoneDetailLabel.hint1,
+        markdown: "This is the introduction",
+      },
+      {
+        label: MilestoneDetailLabel.hint2,
+        markdown: "This is the introduction",
+      },
+      {
+        label: MilestoneDetailLabel.hint3,
+        markdown: "This is the introduction",
+      },
+    ],
+    isReveal: false,
+    label: "Milestone 4",
+    totalHint: 4,
+    url: "/projects/chrome-extension/4/description",
+  },
+
+  {
+    id: "4",
+    currentHint: 0,
+    description: "Combining things",
+    status: MilestoneStatus.TO_DO,
+    hints: [
+      {
+        label: MilestoneDetailLabel.description,
+        markdown: "This is the introduction",
+      },
+      {
+        label: MilestoneDetailLabel.hint1,
+        markdown: "This is the introduction",
+      },
+      {
+        label: MilestoneDetailLabel.hint2,
+        markdown: "This is the introduction",
+      },
+      {
+        label: MilestoneDetailLabel.hint3,
+        markdown: "This is the introduction",
+      },
+    ],
+    isReveal: false,
+    label: "Milestone 5",
+    totalHint: 4,
+    url: "/projects/chrome-extension/5/description",
   },
 ];
 

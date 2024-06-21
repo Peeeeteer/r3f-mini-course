@@ -1,9 +1,5 @@
-###### Hint 1: Try Googling
-Search in Google
-```bash
-chrome extension newtab stackoverflow
-```
+###### Hint 1: Popup.jsx & Popup.css
 
-You will get a lot of really good information on the topic and I'm sure you'll be able to solve it.
+To modify everything related to popup, do stuff inside Popup.jsx & Popup.css
 
-You got this 💪
+![hint-1](/chrome-extension/image17.png "popup.jsx & popup.css")
