@@ -215,7 +215,7 @@ const chromePluginMilestone: TPureMilestone[] = [
   {
     id: "1",
     currentHint: 0,
-    description: "Understand the template",
+    description: "Understanding the template",
     status: MilestoneStatus.TO_DO,
     hints: [
       {
