@@ -1,28 +1,118 @@
-##### Introduction: ROBOT ROBOT ROBOT
+# A demo of `react-markdown`
 
-ROBOT ROBOT ROBOT Landing Page using React and TailwindCSS. This guide will help you create a sleek and functional personal website by breaking the process into manageable milestones. Each milestone includes tasks, hints, sample code, and explanations to ensure you understand every step.
+`react-markdown` is a markdown component for React.
 
-##### Tools and Languages:
+👉 Changes are re-rendered as you type.
 
-* **React**: A JavaScript library for building user interfaces. Docs: [React Documentation](https://react.dev/).
-* **Tailwind CSS**: A CSS framework that allows you to style your site without writing lots of custom CSS. Docs: [TailwindCSS Documentation](https://tailwindcss.com/docs/installation).
-* **Node.js**: JavaScript runtime environment. Download: [Node.js](Node.js).
-* **Visual Studio Code**: Recommended IDE. Download: [VS Code](https://code.visualstudio.com/download).
+👈 Try writing some markdown on the left.
 
-##### Requirement:
+## Overview
 
-* Set up a development environment for React (Node.js, npm/yarn)
-* Understanding of HTML structure and **[semantics](https://www.w3schools.com/html/html5_semantic_elements.asp)**.
-* Basic knowledge of **[CSS for styling](https://www.w3schools.com/css/default.asp)** web pages.
-* How to create and use **[React components](https://legacy.reactjs.org/docs/components-and-props.html)**.
-* Familiarity with how **[TailwindCSS](https://tailwindcss.com/docs/utility-first) **provides utility classes for styling.
-* Understanding how to customize TailwindCSS configuration to suit project needs.
-* Knowledge of **[designing responsive](https://www.w3schools.com/css/css_rwd_intro.asp)** interfaces so the website displays well on various devices and screen sizes.
+* Follows [CommonMark](https://commonmark.org)
+* Optionally follows [GitHub Flavored Markdown](https://github.github.com/gfm/)
+* Renders actual React elements instead of using `dangerouslySetInnerHTML`
+* Lets you define your own components (to render `MyHeading` instead of `'h1'`)
+* Has a lot of plugins
 
-##### Note:
+## Contents
 
-![Project 1](/project-1.png "title")
+Here is an example of a plugin in action
+([`remark-toc`](https://github.com/remarkjs/remark-toc)).
+**This section is replaced by an actual table of contents**.
 
-* No tutorials or courses.
-* 10 milestones or more.
-* Each milestone has 3 hints and reveals the final code.
+## Syntax highlighting
+
+Here is an example of a plugin to highlight code:
+[`rehype-highlight`](https://github.com/rehypejs/rehype-highlight).
+
+```js
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Markdown from 'react-markdown'
+import rehypeHighlight from 'rehype-highlight'
+
+const markdown = `
+# Your markdown here
+`
+
+ReactDOM.render(
+  <Markdown rehypePlugins={[rehypeHighlight]}>{markdown}</Markdown>,
+  document.querySelector('#content')
+)
+```
+
+Pretty neat, eh?
+
+## GitHub flavored markdown (GFM)
+
+For GFM, you can *also* use a plugin:
+[`remark-gfm`](https://github.com/remarkjs/react-markdown#use).
+It adds support for GitHub-specific extensions to the language:
+tables, strikethrough, tasklists, and literal URLs.
+
+These features **do not work by default**.
+👆 Use the toggle above to add the plugin.
+
+| Feature    | Support              |
+| ---------: | :------------------- |
+| CommonMark | 100%                 |
+| GFM        | 100% w/ `remark-gfm` |
+
+~~strikethrough~~
+
+* [ ] task list
+* [x] checked item
+
+https://example.com
+
+## HTML in markdown
+
+⚠️ HTML in markdown is quite unsafe, but if you want to support it, you can
+use [`rehype-raw`](https://github.com/rehypejs/rehype-raw).
+You should probably combine it with
+[`rehype-sanitize`](https://github.com/rehypejs/rehype-sanitize).
+
+<blockquote>
+  👆 Use the toggle above to add the plugin.
+</blockquote>
+
+## Components
+
+You can pass components to change things:
+
+```js
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Markdown from 'react-markdown'
+import MyFancyRule from './components/my-fancy-rule.js'
+
+const markdown = `
+# Your markdown here
+`
+
+ReactDOM.render(
+  <Markdown
+    components={{
+      // Use h2s instead of h1s
+      h1: 'h2',
+      // Use a component instead of hrs
+      hr(props) {
+        const {node, ...rest} = props
+        return <MyFancyRule {...rest} />
+      }
+    }}
+  >
+    {markdown}
+  </Markdown>,
+  document.querySelector('#content')
+)
+```
+
+## More info?
+
+Much more info is available in the
+[readme on GitHub](https://github.com/remarkjs/react-markdown)!
+
+***
+
+A component by [Espen Hovlandsdal](https://espen.codes/)

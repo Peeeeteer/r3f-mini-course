@@ -9,6 +9,8 @@ import { atomDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { Para } from "@/components/MarkdownElement/Para";
 import CustomImage from "@/components/CustomImage";
 import { Heading } from "@/components/MarkdownElement/Heading";
+import remarkToc from "remark-toc";
+import remarkDirective from "remark-directive";
 
 export default function Description({
   params,
@@ -23,12 +25,14 @@ export default function Description({
   return (
     <main className="flex items-start flex-col pb-[20px] gap-y-5">
       <ReactMarkdown
+        remarkPlugins={[[remarkToc], [remarkDirective]]}
         children={content}
         components={{
           p: Para.P,
           span: Para.Span,
           ul: Para.Ul,
           li: Para.Li,
+          a: Para.Href,
           image: ({ src, alt, ...props }: any) => {
             return <CustomImage src={src} alt={alt} {...props} />;
           },

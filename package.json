@@ -23,6 +23,7 @@
     "react-select": "^5.8.0",
     "react-syntax-highlighter": "^15.5.0",
     "react-toastify": "^10.0.5",
+    "remark-toc": "^9.0.0",
     "tailwind-merge": "^2.3.0",
     "zustand": "^4.5.2"
   },

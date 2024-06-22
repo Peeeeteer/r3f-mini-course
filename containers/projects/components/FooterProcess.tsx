@@ -2,8 +2,9 @@
 import ArrowLeftSvg from "@/components/Icons/ArrowLeftSvg";
 import ArrowRightSvg from "@/components/Icons/ArrowRightSvg";
 import { useMilestoneStore } from "@/store/useMilestoneStore";
+import { TMilestone, TPureMilestone } from "@/types/Milestonne";
 import { usePathname, useRouter } from "next/navigation";
-import { FC, useMemo } from "react";
+import { FC, useCallback, useMemo } from "react";
 
 interface FooterProcessProps {
   labelNextBtn?: string;
@@ -44,6 +45,18 @@ const FooterProcess: FC<FooterProcessProps> = ({
     );
   }, [currentHint, milestone, totalHint]);
 
+  const handleRevealTheFinalCode = useCallback(
+    (milestone: TMilestone) => {
+      const urlSplit = params.split("/");
+      urlSplit.shift();
+      urlSplit.pop();
+      urlSplit.push("all");
+      const newUrl = urlSplit.join("/");
+      navigation.push("/" + newUrl);
+    },
+    [navigation, params]
+  );
+
   return (
     <div className="fixed bottom-0 right-0 w-[calc(100%-250px)] z-50 bg-[#232627]">
       <div className="pb-8 px-5">
@@ -60,7 +73,7 @@ const FooterProcess: FC<FooterProcessProps> = ({
             <button
               className="text-white text-sm hover:text-white56"
               onClick={() => {
-                setShowCode(true);
+                handleRevealTheFinalCode(milestone);
               }}
             >
               Reveal the final code
