@@ -6,6 +6,16 @@
 
 👈 Try writing some markdown on the left.
 
+<u>This text is underlined.</u>
+
+You probably got the same message as me when you opened a new tab.
+<iframe width="560" height="315" src="https://www.youtube.com/embed/QuW0n9LZhxM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<video width="640" height="48" controls preload>
+  <source src="/chrome-extension/robot-1.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
 ## Overview
 
 * Follows [CommonMark](https://commonmark.org)
