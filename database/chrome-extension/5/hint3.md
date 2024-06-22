@@ -87,6 +87,6 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 
 ```
 
-**Tip 💡** 
+**Tip 💡**   
 Refresh the plugin manually when making changes to index.js.
-![hint-1](/chrome-extension/image6.png "index.js")
+<img src="/chrome-extension/image6.png" alt="index.js" width="960" height="540">
