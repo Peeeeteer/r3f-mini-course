@@ -1,6 +1,36 @@
-###### Hint 2: manifest.json
+###### Hint 2: Ignore urls (index.js)
 
-👑 manifest.json is the whatsapp group leader 👑
+You need to access the blocked domains list inside index.js using `chrome.storage.local`     
 
-You need to do some changes inside manifest to tell chrome not to set `newtab.jsx` when we open a newtab inside google.
+After that try to answer these questions.
+- How do you check if the current tab's domain is blocked before incrementing?
+- Do you need any permissions to use `chrome.storage`? [Review the docs](https://developer.chrome.com/docs/extensions/reference/api/storage?authuser=1).
 
+
+Here's a basic structure to get you started:
+
+
+```javascript
+let domainChangeCounter = 0;
+
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+  // Get the domain from the URL 
+
+  // If the url changes...we do something
+  if (changeInfo.url) {
+
+    chrome.storage.local.. {
+     // If the domain is in the excludedDomains list, dont increment
+     }
+
+
+    domainChangeCounter++;
+
+    if (domainChangeCounter === 10) {
+      console.log("Bingo");
+      domainChangeCounter = 0;
+    }
+  }
+}); 
+
+```
