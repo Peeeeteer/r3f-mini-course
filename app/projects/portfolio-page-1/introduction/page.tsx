@@ -10,7 +10,6 @@ import { Para } from "@/components/MarkdownElement/Para";
 import CustomImage from "@/components/CustomImage";
 import { Heading } from "@/components/MarkdownElement/Heading";
 import remarkToc from "remark-toc";
-import remarkDirective from "remark-directive";
 
 export default function Description({
   params,
@@ -25,7 +24,7 @@ export default function Description({
   return (
     <main className="flex items-start flex-col pb-[20px] gap-y-5">
       <ReactMarkdown
-        remarkPlugins={[[remarkToc], [remarkDirective]]}
+        remarkPlugins={[[remarkToc]]}
         children={content}
         components={{
           p: Para.P,
