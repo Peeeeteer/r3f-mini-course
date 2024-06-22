@@ -14,6 +14,6 @@ By the end you should have something like this:
  Replace with a video after it.
 
 
-**Todo:** 
+**Task ✅**
 - Setup the project using the boilerplate
 

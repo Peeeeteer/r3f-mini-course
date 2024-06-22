@@ -9,6 +9,9 @@ import { atomDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { Para } from "@/components/MarkdownElement/Para";
 import CustomImage from "@/components/CustomImage";
 import { Heading } from "@/components/MarkdownElement/Heading";
+import remarkGfm from 'remark-gfm'
+import rehypeRaw from 'rehype-raw';
+import rehypeSanitize from 'rehype-sanitize';
 
 export default function Description({
   params,
@@ -24,6 +27,8 @@ export default function Description({
     <main className="flex items-start flex-col pb-[20px] gap-y-5">
       <ReactMarkdown
         children={content}
+        remarkPlugins={[[remarkGfm]]}
+        rehypePlugins={[[rehypeRaw, rehypeSanitize]]}
         components={{
           p: Para.P,
           span: Para.Span,

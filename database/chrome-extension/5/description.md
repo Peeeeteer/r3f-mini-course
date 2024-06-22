@@ -1,4 +1,4 @@
-###### Milestone 2: Understanding the template
+###### Milestone 5: Understanding the template
 
 
 You probably got the same message as me when you opened a new tab.

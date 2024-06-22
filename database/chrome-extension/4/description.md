@@ -1,14 +1,24 @@
 ###### Milestone 4:  🎉 BINGO 🎉
 
-[Lets make this now](https://www.dropbox.com/scl/fi/359k7w6hg0uoo8jvrkjlb/2024-05-15-20-28-31.mp4?rlkey=b3ybyj5tgzbvo75y3gdetf5qn&st=aongq6ye&dl=0)
+Lets make this now, counting to bingo.
+<video width="640" height="48" controls preload>
+  <source src="/chrome-extension/m4-1.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 Which basicly means,  
 Whenever the URL changes, we add 1 to the count, when the count reaches 10   
-🎉 BINGO 🎉 by that I mean `console.log("bingo")`  
+🎉 BINGO 🎉   
+
+by that I mean `console.log("bingo")`  
+
 
 **Tip 💡**  
 To see the `console.log` output of the background file, do this.
-https://www.dropbox.com/scl/fi/sk7naipfjrbl5jxw7gu0k/2024-06-09-12-20-29.mp4?rlkey=dky605tnmv6mm2xr4rmzoed58&st=2kzooiky&dl=0
+<video width="640" height="48" controls preload>
+  <source src="/chrome-extension/m4-2.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 
 **Task ✅**

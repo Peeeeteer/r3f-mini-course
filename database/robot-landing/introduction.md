@@ -8,6 +8,8 @@
 
 <u>This text is underlined.</u>
 
+![Project 1](/chrome-extension/image5.png "What we will be making")
+
 You probably got the same message as me when you opened a new tab.
 <iframe width="560" height="315" src="https://www.youtube.com/embed/QuW0n9LZhxM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 

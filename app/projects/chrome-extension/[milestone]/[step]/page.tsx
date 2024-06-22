@@ -8,6 +8,10 @@ import { Heading } from "@/components/MarkdownElement/Heading";
 import { Para } from "@/components/MarkdownElement/Para";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import remarkGfm from 'remark-gfm'
+import rehypeRaw from 'rehype-raw';
+import rehypeSanitize from 'rehype-sanitize';
+
 
 export default function Page({
   params,
@@ -47,6 +51,8 @@ export default function Page({
       <ReactMarkdown
         skipHtml={false}
         children={content}
+        remarkPlugins={[[remarkGfm]]}
+        rehypePlugins={[[rehypeRaw, rehypeSanitize]]}
         components={{
           p: Para.P,
           span: Para.Span,

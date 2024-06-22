@@ -1,10 +1,10 @@
 ###### Milestone 3: Updating Popup
 
 📄 **From this:**
-![Project 1](/chrome-extension/image4.png "What we will be making")
+![Project 1](/chrome-extension/image14.png "before")
 
 ➡️ **To this:**
-![Project 1](/chrome-extension/image14.png "What we will be making")
+![Project 1](/chrome-extension/image4.png "after")
 
 
 Yea.. that's it.   

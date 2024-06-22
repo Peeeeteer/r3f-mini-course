@@ -35,8 +35,8 @@ export default Popup;
 
 ```css
 .body {
-  width: 300px; /* Adjust the width as needed */
-  height: 400px; /* Adjust the height as needed */
+  width: 200px; /* Adjust the width  */
+  height: 300px; /* Adjust the height  */
 }
 ...
 ```
