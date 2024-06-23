@@ -58,7 +58,7 @@ export const useMilestoneStore = create<MilestoneStore>()((set) => ({
           ...project?.milestones[
             Number.isNaN(parseInt(currentMilestone, 10))
               ? 0
-              : parseInt(currentMilestone, 10)
+              : Math.min(parseInt(currentMilestone, 10) - 1, 0)
           ],
           currentHint: hint,
         },
