@@ -1,12 +1,10 @@
 "use client";
 
 import ProjectPageHeader from "@/containers/projects/components/ProjectPageHeader";
-import Sidebar from "@/containers/projects/components/Sidebar";
-import { useParams, usePathname, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
-import { useMilestoneStore } from "@/store/useMilestoneStore";
-import FooterProcess from "@/containers/projects/components/FooterProcess";
 import SidebarProject from "@/containers/projects/components/SidebarProject";
+import { useMilestoneStore } from "@/store/useMilestoneStore";
+import { useParams } from "next/navigation";
+import { useEffect } from "react";
 
 export default function ProjectLayout({
   children,
