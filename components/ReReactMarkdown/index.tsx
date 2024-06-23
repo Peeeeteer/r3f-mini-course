@@ -14,6 +14,8 @@ import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import { Table } from "../MarkdownElement/Table";
 import { twMerge } from "tailwind-merge";
+import rehypeSlug from "rehype-slug";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
 export interface ReReactMarkdownProps {
   content: string;
 }
@@ -34,7 +36,11 @@ const ReReactMarkdown = (props: ReReactMarkdownProps) => {
         [remarkRehype],
         [rehypeStringify],
       ]}
-      rehypePlugins={[[rehypeRaw, rehypeSanitize]]}
+      rehypePlugins={[
+        [rehypeSlug],
+        [rehypeAutolinkHeadings],
+        [rehypeRaw, rehypeSanitize],
+      ]}
       components={{
         p: Para.P,
         span: Para.Span,
