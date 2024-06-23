@@ -2,7 +2,7 @@
 import ArrowLeftSvg from "@/components/Icons/ArrowLeftSvg";
 import ArrowRightSvg from "@/components/Icons/ArrowRightSvg";
 import { useMilestoneStore } from "@/store/useMilestoneStore";
-import { TMilestone, TPureMilestone } from "@/types/Milestonne";
+import { TMilestone } from "@/types/Milestonne";
 import { usePathname, useRouter } from "next/navigation";
 import { FC, useCallback, useMemo } from "react";
 
@@ -15,13 +15,8 @@ const FooterProcess: FC<FooterProcessProps> = ({
   labelNextBtn = "Reveal Hint",
   labelPrevBtn = "Back",
 }) => {
-  const {
-    currentProject,
-    milestone,
-    nextStepMilestone,
-    prevStepMilestone,
-    setShowCode,
-  } = useMilestoneStore();
+  const { milestone, isReveal,  toggleReveal} = useMilestoneStore();
+
 
   const params = usePathname();
   const navigation = useRouter();
@@ -38,24 +33,23 @@ const FooterProcess: FC<FooterProcessProps> = ({
 
   const process = useMemo(() => {
     if (!milestone) return 0;
+    if (isReveal) return 100;
     return (
       ((currentHint + 1 < totalHint ? currentHint + 1 : totalHint) /
         totalHint) *
       100
     );
-  }, [currentHint, milestone, totalHint]);
+  }, [currentHint, milestone, totalHint, isReveal]);
 
-  const handleRevealTheFinalCode = useCallback(
-    (milestone: TMilestone) => {
-      const urlSplit = params.split("/");
-      urlSplit.shift();
-      urlSplit.pop();
-      urlSplit.push("all");
-      const newUrl = urlSplit.join("/");
-      navigation.push("/" + newUrl);
-    },
-    [navigation, params]
-  );
+  const handleRevealTheFinalCode = useCallback(() => {
+    const urlSplit = params.split("/");
+    urlSplit.shift();
+    urlSplit.pop();
+    urlSplit.push("all");
+    const newUrl = urlSplit.join("/");
+    navigation.push("/" + newUrl);
+    toggleReveal(true);
+  }, [navigation, params]);
 
   return (
     <div className="fixed bottom-0 right-0 w-[calc(100%-250px)] z-50 bg-[#232627]">
@@ -73,7 +67,7 @@ const FooterProcess: FC<FooterProcessProps> = ({
             <button
               className="text-white text-sm hover:text-white56"
               onClick={() => {
-                handleRevealTheFinalCode(milestone);
+                handleRevealTheFinalCode();
               }}
             >
               Reveal the final code

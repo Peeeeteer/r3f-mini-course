@@ -1,15 +1,15 @@
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
 import ReReactMarkdown from "@/components/ReReactMarkdown";
+import fs from "fs";
+import matter from "gray-matter";
+import path from "path";
 
-export default function Description({
+export default function Page({
   params,
 }: {
-  params: { milestone: string };
+  params: { milestone: string, project: string};
 }) {
   const source = fs.readFileSync(
-    path.join(process.cwd(), "database", "robot-landing", "introduction.md"),
+    path.join(process.cwd(), "database", params.project, "introduction.md"),
     "utf8"
   );
   const { data, content } = matter(source);

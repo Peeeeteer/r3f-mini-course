@@ -1,17 +1,14 @@
-import {
-  MilestoneDetailLabel,
-  MilestoneStatus,
-  TMilestone,
-  TPureMilestone,
-} from "@/types/Milestonne";
 import { TProject } from "@/types/Project";
-import { ProfilePageProject } from "./projects/portfolio-page";
 import { ChromePluginProject } from "./projects/chorme-plugin";
+import { ExampleProject } from "./projects/example";
+import { ProfilePageProject } from "./projects/portfolio-page";
 import { RobotLandingPageProject } from "./projects/robot-landingpage";
 
 const mockProjects: TProject[] = [
   RobotLandingPageProject,
   ChromePluginProject,
   ProfilePageProject,
+  ExampleProject,
 ];
 export { mockProjects };
+

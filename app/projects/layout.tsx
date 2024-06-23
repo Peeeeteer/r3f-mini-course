@@ -13,36 +13,26 @@ export default function ProjectLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const params = usePathname();
-  const { step, milestone } = useParams<{ milestone: string; step: string }>();
+  const { step, milestone, project } = useParams<{
+    milestone: string;
+    step: string;
+    project: string;
+  }>();
 
-  const { setProjectNameSelected, setCurrentHintByStepperName } =
-    useMilestoneStore();
-
-  useEffect(() => {
-    if (params.startsWith("/projects")) {
-      const urlSplit = params.split("/");
-      if (urlSplit.length < 3) return;
-      const project = urlSplit[2];
-      setProjectNameSelected(project);
-    }
-  }, [params]);
+  const { projectNameSelected, setProjectNameSelected } = useMilestoneStore();
 
   useEffect(() => {
-    if (step) {
-      setCurrentHintByStepperName(step);
-    }
-  }, [step]);
+    setProjectNameSelected(project || "", milestone, step);
+  }, [step, milestone, projectNameSelected]);
 
   return (
     <section>
       <SidebarProject />
       <main className="ml-[250px] min-h-screen">
         <ProjectPageHeader user={null} />
-        <div className="px-5 pt-8 h-[calc(100dvh-200px)] overflow-y-auto">
+        <div className="px-5 pt-8 h-[calc(100dvh-81px)] overflow-y-auto scrollable pb-4">
           {children}
         </div>
-        <FooterProcess />
       </main>
     </section>
   );

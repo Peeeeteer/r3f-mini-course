@@ -14,9 +14,6 @@ const ProjectPageHeaderSection: FC<ProjectPageHeaderSectionProps> = ({
   user,
 }) => {
   const { milestone } = useMilestoneStore();
-  const checkUser = async () => {
-    return user as TUser | null;
-  };
 
   const targetUser = null;
   return (

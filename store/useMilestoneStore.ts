@@ -11,17 +11,19 @@ export type MilestoneStore = {
   milestone: TMilestone;
   introduction: string;
   listMilestone: TPureMilestone[];
-  setMilestoneSelected: (milestone: TPureMilestone) => void;
-  setMilestoneSelectedByIndex: (milestoneIndex: number) => void;
   // totalMilestoneRemain: number;
-  nextStepMilestone: () => void;
-  prevStepMilestone: () => void;
-  setShowCode: (isShowCode: boolean) => void;
-  setProjectNameSelected(projectName: string): void;
+  setProjectNameSelected(
+    projectName: string,
+    currentMilestone: string,
+    currentHint: string
+  ): void;
   setCurrentHintByStepperName: (stepName: string) => void;
+  setMilestoneSelectedByIndex: (milestoneIndex: number) => void;
+  toggleReveal: (isReveal: boolean) => void;
   projects: TProject[];
   currentProject: TProject | null;
   projectNameSelected: string | null;
+  isReveal: boolean;
 };
 
 export const useMilestoneStore = create<MilestoneStore>()((set) => ({
@@ -31,62 +33,41 @@ export const useMilestoneStore = create<MilestoneStore>()((set) => ({
   milestone: null,
   introduction: "",
   listMilestone: [],
-  setMilestoneSelected: (milestone: TPureMilestone) =>
-    set((state) => ({ milestone })),
-  setMilestoneSelectedByIndex: (milestoneIndex: number) =>
-    set((state) => ({ milestone: state.listMilestone[milestoneIndex] })),
-  nextStepMilestone: () =>
-    set((state) => {
-      if (
-        !state.milestone ||
-        state.milestone.status === MilestoneStatus.FINISHED
-      )
-        return state;
-      if (state.milestone.currentHint === state.milestone.totalHint - 1)
-        return state;
-      return {
-        milestone: {
-          ...state.milestone,
-          currentHint: state.milestone.currentHint + 1,
-        },
-      };
-    }),
-  prevStepMilestone: () =>
-    set((state) => {
-      if (
-        !state.milestone ||
-        state.milestone.status === MilestoneStatus.FINISHED
-      )
-        return state;
-      if (state.milestone.currentHint === 0) return state;
-      return {
-        milestone: {
-          ...state.milestone,
-          currentHint: state.milestone.currentHint - 1,
-        },
-      };
-    }),
-  setShowCode: (isReveal: boolean) =>
-    set((state) => ({
-      milestone: { ...(state?.milestone || ({} as any)), isReveal },
-    })),
+  isReveal: false,
   setProject: (newProject: TProject) =>
     set((state) => ({ currentProject: newProject })),
-  setProjectNameSelected: (projectName: string) =>
+  setProjectNameSelected: (
+    projectName: string,
+    currentMilestone: string,
+    currentHint: string = ""
+  ) =>
     set((state) => {
       const project = state.projects.find(
         (project) => project.projectName === projectName
       );
+      const hint = state?.milestone?.hints?.findIndex(
+        (hint) =>
+          hint.label.toLocaleLowerCase() === currentHint.toLocaleLowerCase()
+      );
+
       return {
         currentProject: project,
         projectNameSelected: projectName,
         listMilestone: project?.milestones || [],
-        milestone: project?.milestones[0],
+        milestone: {
+          ...project?.milestones[
+            Number.isNaN(parseInt(currentMilestone, 10))
+              ? 0
+              : parseInt(currentMilestone, 10)
+          ],
+          currentHint: hint,
+        },
+        isReveal: currentHint === "all",
       };
     }),
   setCurrentHintByStepperName: (stepName: string) =>
     set((state) => {
-      const currentHint = state.milestone?.hints.findIndex(
+      const currentHint = state?.milestone?.hints?.findIndex(
         (hint) =>
           hint.label.toLocaleLowerCase() === stepName.toLocaleLowerCase()
       );
@@ -97,7 +78,12 @@ export const useMilestoneStore = create<MilestoneStore>()((set) => ({
         milestone: {
           ...state.milestone,
           currentHint,
+          isReveal: stepName === "all",
         },
       };
     }),
+  setMilestoneSelectedByIndex: (milestoneIndex: number) =>
+    set((state) => ({ milestone: state.listMilestone[milestoneIndex] })),
+  toggleReveal: (isReveal: boolean) =>
+    set((state) => ({ isReveal: !!isReveal })),
 }));

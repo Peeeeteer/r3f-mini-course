@@ -58,5 +58,21 @@ body {
   stroke: #fff;
 }
 .hover-lighter:hover button {
-  color: #fff!important;
+  color: #fff !important;
+}
+
+.scrollable::-webkit-scrollbar {
+  width: 10px;
+}
+
+.scrollable::-webkit-scrollbar-thumb {
+  background-color: #ffffff33;
+  border-radius: 4px;
+}
+.scrollable::-webkit-scrollbar-track {
+  background-color: #ffffff0f;
+}
+
+.scrollable::-webkit-scrollbar-thumb:hover {
+  background-color: #ffffff52;
 }

@@ -1,14 +1,9 @@
 "use client";
 
-import ProjectPageHeader from "@/containers/projects/components/ProjectPageHeader";
-import Sidebar from "@/containers/projects/components/Sidebar";
-import { useParams, usePathname, useRouter } from "next/navigation";
-import { useEffect, useMemo } from "react";
-import { useMilestoneStore } from "@/store/useMilestoneStore";
-import Hint1 from "@/containers/project-page/Hint/Hint1";
-import Hint2 from "@/containers/project-page/Hint/Hint2";
-import Hint3 from "@/containers/project-page/Hint/Hint3";
 import Stepper from "@/components/Stepper";
+import FooterProcess from "@/containers/projects/components/FooterProcess";
+import { useMilestoneStore } from "@/store/useMilestoneStore";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function MilestoneLayout({
   children,
@@ -17,10 +12,8 @@ export default function MilestoneLayout({
 }>) {
   const navigation = useRouter();
   const params = usePathname();
-  console.log("🚀 ~ params:", params)
 
-    const { milestone, setMilestoneSelected, projectNameSelected } =
-    useMilestoneStore();
+  const { milestone } = useMilestoneStore();
   const { currentHint = 0, hints = [] } = milestone || {};
 
   return (
@@ -40,9 +33,8 @@ export default function MilestoneLayout({
           steps={hints.map((hint) => hint?.label || "")}
         ></Stepper>
       </div>
-      <div>
-        {children}
-      </div>
+      <div className="h-[calc(100dvh-290px)] overflow-y-auto scrollable -mr-4 pr-4">{children}</div>
+      <FooterProcess />
     </div>
   );
 }

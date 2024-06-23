@@ -27,15 +27,7 @@ const HeaderUserActions: FC<HeaderUserActionsProps> = ({ targetUser }) => {
     }
   };
 
-  const getUser = async () => {
-    if (!user && targetUser) {
-      handleUser(targetUser);
-    }
-  };
-  useEffect(() => {
-    console.log(targetUser);
-    getUser();
-  }, [targetUser]);
+
 
   return (
     <div className={`gap-6 justify-end `}>

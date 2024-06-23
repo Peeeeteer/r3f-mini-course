@@ -1,10 +1,9 @@
 "use client";
+import Brand from "@/components/Brand";
+import { useMilestoneStore } from "@/store/useMilestoneStore";
+import Link from "next/link";
 import React, { FC } from "react";
 import HeadPhoneSvg from "../../../../components/Icons/HeadPhoneSvg";
-import Link from "next/link";
-import Brand from "@/components/Brand";
-import IndividualSelectProcess from "./SidebarSelectProcess";
-import { useMilestoneStore } from "@/store/useMilestoneStore";
 import SidebarItem from "./SidebarItem";
 import SidebarProcess from "./SidebarProcess";
 
@@ -13,7 +12,6 @@ interface SidebarProps {}
 const SidebarProject: FC<SidebarProps> = ({}) => {
   const [headPhoneColor, setHeadPhoneColor] = React.useState<string>("#8996A9");
   const { projectNameSelected, currentProject, listMilestone } = useMilestoneStore();
-
   const { milestones = [],  } = currentProject || {};
 
   return (

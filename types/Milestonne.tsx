@@ -13,6 +13,9 @@ export enum MilestoneDetailLabel  {
   hint1 = "Hint1",
   hint2 = "Hint2",
   hint3 = "Hint3",
+  hint4 = "Hint4",
+  hint5 = "Hint5",
+  hint6 = "Hint6",
 }
 
 export enum MilestoneStatus {
