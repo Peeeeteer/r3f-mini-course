@@ -4,7 +4,7 @@ import { Para } from "@/components/MarkdownElement/Para";
 import ReactMarkdown from "react-markdown";
 import { dracula } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { dark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { atomDark, vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import remarkToc from "remark-toc";
 import rehypeRaw from "rehype-raw";
 import rehypeSanitize from "rehype-sanitize";
@@ -17,6 +17,12 @@ import { twMerge } from "tailwind-merge";
 export interface ReReactMarkdownProps {
   content: string;
 }
+
+const customStyle = {
+  fontSize: '16px',
+  ...vscDarkPlus, // Assuming vscDarkPlus is an object you can spread to inherit its styles
+  // Adjust the font size as needed
+};
 const ReReactMarkdown = (props: ReReactMarkdownProps) => {
   return (
     <ReactMarkdown
@@ -41,7 +47,7 @@ const ReReactMarkdown = (props: ReReactMarkdownProps) => {
           const match = /language-(\w+)/.exec(className || "");
           return !inline && match ? (
             <SyntaxHighlighter
-              style={dracula}
+              style={customStyle}
               language={match[1]}
               PreTag="div"
               {...props}
