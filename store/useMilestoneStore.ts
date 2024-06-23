@@ -4,7 +4,7 @@ import {
   TPureMilestone,
 } from "@/types/Milestonne";
 import { create } from "zustand";
-import { listMilestone, mockProjects } from "./milestone";
+import { mockProjects } from "./milestone";
 import { TProject } from "@/types/Project";
 
 export type MilestoneStore = {
@@ -13,7 +13,7 @@ export type MilestoneStore = {
   listMilestone: TPureMilestone[];
   setMilestoneSelected: (milestone: TPureMilestone) => void;
   setMilestoneSelectedByIndex: (milestoneIndex: number) => void;
-  totalMilestoneRemain: number;
+  // totalMilestoneRemain: number;
   nextStepMilestone: () => void;
   prevStepMilestone: () => void;
   setShowCode: (isShowCode: boolean) => void;
@@ -31,9 +31,6 @@ export const useMilestoneStore = create<MilestoneStore>()((set) => ({
   milestone: null,
   introduction: "",
   listMilestone: [],
-  totalMilestoneRemain: listMilestone.filter(
-    (milestone) => milestone && milestone.status !== "F"
-  ).length,
   setMilestoneSelected: (milestone: TPureMilestone) =>
     set((state) => ({ milestone })),
   setMilestoneSelectedByIndex: (milestoneIndex: number) =>

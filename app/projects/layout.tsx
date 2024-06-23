@@ -15,7 +15,6 @@ export default function ProjectLayout({
 }>) {
   const params = usePathname();
   const { step, milestone } = useParams<{ milestone: string; step: string }>();
-  console.log("🚀 ~ x:", step, milestone);
 
   const { setProjectNameSelected, setCurrentHintByStepperName } =
     useMilestoneStore();
