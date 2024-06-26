@@ -1,11 +1,13 @@
 ###### Hint 2: Ignore urls (index.js)
 
-You need to access the blocked domains list inside index.js using `chrome.storage.local`     
+You need to access the blocked domains list inside `index.js` using `chrome.storage.local`  
 
-After that try to answer these questions.
-- How do you check if the current tab's domain is blocked before incrementing?
-- Do you need any permissions to use `chrome.storage`? [Review the docs](https://developer.chrome.com/docs/extensions/reference/api/storage?authuser=1).
-
+<br>
+<p>After you do that, try to answer these questions. ❓</p>
+<ul>
+  <li>How do you check if the current tab's domain is blocked before incrementing?</li>
+  <li>Do you need any permissions to use <code>chrome.storage</code>? <a href="https://developer.chrome.com/docs/extensions/reference/api/storage?authuser=1" style="text-decoration: underline;">Review the docs</a>.</li>
+</ul>
 
 Here's a basic structure to get you started:
 

@@ -1,36 +1,19 @@
-###### Hint 2: Ignore urls (index.js)
+###### Hint 2: On/Off functionalitiy
 
-You need to access the blocked domains list inside index.js using `chrome.storage.local`     
+Let's work on the index.js.   
+In popup.jsx, we stored the on/off value using `chrome.storage` 
 
-After that try to answer these questions.
-- How do you check if the current tab's domain is blocked before incrementing?
-- Do you need any permissions to use `chrome.storage`? [Review the docs](https://developer.chrome.com/docs/extensions/reference/api/storage?authuser=1).
-
-
-Here's a basic structure to get you started:
+Now, let's read this value in `index.js` and check if true/false
 
 
-```javascript
-let domainChangeCounter = 0;
+if true:  
+We continue counting domain changes
 
-chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-  // Get the domain from the URL 
+if false:  
+We don't count the domain changes.
 
-  // If the url changes...we do something
-  if (changeInfo.url) {
-
-    chrome.storage.local.. {
-     // If the domain is in the excludedDomains list, dont increment
-     }
+**Tip 💡**   
+Refresh the plugin manually when making changes to index.js.
+<img src="/chrome-extension/image6.png" alt="index.js" width="960" height="540">
 
 
-    domainChangeCounter++;
-
-    if (domainChangeCounter === 10) {
-      console.log("Bingo");
-      domainChangeCounter = 0;
-    }
-  }
-}); 
-
-```

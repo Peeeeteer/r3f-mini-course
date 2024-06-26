@@ -1,36 +1,19 @@
-###### Hint 2: Ignore urls (index.js)
+###### Hint 2: Button in Newtab.jsx
 
-You need to access the blocked domains list inside index.js using `chrome.storage.local`     
-
-After that try to answer these questions.
-- How do you check if the current tab's domain is blocked before incrementing?
-- Do you need any permissions to use `chrome.storage`? [Review the docs](https://developer.chrome.com/docs/extensions/reference/api/storage?authuser=1).
-
-
-Here's a basic structure to get you started:
-
+The goal here is to add a button in the centre of the page and that button should redirect the user back to the page that they came from. 
 
 ```javascript
-let domainChangeCounter = 0;
-
-chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-  // Get the domain from the URL 
-
-  // If the url changes...we do something
-  if (changeInfo.url) {
-
-    chrome.storage.local.. {
-     // If the domain is in the excludedDomains list, dont increment
-     }
-
-
-    domainChangeCounter++;
-
-    if (domainChangeCounter === 10) {
-      console.log("Bingo");
-      domainChangeCounter = 0;
-    }
-  }
-}); 
-
+  <button className="button" onClick={ "Do something" }>
+    "Go back"
+  </button>
 ```
+
+<p>To figure out what to do on onClick, you can:</p>
+<ul>
+  <li>Refer to the <a href="https://developer.chrome.com/docs/extensions/reference/api/tabs" style="text-decoration: underline;">chrome tabs documentation</a></li>
+  <li>Google “chrome plugin go to previous page”</li>
+  <li>Ask ChatGPT/Copilot/Insert any other AI here</li>
+</ul>
+
+
+But basically, the process is button -> clicked -> go back
