@@ -95,13 +95,13 @@ const robotMilestone: TPureMilestone[] = [
 
 export const RobotLandingPageProject: TProject = {
   type: "yellow",
-  date: "12 June 2024",
+  date: "26 June 2024",
   title: "3D Robot Landingpage ",
   description: "You will be making the same landing page as on justcode",
   difficulty: "Easy",
   category: "Frontend",
   tags: ["React", "Three.js", "Tailwindcss"],
-  price: "4.99",
+  // price: "4.99",
   image: "/project-2.png",
   url: "projects/robot-landing/introduction",
   milestones: robotMilestone,

@@ -5,10 +5,10 @@ import { ProfilePageProject } from "./projects/portfolio-page";
 import { RobotLandingPageProject } from "./projects/robot-landingpage";
 
 const mockProjects: TProject[] = [
-  RobotLandingPageProject,
   ChromePluginProject,
-  ProfilePageProject,
-  ExampleProject,
+  RobotLandingPageProject,
+  // ProfilePageProject,
+  // ExampleProject,
 ];
 export { mockProjects };
 

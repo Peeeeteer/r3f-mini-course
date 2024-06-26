@@ -22,8 +22,7 @@ export interface ReReactMarkdownProps {
 
 const customStyle = {
   fontSize: '16px',
-  ...vscDarkPlus, // Assuming vscDarkPlus is an object you can spread to inherit its styles
-  // Adjust the font size as needed
+  ...vscDarkPlus,
 };
 const ReReactMarkdown = (props: ReReactMarkdownProps) => {
   return (

@@ -8,7 +8,7 @@ export interface TProject {
   difficulty: string;
   category: string;
   tags: string[];
-  price: string;
+  price?: string;
   image: string;
   url: string;
   projectName: string;

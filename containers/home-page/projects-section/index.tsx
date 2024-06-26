@@ -88,12 +88,12 @@ const ProjectsSection: FC<ProjectsSectionProps> = (
                         </div>
                       </div>
                       <div>
-                        <span className="block text-dark font-medium text-xl leading-8 px-[10px] py-1 rounded-lg bg-lightGreen">
-                          {
-                            // price
-                            project?.price
-                          }
-                        </span>
+
+                        {project?.price !== null && project?.price !== undefined && (
+                          <span className="block text-dark font-medium text-xl leading-8 px-[10px] py-1 rounded-lg bg-lightGreen">
+                            {project?.price}
+                          </span>
+                        )}
                       </div>
                     </div>
                   </div>

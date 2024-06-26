@@ -60,7 +60,7 @@ export default function Page({
   if (!fs.existsSync(pathToCheck)) {
     return (
       <main className="flex items-start flex-col pb-[20px] gap-y-4">
-        <h1 className="text-white">File not found</h1>
+        <h1 className="text-white">Something went wrong... contact support</h1>
       </main>
     );
   }
