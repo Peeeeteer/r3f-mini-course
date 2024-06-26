@@ -11,10 +11,10 @@ Let's fix/remove that! 😊
 By that I mean disable `newtab.html` being the default when opening a new tab in Chrome.  
 Doing this will help us learn about how the template works. You can also poke around the other pages as well to see how everything works.
 
+<br>
 **Tip 💡**  
 If you update the `manifest.json` & `index.js` in the background folder, you need to refresh the plugin manually by clicking this:
-
-![Project 1](/chrome-extension/image6.png "What we will be making")
+<img src="/chrome-extension/image6.png" alt="index.js" width="960" height="540">
 
 
 **Task ✅**
