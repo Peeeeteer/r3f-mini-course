@@ -154,7 +154,7 @@ const chromePluginMilestone: TPureMilestone[] = [
   {
     id: "5",
     currentHint: 0,
-    description: "Combining things",
+    description: "Open a newtab",
     status: MilestoneStatus.TO_DO,
     hints: [
       {

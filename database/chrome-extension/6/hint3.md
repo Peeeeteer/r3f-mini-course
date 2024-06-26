@@ -1,61 +1,10 @@
 ###### Hint 3: Fill in the blanks
 
-**Popup.jsx** this is the code, fill in the missing parts:
 
-```javascript
-import React, { useEffect, useState } from 'react';
-import './Popup.css';
+Here is the code, try filling in the missing parts.  
+Use documentation,google,ai or anything else... the goal is to solve the problem and understand how you solved it. 
 
-
-const Popup = () => {
-  const [url, setUrl] = useState('');
-  const [excludedDomains, setExcludedDomains] = useState([]);
-
-  useEffect(() => {
-    // Update me
-  }, []);
-
-  const handleSubmit = () => {
-    // Update me
-    const newExcludedDomains = [];
-    setExcludedDomains();
-    chrome.storage...
-  };
-  const handleRemoveUrl = (urlToRemove) => {
-    // Update me
-    const newExcludedDomains
-    setExcludedDomains(newExcludedDomains);
-    chrome.storage...
-  };
-
-  return (
-    <div className="App">
-      <header className="App-header">
-        <input
-          type="text"
-          value={url}
-          onChange={(e) => setUrl(e.target.value)}
-          placeholder="Website URL"
-        />
-        <button onClick={handleSubmit}>Add</button>
-        <ul>
-          {excludedDomains.map((blockedUrl) => (
-            <div key={blockedUrl}>
-              {blockedUrl}
-              <button onClick={() =>  handleRemoveUrl(blockedUrl)}>x</button>
-            </div>
-          ))}
-        </ul>
-      </header>
-    </div>
-  );
-};
-
-export default Popup;
-
-```
-
-**index.js** this is the code, fill in the missing parts.
+**index.js (In background folder)** 
 
 ```javascript
 console.log("Background log");
@@ -64,26 +13,51 @@ let domainChangeCounter = 0;
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 
-  // Update me
-  const url = 
-  const hostname = 
+  const url = new URL(changeInfo.url);
+  const domain = url.hostname;
 
   if (changeInfo.url) {
-    // Update me
-    chrome.storage.local.get([''], function (result) {
-      if () {
-        return;
+
+    chrome.storage.local.get(['excludedDomains'], function (result) {
+      if (result.excludedDomains.includes(domain)) {
+        return; 
       }
-	
+
       domainChangeCounter++;
 
       if (domainChangeCounter === 10) {
-        console.log("Bingo");
-        domainChangeCounter = 0;
+	    // Do something here with chrome.tabs.update
+
+      domainChangeCounter = 0;
       }
     });
   }
 });
+
+```
+
+**Newtab.jsx** 
+
+```javascript
+
+const Newtab = () => {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Quiz yourself before you start browsing.
+        </p>
+        <button className="button" onClick={() => {
+	        // Do something here with chrome.tabs
+        }
+        }>
+          Continue
+        </button>
+      </header>
+    </div >
+  );
+};
 
 ```
 

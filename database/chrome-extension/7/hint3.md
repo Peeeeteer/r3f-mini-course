@@ -1,36 +1,45 @@
 ###### Hint 3: Fill in the blanks
 
-**Popup.jsx** this is the code, fill in the missing parts:
+**Popup.jsx** fill in the missing parts:
 
 ```javascript
-import React, { useEffect, useState } from 'react';
-import './Popup.css';
 
-
-const Popup = () => {
-  const [url, setUrl] = useState('');
-  const [excludedDomains, setExcludedDomains] = useState([]);
+  // We added a new state
+  const [isEnabled, setIsEnabled] = useState(true);
 
   useEffect(() => {
-    // Update me
-  }, []);
+    chrome.storage.local.get(['excludedDomains', 'isEnabled'], function (result) {
+      setExcludedDomains(result.excludedDomains || []);
+     // Do something here 
 
-  const handleSubmit = () => {
-    // Update me
-    const newExcludedDomains = [];
-    setExcludedDomains();
+
+    });
+  }, []);
+ 
+  const handleToggle = () => {
+    // Do something here 
     chrome.storage...
-  };
-  const handleRemoveUrl = (urlToRemove) => {
-    // Update me
-    const newExcludedDomains
-    setExcludedDomains(newExcludedDomains);
-    chrome.storage...
+
   };
 
   return (
     <div className="App">
       <header className="App-header">
+
+        // Added the switch toggle 
+        <div className="toggle-switch">
+	     <label className="switch">
+            <input type="checkbox" checked={isEnabled} onChange={() =>
+            {
+              handleToggle();
+            }} />
+            <span className="slider round">
+              {isEnabled ? 'On' : 'Off'}
+            </span>
+          </label>
+        </div>
+
+
         <input
           type="text"
           value={url}
@@ -42,48 +51,54 @@ const Popup = () => {
           {excludedDomains.map((blockedUrl) => (
             <div key={blockedUrl}>
               {blockedUrl}
-              <button onClick={() =>  handleRemoveUrl(blockedUrl)}>x</button>
+              <button onClick={() => handleRemoveUrl(blockedUrl)}>x</button>
             </div>
           ))}
         </ul>
       </header>
     </div>
   );
-};
-
-export default Popup;
 
 ```
 
-**index.js** this is the code, fill in the missing parts.
+**index.js** fill in the missing parts:
 
 ```javascript
 console.log("Background log");
-
 let domainChangeCounter = 0;
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 
-  // Update me
-  const url = 
-  const hostname = 
+  const url = new URL(changeInfo.url);
+  const domain = url.hostname;
 
   if (changeInfo.url) {
-    // Update me
-    chrome.storage.local.get([''], function (result) {
+    // Grab the on/off value 
+    chrome.storage.local.get(['excludedDomains'], function (result) {
+
+
+	  // Check if on/off, if off exit the function.
       if () {
+        return; 
+      }
+
+      if (result.excludedDomains.includes(domain)) {
+        console.log("Domain is in the excludedDomains list");
         return;
       }
-	
+
       domainChangeCounter++;
 
       if (domainChangeCounter === 10) {
-        console.log("Bingo");
+        chrome.tabs.update(tabId, {
+          url: chrome.runtime.getURL('newtab.html'),
+        });
         domainChangeCounter = 0;
       }
     });
   }
 });
+
 
 ```
 

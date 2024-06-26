@@ -1,19 +1,18 @@
-###### Hint 1: Storing urls (Popup.jsx)
+###### Hint 1: index.js (background folder)
 
-A good way to save data is by using `chrome.storage.local` 
-You can store up to 5 MB of data for chrome extensions, which is more than we need for our blocked domain list. 
+When we reach 10 domain changes,  
+we want to open `newtab.jsx` instead of `console.log(“bingo”)`
 
-There is a lot of [good documentation about it](https://developer.chrome.com/docs/extensions/reference/api/storage?authuser=1) just skim through it and you'll get it
+To do that we will need to do something inside `index.js`
 
-Also,  
-Here's a simple example of how you might use it:
 ```javascript
-  const handleSubmit = () => {
-    chrome.storage.local...
-  };
-
+if (domainChangeCounter === 10) {
+  console.log("Bingo");  // Replace this line
+  domainChangeCounter = 0;
+}
 ```
 
-**Dont forget 💡**    
-Every time we **re-open** the popup, we need to load the domain list from `chrome.local.storage` again or else it will be empty
+<p>Chrome has a realy well made <a href="https://developer.chrome.com/docs/extensions/reference/api/storage?authuser=1" style="text-decoration: underline;">documentation on tabs</a>, try to find the solution there.</p>
 
+
+You got this! 👍
