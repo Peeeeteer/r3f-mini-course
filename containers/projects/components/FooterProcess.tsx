@@ -45,7 +45,7 @@ const FooterProcess: FC<FooterProcessProps> = ({
     const urlSplit = params.split("/");
     urlSplit.shift();
     urlSplit.pop();
-    urlSplit.push("all");
+    urlSplit.push("solution");
     const newUrl = urlSplit.join("/");
     navigation.push("/" + newUrl);
     toggleReveal(true);

@@ -24,39 +24,6 @@ export default function Page({
     params.step + ".md"
   );
 
-  if (params.step === "all") {
-    const files = fs
-      .readdirSync(
-        path.join(
-          process.cwd(),
-          "database",
-          params.project,
-          params.milestone
-        )
-      )
-      .filter((file) => file.startsWith("hint") && file.endsWith(".md"));
-
-    const contents = files.map((file) => {
-      const fullPath = path.join(
-        process.cwd(),
-        "database",
-        params.project,
-        params.milestone,
-        file
-      );
-      const source = fs.readFileSync(fullPath, "utf8");
-      const { data, content } = matter(source);
-      return content;
-    });
-    return (
-      <>
-        <main className="flex items-start flex-col pb-[20px] gap-y-4">
-          <ReReactMarkdown content={contents.join("\n")} />
-        </main>
-      </>
-    );
-  }
-
   if (!fs.existsSync(pathToCheck)) {
     return (
       <main className="flex items-start flex-col pb-[20px] gap-y-4">

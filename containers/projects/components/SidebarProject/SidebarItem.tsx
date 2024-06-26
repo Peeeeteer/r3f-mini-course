@@ -5,6 +5,7 @@ import { FC, use, useMemo } from "react";
 import SidebarSelectProcess from "./SidebarSelectProcess";
 import { MilestoneStatus, TMilestone } from "@/types/Milestonne";
 import { useMilestoneStore } from "@/store/useMilestoneStore";
+import { usePathname, useRouter } from "next/navigation";
 
 interface SidebarItemProps {
   milestone: TMilestone;
@@ -12,7 +13,10 @@ interface SidebarItemProps {
 }
 
 const SidebarItem: FC<SidebarItemProps> = ({ milestone, order }) => {
+  const pathName = usePathname();
+
   const { currentHint, status, url, label } = milestone!;
+
   const bgColor = useMemo(() => {
     switch (status) {
       case MilestoneStatus.TO_DO:
@@ -26,8 +30,21 @@ const SidebarItem: FC<SidebarItemProps> = ({ milestone, order }) => {
     }
   }, [status]);
 
+  const isUrlActive = useMemo(() => {
+    if (pathName === url) return true;
+    const splitPath = pathName.split("/").slice(0, 4);
+    const splitUrl = url.split("/").slice(0, 4);
+
+    return splitPath.join("/") === splitUrl.join("/");
+  }, [pathName, url]);
+
   return (
-    <div className="cursor-pointer hover:bg-[#42424240] rounded-md">
+    <div
+      className="cursor-pointer hover:bg-[#42424240] rounded-md"
+      style={{
+        backgroundColor: isUrlActive ? "#424242" : "",
+      }}
+    >
       <Link
         href={url}
         onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {}}
@@ -41,16 +58,10 @@ const SidebarItem: FC<SidebarItemProps> = ({ milestone, order }) => {
               }}
             ></label>
             <div className="flex gap-x-3">
-              <span className="text-white font-bold text-sm">
-                {label}
-              </span>
+              <span className="text-white font-bold text-sm">{label}</span>
             </div>
           </div>
-          <SidebarSelectProcess
-            name={label}
-            status={status}
-            order={order}
-          />
+          <SidebarSelectProcess name={label} status={status} order={order} />
         </div>
       </Link>
     </div>
