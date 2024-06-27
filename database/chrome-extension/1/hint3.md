@@ -1,17 +1,15 @@
 ###### Hint 3:  Watch tutorials.
 
-I know,
-this is against the justcode policy but...watch how clone projects and try do it for our project.
+Watch tutorials... yes I said it.
 
-See some of the Youtube videos on this topic.
+I know,  
+this is against the JustCode policy, but... watch <a href="https://www.youtube.com/results?search_query=github+clone+project" target="_blank" style="text-decoration: underline;">how to clone github</a>
 
-1.
-What is a development environment?
+Some other things you can watch are:
 
-2.
-How chrome plugins work
+- How to clone a github repository
+- How chrome plugins work
+- What is a development environment?
+- React Basics
 
 
-And any other Youtube video on this, good search terms would be:
-React Basics
-Chrome Plugin Basics

@@ -1,5 +1,6 @@
 ###### Hint 1: Try Googling
-Search in Google
+
+Try Googling
 ```bash
 chrome extension newtab stackoverflow
 ```

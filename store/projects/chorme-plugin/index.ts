@@ -59,7 +59,7 @@ const chromePluginMilestone: TPureMilestone[] = [
       },
     ],
     isReveal: false,
-    label: "Milestone 2",
+    label: "2. Overview",
     totalHint: 4,
     url: "/projects/chrome-extension/2/description",
   },
