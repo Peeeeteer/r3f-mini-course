@@ -1,23 +1,16 @@
-import React, { FC } from "react";
-import Link from "next/link";
-import { HeaderNavs } from "@/containers/home-page/header-section/constants";
-import Brand from "../../../components/Brand";
-import HamburgerButton from "@/components/Buttons/HamburgerButton";
 import HeaderNav from "@/components/Navs/HeaderNav";
-import HeaderUserActions from "./user-actions";
+import { HeaderNavs } from "@/containers/home-page/header-section/constants";
 import { User } from "@supabase/supabase-js";
-import { TUser } from "@/types/User";
+import Link from "next/link";
+import { FC } from "react";
+import Brand from "../../../components/Brand";
+import HeaderUserActions from "./user-actions";
 
 interface HeaderSectionProps {
-  user: User | null;
+  user: User;
 }
 
 const HeaderSection: FC<HeaderSectionProps> = async ({ user }) => {
-  const checkUser = async () => {
-    return user as TUser | null;
-  };
-
-  const targetUser = await checkUser();
   return (
     <header className="w-full flex justify-center border-b border-[#FFFFFF1A] relative">
       <div className="w-full flex items-center justify-between">
@@ -31,10 +24,7 @@ const HeaderSection: FC<HeaderSectionProps> = async ({ user }) => {
             <HeaderNav key={_i} value={el.value} id={el.id} href={el.href} />
           ))}
         </nav>
-        <HeaderUserActions targetUser={targetUser} />
-        <div className="flex py-6 lg:hidden">
-          <HamburgerButton />
-        </div>
+        <HeaderUserActions user={user} />
       </div>
     </header>
   );
