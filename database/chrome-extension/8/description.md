@@ -1,31 +1,25 @@
-###### Milestone 5: Combining things.
+###### Milestone 8: Add questions
 
-The problem:
+Let's add questions to `Newtab.jsx` so that we actually have a quiz...
 <video width="640" height="480" controls preload>
-  <source src="/chrome-extension/m5-1.mp4" type="video/mp4">
+  <source src="/chrome-extension/m8-1.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
-Currently,  
-when we open the popup and add some URLs, they disappear.  
-Let’s store them so they persist when we close and open the Popup.
 
-Also if we are at it,  
-Let's have those urls be ignored for our count to bingo.  
+We can get the questions from here: <a href="https://vdoqyjbnpwqkafxxssbb.supabase.co/rest/v1/questions?apikey=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZkb3F5amJucHdxa2FmeHhzc2JiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTEzNzIyMTUsImV4cCI6MjAyNjk0ODIxNX0.luuvoKY-udlAaD83Qf5pElsetmXVwPetr6C-v5gpjDg" target="_blank" style="text-decoration: underline;">API URL</a> 
 
-  
-📝For example📝    
-visiting www.stackoverflow.com **should not** count towards bingo, but visiting www.youtube.com **should**
 
-Sooo... something like this:
-<video width="640" height="480" controls preload>
-  <source src="/chrome-extension/m5-2.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+<img src="/chrome-extension/image33.png" alt="index.js" width="640" height="480">
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i><a href="https://chromewebstore.google.com/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa?hl=en" target="_blank" style="text-decoration: underline;">I used a chrome extension to display the data more pretty</a></i>
+
+<br>
+
+The goal is to a question in `newtab.jsx` and create  functinalitiy to check if user answered correctly.
+
 
 **Task ✅**
-- Store the list of domains
-- Update the count to ignore those domains for bingo
-
-
-
+- Display a question from api
+- Alert user if answered correct/wrong
