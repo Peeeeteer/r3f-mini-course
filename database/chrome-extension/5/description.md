@@ -7,15 +7,14 @@ The problem:
 </video>
 
 Currently,  
-when we open the popup and add some URLs, they disappear.  
-Let’s store them so they persist when we close and open the Popup.
+when we open the popup and add some URLs, close it and then reopen it,  they disappear.  
+Let’s store them so they persist when we close and re-open the Popup.
 
-Also if we are at it,  
-Let's have those urls be ignored for our count to bingo.  
-
+While we're at it,    
+Let's also make sure these saved URLs don't count towards bingo
   
 📝For example📝    
-visiting www.stackoverflow.com **should not** count towards bingo, but visiting www.youtube.com **should**
+visiting www.stackoverflow.com **won't** count towards bingo, but visiting www.youtube.com **will**
 
 Sooo... something like this:
 <video width="640" height="480" controls preload>
@@ -23,9 +22,10 @@ Sooo... something like this:
   Your browser does not support the video tag.
 </video>
 
+
 **Task ✅**
-- Store the list of domains
-- Update the count to ignore those domains for bingo
+- Save the list of domains so they don't disappear.
+- If a URL is in the list, don't count it towards `bingo`
 
 
 

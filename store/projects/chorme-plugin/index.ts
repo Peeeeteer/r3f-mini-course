@@ -146,7 +146,7 @@ const chromePluginMilestone: TPureMilestone[] = [
       },
     ],
     isReveal: false,
-    label: "Milestone 5",
+    label: "5. Combining things ",
     totalHint: 4,
     url: "/projects/chrome-extension/5/description",
   },

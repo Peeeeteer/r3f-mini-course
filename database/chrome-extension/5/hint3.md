@@ -1,6 +1,6 @@
 ###### Hint 3: Fill in the blanks
 
-**Popup.jsx** this is the code, fill in the missing parts:
+**Popup.jsx** fill in the missing parts:
 
 ```javascript
 import React, { useEffect, useState } from 'react';
@@ -86,6 +86,11 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 });
 
 ```
+
+
+**manifest.json**  
+Add the `storage` permissions required to use `chrome.storage`
+
 
 **Tip 💡**   
 Refresh the plugin manually when making changes to index.js.

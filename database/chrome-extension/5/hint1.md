@@ -1,12 +1,13 @@
 ###### Hint 1: Storing urls (Popup.jsx)
 
-A good way to save data is by using `chrome.storage.local`   
-You can store up to 5 MB of data for chrome extensions, which is more than we need for our blocked domain list. 
+Let's start with `Popup.jsx`  
+when we add a domain and click on submit, and to save it we can use `chrome.storage.local`  
+Chrome gives us 5 MB for extension data, which is way more than we need for our list of blocked domains.
 
-<p>Chrome has  <a href="https://developer.chrome.com/docs/extensions/reference/api/storage?authuser=1" style="text-decoration: underline;">good documentation about local storage</a>. Go read it...📚</p>
 
- Here is a simple example of how you might use it
+<p>There is a <a href="https://developer.chrome.com/docs/extensions/reference/api/storage?authuser=1" style="text-decoration: underline;">very good documentation</a> about local storage. Go read it...📚</p>
 
+Here is a simple code that can get you started:
 
 ```javascript
   const handleSubmit = () => {
@@ -16,5 +17,4 @@ You can store up to 5 MB of data for chrome extensions, which is more than we ne
 ```
 
 **Dont forget 💡**    
-Every time we **re-open** the popup, we need to load the domain list
-
+Every time we **re-open** the popup, we need to **load** the domain list again.
