@@ -1,17 +1,20 @@
-###### Milestone 1: Initial setup
+###### Milestone 1: Initial boilerplate setup
 
 There are many ways how to code a chrome plugin, but I just used <u>[this template](https://github.com/lxieyang/chrome-extension-boilerplate-react)</u>
 
+It's built with webpack & react and has all the pages pre-built for you.   
+What pages? What is happening? Dont worry... we will handle that in Milestone 2
 
-It's basic
-built with webpack & react and has all the pages pre-built for you. 
-What pages? What is happening? Will handle that in Milestone 2
 
-So go ahead and set it up and add the extension to chrome, the github link has all the info you need.
+So for now,  
+Go ahead and set up <a href="https://github.com/lxieyang/chrome-extension-boilerplate-react" target="_blank" style="text-decoration: underline;">the template/boiler plate</a>
 
 By the end you should have something like this:
-![Project 1](/chrome-extension/image15.png "What we will be making")
- Replace with a video after it.
+<video width="640" height="480" controls preload>
+  <source src="/chrome-extension/m1-1.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
 
 
 **Task ✅**

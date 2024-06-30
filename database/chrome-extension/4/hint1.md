@@ -4,6 +4,6 @@
 ![hint-1](/chrome-extension/image1.png "index.js")
 
 
-**Tip 💡**   
-If you update the manifest.json & index.js in the background folder you need to refresh the plugin manually by clicking this:
-![hint-1](/chrome-extension/image6.png "manifest.js refresh ")
+**Tip 💡**  
+If you update the `manifest.json` or `index.js` file you need to refresh the plugin manually by clicking this:
+<img src="/chrome-extension/image6.png" alt="index.js" width="640" height="480">
