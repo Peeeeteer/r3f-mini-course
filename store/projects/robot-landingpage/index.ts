@@ -64,7 +64,7 @@ const robotMilestone: TPureMilestone[] = [
   },
 
   {
-    id: "1",
+    id: "2",
     currentHint: 0,
     description: "This is the Milestone 2",
     status: MilestoneStatus.TO_DO,

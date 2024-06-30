@@ -43,9 +43,9 @@ const SidebarItem: FC<SidebarItemProps> = ({ milestone, order }) => {
       className="cursor-pointer hover:bg-[#42424240] rounded-md"
       style={{
         backgroundColor: isUrlActive ? "#424242" : "",
-        margin: isUrlActive ? "0 -12px 0 -14px" : "",
-        padding: isUrlActive ? "4px 12px 4px 14px" : "",
-        borderRadius: isUrlActive ? "0 0 0 0" : "",
+        margin: "0 -12px 0 -14px",
+        padding: "4px 12px 4px 14px",
+        borderRadius: "0 0 0 0",
       }}
     >
       <Link

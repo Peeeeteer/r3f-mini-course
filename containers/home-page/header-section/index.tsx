@@ -7,7 +7,7 @@ import Brand from "../../../components/Brand";
 import HeaderUserActions from "./user-actions";
 
 interface HeaderSectionProps {
-  user: User;
+  user: User | null;
 }
 
 const HeaderSection: FC<HeaderSectionProps> = async ({ user }) => {

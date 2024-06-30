@@ -15,7 +15,6 @@ const ProjectPageHeaderSection: FC<ProjectPageHeaderSectionProps> = ({
 }) => {
   const { milestone } = useMilestoneStore();
 
-  const targetUser = null;
   return (
     <header className="w-full bg-[#232627] flex justify-center border-b border-[#FFFFFF1A]  sticky top-0 left-0 z-[41] ">
       <div className="w-full flex items-center justify-between">
@@ -40,7 +39,7 @@ const ProjectPageHeaderSection: FC<ProjectPageHeaderSectionProps> = ({
             {milestone?.description}
           </span>
         </nav>
-        <HeaderUserActions targetUser={targetUser} />
+        <HeaderUserActions user={user} />
       </div>
     </header>
   );
