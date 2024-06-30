@@ -1,10 +1,10 @@
 ###### Hint 2: Google is your friend
 
-Try googling this
+Try googling/AI this
 ```bash
 chrome extension check url change
 ```
 
-I found a lot of useful information, do some googling and researching.   
+I found a lot of useful information, do some research.
 
 You Got This. 🙌
