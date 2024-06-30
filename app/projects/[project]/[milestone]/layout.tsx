@@ -17,7 +17,7 @@ export default function MilestoneLayout({
   const { currentHint = 0, hints = [] } = milestone || {};
 
   return (
-    <div className="flex flex-col justify-between h-full">
+    <div className="flex flex-col h-full">
       <div className="mb-6">
         <Stepper
           activeStep={currentHint || 0}

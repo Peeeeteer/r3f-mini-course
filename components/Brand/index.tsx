@@ -5,7 +5,7 @@ interface BrandProps {}
 
 const Brand: FC<BrandProps> = ({}) => {
   return (
-    <div className="flex gap-3 items-center w-40">
+    <div className="flex gap-x-3 items-center">
       <Logo />
       <h1 className="text-white text-xl leading-8 font-bold">justcode</h1>
     </div>

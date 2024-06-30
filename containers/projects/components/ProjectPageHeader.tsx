@@ -4,19 +4,27 @@ import HeaderUserActions from "@/containers/home-page/header-section/user-action
 import { useMilestoneStore } from "@/store/useMilestoneStore";
 import { TUser } from "@/types/User";
 import { User } from "@supabase/supabase-js";
-import { FC } from "react";
+import React, { FC } from "react";
+import { twJoin, twMerge } from "tailwind-merge";
 
-interface ProjectPageHeaderSectionProps {
+interface ProjectPageHeaderSectionProps
+  extends React.HTMLAttributes<HTMLElement> {
   user: User | null;
 }
 
 const ProjectPageHeaderSection: FC<ProjectPageHeaderSectionProps> = ({
   user,
+  className,
 }) => {
   const { milestone } = useMilestoneStore();
 
   return (
-    <header className="w-full bg-[#232627] flex justify-center border-b border-[#FFFFFF1A]  sticky top-0 left-0 z-[41] ">
+    <header
+      className={twMerge(
+        "w-full bg-bgGray flex justify-center border-b border-[#FFFFFF1A]  sticky top-0 left-0 z-[41]",
+        className
+      )}
+    >
       <div className="w-full flex items-center justify-between">
         <nav className="p-6 flex items-center gap-x-1 h-[80px]">
           <span className="text-[#9CA3AF]">{milestone?.label}</span>

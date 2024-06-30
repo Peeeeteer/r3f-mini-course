@@ -6,6 +6,7 @@ import Image from "next/image";
 import { twMerge } from "tailwind-merge";
 import { TProject } from "@/types/Project";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 interface ProjectsSectionProps {
   projects: TProject[];
 }

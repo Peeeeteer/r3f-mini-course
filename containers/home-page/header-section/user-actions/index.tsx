@@ -37,7 +37,7 @@ const HeaderUserActions: FC<HeaderUserActionsProps> = ({
 
   return (
     <div
-      className={`border-l border-[#FFFFFF1A] h-full flex items-center cursor-pointer hover:bg-[#1d202179]`}
+      className={`h-full flex items-center cursor-pointer hover:bg-[#1d202179]`}
       style={{
         backgroundColor: isOpen ? "transparent" : "",
       }}
