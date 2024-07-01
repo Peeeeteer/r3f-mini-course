@@ -1,7 +1,11 @@
 ###### Milestone 6: Open a newtab
 
 It might not seem like it,  
-but this is mostly the plugin. &nbsp; ➡️ we count changes ➡️ we count to 10 ➡️ we do something… 👏 Good job 👏 
+but the main function is finished. 
+
+➡️ we count changes ➡️ we count to 10 ➡️ we do something… 
+
+<br>
 
 Now,  
 let’s improve the plugin even more by opening the `newtab.jsx` page instead of `console.log("bingo")`  

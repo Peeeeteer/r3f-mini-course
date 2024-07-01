@@ -12,7 +12,7 @@ if (domainChangeCounter === 10) {
 }
 ```
 
-<p>Chrome has a realy well made <a href="https://developer.chrome.com/docs/extensions/reference/api/storage?authuser=1" style="text-decoration: underline;">documentation on tabs</a>, try to find the solution there.</p>
+<p>Chrome has a realy well made <a href="https://developer.chrome.com/docs/extensions/reference/api/storage?authuser=1" target="_blank" style="text-decoration: underline;">documentation on tabs</a>, try to find the solution there.</p>
 
 
 You got this! 👍

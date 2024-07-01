@@ -175,7 +175,7 @@ const chromePluginMilestone: TPureMilestone[] = [
       },
     ],
     isReveal: false,
-    label: "Milestone 6",
+    label: "6. Open a new tab",
     totalHint: 4,
     url: "/projects/chrome-extension/6/description",
   },
