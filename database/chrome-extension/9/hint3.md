@@ -1,92 +1,92 @@
 ###### Hint 3: Fill in the blanks
 
-**Popup.jsx** this is the code, fill in the missing parts:
+
+Here are some code snippets and hints, try to workout the solutions.
+
+**Popup.jsx** 
 
 ```javascript
-import React, { useEffect, useState } from 'react';
-import './Popup.css';
 
-
-const Popup = () => {
-  const [url, setUrl] = useState('');
-  const [excludedDomains, setExcludedDomains] = useState([]);
-
+  // 1. Load the category value inside useEffect
   useEffect(() => {
-    // Update me
+
+    chrome.storage.local.get(['excludedDomains', 'isEnabled'], function (result) {
+      setExcludedDomains(result.excludedDomains || []);
+      setIsEnabled(result.isEnabled);
+
+    });
   }, []);
 
-  const handleSubmit = () => {
-    // Update me
-    const newExcludedDomains = [];
-    setExcludedDomains();
-    chrome.storage...
-  };
-  const handleRemoveUrl = (urlToRemove) => {
-    // Update me
-    const newExcludedDomains
-    setExcludedDomains(newExcludedDomains);
-    chrome.storage...
+
+  // 2. Category 
+  const [category, setCategory] = useState('javascript');
+
+  const handleCategory = (event) => {
+
+    const newCategory = 
+    setCategory();
+
+
+    chrome.storage.local.set({ });
   };
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <input
-          type="text"
-          value={url}
-          onChange={(e) => setUrl(e.target.value)}
-          placeholder="Website URL"
-        />
-        <button onClick={handleSubmit}>Add</button>
-        <ul>
-          {excludedDomains.map((blockedUrl) => (
-            <div key={blockedUrl}>
-              {blockedUrl}
-              <button onClick={() =>  handleRemoveUrl(blockedUrl)}>x</button>
-            </div>
-          ))}
-        </ul>
-      </header>
-    </div>
-  );
-};
 
-export default Popup;
+
+  // 3. The html part is simple
+
+	   {/* ... other elements ... */}
+        <select value={category} onChange={handleCategory}>
+          <option value="javascript">JavaScript</option>
+          <option value="typescript">TypeScript</option>
+          <option value="python">Python</option>
+          <option value="react">React</option>
+          <option value="techy">Techy</option>
+        </select>
+        {/* ... other elements ... */}
 
 ```
 
-**index.js** this is the code, fill in the missing parts.
+**index.js**  
+_Don't forget to refresh the plugin manually when doing changes to index.js_
+
 
 ```javascript
-console.log("Background log");
+// When the extension is installed for the very first time, set default values.
+chrome.runtime.onInstalled.addListener(function () {
+  chrome.storage.local.set({
+	// Set the default values here.
 
-let domainChangeCounter = 0;
 
-chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-
-  // Update me
-  const url = 
-  const hostname = 
-
-  if (changeInfo.url) {
-    // Update me
-    chrome.storage.local.get([''], function (result) {
-      if () {
-        return;
-      }
-	
-      domainChangeCounter++;
-
-      if (domainChangeCounter === 10) {
-        console.log("Bingo");
-        domainChangeCounter = 0;
-      }
-    });
-  }
+  });
 });
 
 ```
 
-**Tip 💡**   
-Refresh the plugin manually when making changes to index.js.
-<img src="/chrome-extension/image6.png" alt="index.js" width="960" height="540">
+**Newtab.jsx**
+
+```javascript
+useEffect(() => {
+
+    // Load the current category from chrome storage
+    chrome.storage.local.get(['category'], function (result) {
+
+      const currentCategory = result.category
+      fetch('https://vdoqyjbnpwqkafxxssbb.supabase.co/rest/v1/questions?apikey=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZkb3F5amJucHdxa2FmeHhzc2JiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTEzNzIyMTUsImV4cCI6MjAyNjk0ODIxNX0.luuvoKY-udlAaD83Qf5pElsetmXVwPetr6C-v5gpjDg')
+        .then(response => response.json())
+        .then(data => {
+
+          // Filter the questions based on the current category
+          const filteredData =
+
+          // Select a random question from the filtered data
+          const randomIndex =
+
+          // Set the question state to the random question
+          setQuestion();
+        });
+    });
+  }, []);
+
+```
+
+🏆 You got this champ. 🏆

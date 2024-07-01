@@ -1,6 +1,6 @@
-###### Solution 
+###### Milestone 8 Solution 
 
-**Newtab.jsx**
+**Newtab.jsx** final code:
 
 
 ```javascript

@@ -1,36 +1,54 @@
-###### Hint 2: Ignore urls (index.js)
-
-You need to access the blocked domains list inside index.js using `chrome.storage.local`     
-
-After that try to answer these questions.
-- How do you check if the current tab's domain is blocked before incrementing?
-- Do you need any permissions to use `chrome.storage`? [Review the docs](https://developer.chrome.com/docs/extensions/reference/api/storage?authuser=1).
+###### Hint 2: What to do in each file?
 
 
-Here's a basic structure to get you started:
+**`index.js`**  
+When the plugin is installed for the first time,  
+use **chrome.runtime.onInstalled** to initialise default values for **category, excludedDomains and isEnabled**
 
+<br>
+
+**`Popup.jsx`**  
+You already did exactly same thing when you did **on/off** button, do the same but for category
 
 ```javascript
-let domainChangeCounter = 0;
-
-chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-  // Get the domain from the URL 
-
-  // If the url changes...we do something
-  if (changeInfo.url) {
-
-    chrome.storage.local.. {
-     // If the domain is in the excludedDomains list, dont increment
-     }
+  const handleToggle = () => {
+    const newIsEnabled = !isEnabled;
+    setIsEnabled(newIsEnabled);
 
 
-    domainChangeCounter++;
+    // Save isEnabled to chrome storage
+    chrome.storage.local.set({ isEnabled: newIsEnabled });
+  };
 
-    if (domainChangeCounter === 10) {
-      console.log("Bingo");
-      domainChangeCounter = 0;
-    }
-  }
-}); 
+```
+
+<br>
+
+**`Newtab.jsx`**  
+
+Use the **"category"** value to filter the questions. You got this.
+
+```json
+{
+  "id": 20,
+  "created_at": "2024-05-09T13:02:23.723263+00:00",
+  "question": {
+    "options": [
+      "useRef",
+      "useState",
+      "useEffect",
+      "useContext"
+    ],
+    "question": {
+      "text": "Which hook is used to store the state of a component in React?",
+      "codeSnippet": "const [count, setCount] = use*(0)"
+    },
+    "correctAnswer": "useState"
+  },
+  "category": "react", <- - - - - Use this value here.
+  "difficulty": "easy",
+  "your_name": "slowmoschen",
+  "your_github_url": "github.com/SlowMoschen"
+}
 
 ```

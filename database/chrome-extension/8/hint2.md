@@ -1,7 +1,7 @@
 ###### Hint 2: More code
 
 
-Here is more code, try fill in the blanks
+Here is more code, try to do the rest yourself.
 
 
 ```javascript
@@ -19,7 +19,7 @@ useEffect(() => {
 ```
 
 Keep in mind that one single `question` looks something like this.  
-So when displaying data, you would do something like `question.question.text`
+So when displaying the actual question, you would do: `question.question.text`
 
 ```json
 {

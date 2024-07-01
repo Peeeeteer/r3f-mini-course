@@ -1,7 +1,7 @@
 ###### Hint 1: fetch & useEffect
 
 In `newtab.jsx`  
-try using `useEffect` and `fetch` to load the questions. _There are a lot of other ways how you can do it..._
+try using `useEffect` and `fetch` to load the questions.
 
 Here's a starting point:
 ```javascript
