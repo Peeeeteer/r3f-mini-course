@@ -3,15 +3,13 @@
 **Popup.jsx** fill in the missing parts:
 
 ```javascript
-
   // We added a new state
   const [isEnabled, setIsEnabled] = useState(true);
 
   useEffect(() => {
+    // Do something here 
     chrome.storage.local.get(['excludedDomains', 'isEnabled'], function (result) {
       setExcludedDomains(result.excludedDomains || []);
-     // Do something here 
-
 
     });
   }, []);
@@ -26,9 +24,9 @@
     <div className="App">
       <header className="App-header">
 
-        // Added the switch toggle 
+        // Added the switch toggle  
         <div className="toggle-switch">
-	     <label className="switch">
+	        <label className="switch">
             <input type="checkbox" checked={isEnabled} onChange={() =>
             {
               handleToggle();
@@ -40,6 +38,7 @@
         </div>
 
 
+          
         <input
           type="text"
           value={url}

@@ -14,4 +14,4 @@ Make an on/off switch; it can be a simple checkbox, button, slider, or toggle sw
 </p>
 
 **Dont forget 💡**    
-You will need to access the on/off value inside `index.js` 
+You will need to access the on/off value later inside `index.js` 

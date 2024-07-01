@@ -204,7 +204,7 @@ const chromePluginMilestone: TPureMilestone[] = [
       },
     ],
     isReveal: false,
-    label: "Milestone 7",
+    label: "7. On/Off ",
     totalHint: 4,
     url: "/projects/chrome-extension/7/description",
   },
