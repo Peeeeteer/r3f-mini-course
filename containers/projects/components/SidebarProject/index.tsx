@@ -42,7 +42,7 @@ const SidebarProject: FC<SidebarProps> = ({}) => {
             </div>
           </Link>
           <div className="border-b border-[#303334] border-dashed mb-4"></div>
-          <div className="pl-[14px] pr-[12px] flex flex-col gap-y-4">
+          <div className="pl-[14px] pr-[12px] flex flex-col gap-y-2">
             {(milestones === null ? [] : milestones)
               .map((milestone, index) => {
                 return (

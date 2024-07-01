@@ -6,7 +6,8 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
-  --background-main: #232627;
+  --background-main-1: #232627;
+  --background-main-2: #040404;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,7 +19,8 @@
 }
 
 body {
-  background-color: var(--background-main);
+  background-color: var(--background-main-1);
+  color: #fff;
 }
 .nanum-pen-script-regular {
   font-family: "Nanum Pen Script", cursive;

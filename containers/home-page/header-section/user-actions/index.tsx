@@ -2,18 +2,22 @@
 import { BellSvg } from "@/components/Icons/BellSvg";
 import { MessageQuestionSvg } from "@/components/Icons/MessageQuestionSvg";
 import { handleSignOut } from "@/db/auth";
+import useClickOutside from "@/hooks/useClickOutside";
 import { User } from "@supabase/supabase-js";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { FC, useState } from "react";
+import { FC, useRef, useState } from "react";
 import { toast } from "react-toastify";
 
 interface HeaderUserActionsProps {
-  user?: User;
+  user?: User | null;
 }
 
-const HeaderUserActions: FC<HeaderUserActionsProps> = ({ user }) => {
+const HeaderUserActions: FC<HeaderUserActionsProps> = ({
+  user
+}) => {
+
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
   const toggleDropdown = () => setIsOpen(!isOpen);
@@ -25,9 +29,15 @@ const HeaderUserActions: FC<HeaderUserActionsProps> = ({ user }) => {
       router.push("/");
     }
   };
+
+  const ref = useRef(null);
+  useClickOutside(ref, () => {
+    setIsOpen(false);
+  });
+
   return (
     <div
-      className={`border-l border-[#FFFFFF1A] h-full flex items-center cursor-pointer hover:bg-[#1d202179]`}
+      className={`h-full flex items-center cursor-pointer hover:bg-[#1d202179]`}
       style={{
         backgroundColor: isOpen ? "transparent" : "",
       }}
@@ -48,13 +58,13 @@ const HeaderUserActions: FC<HeaderUserActionsProps> = ({ user }) => {
               <div className="relative">
                 <div className="flex gap-x-3 items-center">
                   <div className="bg-[#1A1E23] w-[1px] h-6"></div>
-                  <div className="relative w-8 h-8 rounded-full">
+                  <div className="relative w-8 h-8 rounded-full" ref={ref}>
                     <button
                       onClick={toggleDropdown}
                       className="w-8 h-8 rounded-full"
                     >
                       <Image
-                        src={user.user_metadata.avatar_url}
+                        src={user?.user_metadata?.avatar_url}
                         alt="avatar"
                         fill
                         className="rounded-full"

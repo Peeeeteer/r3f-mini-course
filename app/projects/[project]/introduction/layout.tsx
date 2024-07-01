@@ -1,12 +1,9 @@
 "use client";
-
-import ProjectPageHeader from "@/containers/projects/components/ProjectPageHeader";
-import SidebarProject from "@/containers/projects/components/SidebarProject";
 import { useMilestoneStore } from "@/store/useMilestoneStore";
 import { useParams } from "next/navigation";
 import { useEffect } from "react";
 
-export default function ProjectLayout({
+export default function IntroductionLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
