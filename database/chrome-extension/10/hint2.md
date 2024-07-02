@@ -1,36 +1,42 @@
-###### Hint 2: Ignore urls (index.js)
-
-You need to access the blocked domains list inside index.js using `chrome.storage.local`     
-
-After that try to answer these questions.
-- How do you check if the current tab's domain is blocked before incrementing?
-- Do you need any permissions to use `chrome.storage`? [Review the docs](https://developer.chrome.com/docs/extensions/reference/api/storage?authuser=1).
+###### Hint 2: Step by step
 
 
-Here's a basic structure to get you started:
 
+
+For `Popup.jsx` do the same thing you just did for the Category, but this time the **Slider**
+
+- html slider with value from 10-50
+- a function that handles that slider changes
+- useEffect with that new value
 
 ```javascript
-let domainChangeCounter = 0;
+const handleCategory = (event) => {
+const newCategory = event.target.value;
+setCategory(newCategory);
 
-chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-  // Get the domain from the URL 
+chrome.storage.local.set({ category: newCategory });
+};
+```
+add the html for the slider,etc...
 
-  // If the url changes...we do something
-  if (changeInfo.url) {
+<br>
 
-    chrome.storage.local.. {
-     // If the domain is in the excludedDomains list, dont increment
-     }
+`index.js`
 
+- Use the domainChange value in this part of the function
+```javascript
+// Check if domainChangeCounter is equal to domainChanges, if yes show the Newtab.jsx
+if () {
+    chrome.tabs.update(tabId, {
+        url: chrome.runtime.getURL('newtab.html'),
+    });
 
-    domainChangeCounter++;
+    domainChangeCounter = 0;
+}
+```
 
-    if (domainChangeCounter === 10) {
-      console.log("Bingo");
-      domainChangeCounter = 0;
-    }
-  }
-}); 
-
+_Psst_  
+Dont forget to set the default value for domainChanges on first chrome plugin install.
+```javascript
+chrome.runtime.onInstalled.addListener...
 ```

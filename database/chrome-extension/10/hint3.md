@@ -3,87 +3,67 @@
 **Popup.jsx** this is the code, fill in the missing parts:
 
 ```javascript
-import React, { useEffect, useState } from 'react';
-import './Popup.css';
 
+  //1. Add a new state variable
+  const [domainChanges, setDomainChanges] = useState(10);
 
-const Popup = () => {
-  const [url, setUrl] = useState('');
-  const [excludedDomains, setExcludedDomains] = useState([]);
+  //2. Handle slider change
+  const handleSliderChange = (event) => {
+    const newDomainChanges = 
+    setDomainChanges(newDomainChanges);
 
-  useEffect(() => {
-    // Update me
-  }, []);
-
-  const handleSubmit = () => {
-    // Update me
-    const newExcludedDomains = [];
-    setExcludedDomains();
-    chrome.storage...
+    chrome.storage.local.set();
   };
-  const handleRemoveUrl = (urlToRemove) => {
-    // Update me
-    const newExcludedDomains
-    setExcludedDomains(newExcludedDomains);
-    chrome.storage...
-  };
-
-  return (
-    <div className="App">
-      <header className="App-header">
-        <input
-          type="text"
-          value={url}
-          onChange={(e) => setUrl(e.target.value)}
-          placeholder="Website URL"
+    
+  //3. Add the actual slider.
+  <input
+          type="range"
+          min="10"
+          max="50"
+          value={}
+          onChange={}
         />
-        <button onClick={handleSubmit}>Add</button>
-        <ul>
-          {excludedDomains.map((blockedUrl) => (
-            <div key={blockedUrl}>
-              {blockedUrl}
-              <button onClick={() =>  handleRemoveUrl(blockedUrl)}>x</button>
-            </div>
-          ))}
-        </ul>
-      </header>
-    </div>
-  );
-};
+        <span></span>
 
-export default Popup;
+  //4. Update the default value for domainChanges everytime popup is opened.
+  useEffect(() => {
+    chrome.storage.local.get(['excludedDomains', 'isEnabled', 'category', 'domainChanges'], function (result) {
+      setExcludedDomains(result.excludedDomains || []);
+      setIsEnabled(result.isEnabled);
+      setCategory(result.category || 'javascript');
+
+    });
+  }, 
+  []);
+
 
 ```
 
 **index.js** this is the code, fill in the missing parts.
 
 ```javascript
-console.log("Background log");
+// Set the default domain change value, I did javascript
+chrome.runtime.onInstalled.addListener(function () {
+  chrome.storage.local.set({
+    isEnabled: true,
+    category: 'react',
+    excludedDomains: ['stackoverflow'],
 
-let domainChangeCounter = 0;
+  });
+});
 
-chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+// Get the domainChanges value.
+  chrome.storage.local.get(['excludedDomains', 'isEnabled', 'Hmm'], function (result) {
 
-  // Update me
-  const url = 
-  const hostname = 
-
-  if (changeInfo.url) {
-    // Update me
-    chrome.storage.local.get([''], function (result) {
+// Use the domainChanges value 
       if () {
-        return;
-      }
-	
-      domainChangeCounter++;
+        chrome.tabs.update(tabId, {
+          url: chrome.runtime.getURL('newtab.html'),
+        });
 
-      if (domainChangeCounter === 10) {
-        console.log("Bingo");
+
         domainChangeCounter = 0;
       }
-    });
-  }
-});
 
 ```
 

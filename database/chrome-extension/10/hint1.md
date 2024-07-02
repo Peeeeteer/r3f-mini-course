@@ -1,19 +1,15 @@
-###### Hint 1: Storing urls (Popup.jsx)
+###### Hint 1: Same but diffrent
 
-A good way to save data is by using `chrome.storage.local` 
-You can store up to 5 MB of data for chrome extensions, which is more than we need for our blocked domain list. 
+You will need to work on `Popup.jsx` & `index.js`   
+This task is really similar to **milestone 9** that we just had
 
-There is a lot of [good documentation about it](https://developer.chrome.com/docs/extensions/reference/api/storage?authuser=1) just skim through it and you'll get it
+`Popup.jsx`   
+We add the slider & update the domainChange value 
 
-Also,  
-Here's a simple example of how you might use it:
-```javascript
-  const handleSubmit = () => {
-    chrome.storage.local...
-  };
+`index.js`  
+We set the default values & use the domainChange value
 
-```
 
 **Dont forget 💡**    
-Every time we **re-open** the popup, we need to load the domain list from `chrome.local.storage` again or else it will be empty
+Every time we **re-open** the popup, we need to load the **new** value.
 

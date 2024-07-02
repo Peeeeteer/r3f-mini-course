@@ -291,7 +291,7 @@ const chromePluginMilestone: TPureMilestone[] = [
       },
     ],
     isReveal: false,
-    label: "Milestone 10",
+    label: "10. Filter 2 ",
     totalHint: 4,
     url: "/projects/chrome-extension/10/description",
   },
