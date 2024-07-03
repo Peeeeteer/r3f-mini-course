@@ -8,12 +8,9 @@ import React, { FC } from "react";
 import { twJoin, twMerge } from "tailwind-merge";
 
 interface ProjectPageHeaderSectionProps
-  extends React.HTMLAttributes<HTMLElement> {
-  user: User | null;
-}
+  extends React.HTMLAttributes<HTMLElement> {}
 
 const ProjectPageHeaderSection: FC<ProjectPageHeaderSectionProps> = ({
-  user,
   className,
 }) => {
   const { milestone } = useMilestoneStore();
@@ -47,7 +44,7 @@ const ProjectPageHeaderSection: FC<ProjectPageHeaderSectionProps> = ({
             {milestone?.description}
           </span>
         </nav>
-        <HeaderUserActions user={user} />
+        <HeaderUserActions />
       </div>
     </header>
   );

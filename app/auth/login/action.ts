@@ -1,8 +1,7 @@
 "use server";
-
+import { createClient } from '@/utils/supabase/server'
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
-import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
 const getURL = () => {
   let url =
     process.env.NEXT_PUBLIC_SITE_URL ?? // Set this to your site URL in production env.
@@ -16,15 +15,16 @@ const getURL = () => {
   return url;
 };
 export async function login() {
-  const supabase = createRouteHandlerClient({ cookies });
+  const supabase = createClient();
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "github",
     options: {
       redirectTo: `${getURL()}auth/callback`,
     },
   });
-  console.log("🚀 ~ login ~ data:", data)
-
+  if (error) {
+    redirect('/error')
+  }
   if (data.url) {
     redirect(data.url); // use the redirect API for your server framework
   }

@@ -1,5 +1,4 @@
 import { updateSession } from "@/utils/supabase/middleware";
-import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs'
 import { NextResponse } from 'next/server'
 
 import type { NextRequest } from 'next/server'

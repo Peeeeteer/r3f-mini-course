@@ -1,16 +1,15 @@
 "use client";
 import FaceWithTearSvg from "@/components/Icons/FaceWithTearSvg";
+import FooterSection from "@/containers/home-page/footer-section";
 import HeaderSection from "@/containers/home-page/header-section";
 import { createClient } from "@/utils/supabase/client";
 import { User } from "@supabase/supabase-js";
 import Image from "next/image";
+import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
 import { twJoin } from "tailwind-merge";
 
 export default function LandingPage() {
-  const supabase = createClient();
-  const [user, setUser] = useState<User | null>(null);
-
   const [headerBackground, setHeaderBackground] = useState(false);
   const sectionRef = useRef(null);
 
@@ -31,103 +30,141 @@ export default function LandingPage() {
     };
   }, []);
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      const { data, error } = await supabase.auth.getUser();
-      setUser(data.user);
-    };
-    fetchUser();
-  }, [supabase.auth]);
   return (
-    <div className="w-full relative">
-      <HeaderSection
-        user={user}
-        className={twJoin(
-          "sticky top-0 left-0 z-10",
-          headerBackground ? "bg-[#040404]" : ""
-        )}
-      />
-      <div
-        className="w-full h-full"
-        style={{
-          backgroundImage: "url(/landing-page/landing-bg.png)",
-          backgroundSize: "cover",
-          backgroundPosition: "top",
-          backgroundRepeat: "no-repeat",
-          position: "absolute",
-          top: 0,
-          left: 0,
-        }}
-      ></div>
-      <div
-        className="w-full h-full"
-        style={{
-          backgroundImage: "url(/landing-page/bg-grid.png)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          position: "absolute",
-          top: 0,
-          left: 0,
-        }}
-      ></div>
-
-      <div className="w-full flex justify-center">
-        <div className="max-w-[1440px] relative flex flex-col justify-center items-center">
-          <section ref={sectionRef} className="min-h-[900px]">
-            <div className="pt-[112px] flex justify-center flex-col items-center gap-y-8">
-              <h1 className="text-white text-[56px] leading-[72px] font-bold text-center ">
-                No tutorials, No courses <br /> just code{" "}
-                <span className="text-[#FFFFFF8F]">lol</span>
-              </h1>
-              <Image
-                src="/landing-page/bg1.png"
-                alt="hero"
-                width={509}
-                height={400}
-              />
-              <button className="bg-[#DF424C] mt-2 rounded-lg text-white text-5xl leading-[60px] py-4 px-10 font-nanumPenScript">
-                Coding is hard
-              </button>
-            </div>
-          </section>
-          <section className="min-h-[900px] pt-[140px]">
-            <div className="flex justify-center flex-col items-center gap-y-8">
-              <h1 className="text-white text-[56px] leading-[72px] font-bold text-center ">
-                And that shit makes me sad
-              </h1>
-              <Image
-                src="/landing-page/bg1.png"
-                alt="hero"
-                width={509}
-                height={400}
-              />
-              <button className="bg-[#0059AB] gap-x-3 flex items-center rounded-lg text-white text-5xl leading-[60px] py-4 px-10 font-nanumPenScript">
-                <span>i&apos;m sad</span>
-                <FaceWithTearSvg />
-              </button>
-            </div>
-          </section>
-          <section className="min-h-[900px] ">
-            <div className="pt-[108px] flex justify-center flex-col items-center gap-y-8">
-              <h1 className="text-white text-[56px] leading-[72px] font-bold text-center ">
-                but there is a solution
-                <br />
-                and its simple
-              </h1>
-              <Image
-                src="/landing-page/bg1.png"
-                alt="hero"
-                width={509}
-                height={400}
-              />
-              <button className="bg-[#03D0B0] gap-x-3 flex items-center rounded-lg text-white text-5xl leading-[60px] py-4 px-10 font-nanumPenScript">
-                <span>The solution</span>
-              </button>
-            </div>
-          </section>
+    <main>
+      <HeaderSection />
+      <div className="w-full relative">
+        <div
+          className="w-full h-full"
+          style={{
+            backgroundImage: "url(/landing-page/bg-landing.png)",
+            backgroundSize: "cover",
+            backgroundPosition: "top",
+            backgroundRepeat: "no-repeat",
+            position: "absolute",
+            top: 0,
+            left: 0,
+          }}
+        ></div>
+        <div className="w-full flex justify-center">
+          <div className="max-w-[1440px] relative flex flex-col justify-center items-center">
+            <section ref={sectionRef} className="min-h-[815px]">
+              <div className="pt-[77px] flex justify-center flex-col items-center gap-y-8">
+                <h1
+                  className="text-white text-[56px] leading-[72px] font-bold text-center"
+                  style={{
+                    background:
+                      "linear-gradient(360deg, #FFFFFF 41.67%, #DF424C 118.82%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
+                >
+                  I hate tutorials & courses
+                </h1>
+                <Image
+                  src="/landing-page/bg1.png"
+                  alt="hero"
+                  width={509}
+                  height={400}
+                />
+                <button className="font-bold mt-[114px] bg-[#DF424C] flex rounded-lg text-white text-5xl leading-[58.09px] py-4 px-10 ">
+                  im angry..
+                </button>
+              </div>
+            </section>
+            <section className="min-h-[900px] pt-[101px]">
+              <div className="flex justify-center flex-col items-center gap-y-6">
+                <h1
+                  className="text-white text-[56px] leading-[72px] font-bold text-center "
+                  style={{
+                    background:
+                      "linear-gradient(2.88deg, #FFFFFF 60.98%, #0059AB 102.07%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
+                >
+                  doing them
+                  <br />
+                  makes me pretty sad
+                </h1>
+                <Image
+                  src="/landing-page/bg1.png"
+                  alt="hero"
+                  width={509}
+                  height={400}
+                />
+                <button className="mt-4 leading-[58.09px] bg-[#0059AB] gap-x-3 flex items-center rounded-lg text-white text-5xl  py-4 px-10 font-bold">
+                  <span>im sad</span>
+                </button>
+              </div>
+            </section>
+            <section className="min-h-[900px] ">
+              <div className="pt-[108px] flex justify-center flex-col items-center gap-y-6">
+                <h1
+                  className="text-[56px] leading-[72px] font-bold text-center h-[144px]"
+                  style={{
+                    background:
+                      "linear-gradient(0deg, rgb(255, 255, 255) 70.48%, rgb(253, 234, 49) 88.43%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
+                >
+                  but there is a solution
+                </h1>
+                <Image
+                  src="/landing-page/bg1.png"
+                  alt="hero"
+                  width={509}
+                  height={400}
+                />
+                <button className="mt-4 bg-[#FCFF67] gap-x-3 flex items-center rounded-lg text-[#3D3D3D] text-5xl leading-[58.09px] py-4 px-10 font-bold">
+                  <span>Show me the solution</span>
+                </button>
+              </div>
+            </section>
+          </div>
         </div>
       </div>
-    </div>
+      <div className="flex flex-col gap-y-2 justify-center items-center">
+        <p className="text-[#FFFFFF8F] text-xl leading-[32px] font-normal text-center">
+          Scroll down to get started
+        </p>
+        <svg
+          width="14"
+          height="16"
+          viewBox="0 0 14 16"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M7.78569 0.454545V12.1307L12.2743 7.62784L13.3823 8.72159L7.00444 15.0852L0.640803 8.72159L1.72035 7.62784L6.22319 12.1307V0.454545H7.78569Z"
+            fill="#9EA0A0"
+          />
+        </svg>
+      </div>
+      <div className="min-h-[900px] flex justify-center items-center flex-col gap-y-6">
+        <h2 className="text-[48px] leading-[64p] font-bold tracking-[0.5px] text-center mb-2">
+           Start building projects, <br />
+          its the best way to learn
+        </h2>
+        <button className="relative rounded-full bg-[#635AFF] py-3 ">
+          <Link
+            href={"/projects"}
+            className="text-white text-xl leading-8 font-normal px-6 py-3 "
+          >
+            Get Started
+          </Link>
+          <div className="absolute border border-[#FFFFFF33] rounded-full w-[calc(100%+8px)] h-[calc(100%+8px)] -top-1 -left-1 px-[28px] py-4"></div>
+          <div className="absolute border border-[#FFFFFF33] rounded-full w-[calc(100%+12px)] h-[calc(100%+12px)] -top-[6px] -left-[6px] px-[28px] py-4"></div>
+        </button>
+        <p className="text-[#FFFFFF8F] text-sm leading-[20px] ">
+          Some projects are <span className="text-white">Free</span>{" "}
+        </p>
+      </div>
+      <FooterSection />
+    </main>
   );
 }
