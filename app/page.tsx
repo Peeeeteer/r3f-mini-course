@@ -9,7 +9,7 @@ import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
 import { twJoin } from "tailwind-merge";
 
-import { Robot } from "../containers/landing/Robot"
+import { Robot } from "../containers/landing-page/Robot"
 import { Stage, OrbitControls, Scroll, ScrollControls, } from '@react-three/drei'
 import { Canvas } from "@react-three/fiber";
 import * as THREE from 'three';
