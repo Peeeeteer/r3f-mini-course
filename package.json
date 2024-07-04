@@ -12,10 +12,13 @@
     "@mdx-js/loader": "^3.0.1",
     "@mdx-js/react": "^3.0.1",
     "@next/mdx": "^14.2.4",
+    "@react-three/drei": "^9.108.1",
+    "@react-three/fiber": "^8.16.8",
     "@supabase/auth-helpers-nextjs": "^0.10.0",
     "@supabase/ssr": "latest",
     "@supabase/supabase-js": "latest",
     "gray-matter": "^4.0.3",
+    "maath": "^0.10.7",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",
@@ -31,6 +34,7 @@
     "remark-gfm": "^4.0.0",
     "remark-toc": "^9.0.0",
     "tailwind-merge": "^2.3.0",
+    "three": "^0.166.1",
     "zustand": "^4.5.2"
   },
   "devDependencies": {
