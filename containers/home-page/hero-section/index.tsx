@@ -5,13 +5,21 @@ import DataFlowSvg from "@/components/Icons/DataFlowSvg";
 import StarsSvg from "@/components/Icons/StartsSvg";
 
 import Image from "next/image";
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 
 import "./style.css";
 
-interface HeroSectionProps {}
+import { Robot } from "../../landing-page/Robot"
+import { Stage, OrbitControls, Scroll, ScrollControls, } from '@react-three/drei'
+import { Canvas } from "@react-three/fiber";
+import * as THREE from 'three';
 
-const HeroSection: FC<HeroSectionProps> = ({}) => {
+
+interface HeroSectionProps { }
+
+const HeroSection: FC<HeroSectionProps> = ({ }) => {
+  const [expression, setExpression] = useState("Smile");
+
   return (
     <>
       <section className="w-full flex justify-between items-start gap-x-10">
@@ -88,41 +96,61 @@ const HeroSection: FC<HeroSectionProps> = ({}) => {
         </div>
         <div className="relative w-full max-w-[328px] min-h-[280px]">
           <div className="flex flex-col w-full items-center justify-center ">
-            <Image
+            <div >
+              <Canvas flat shadows camera={{ position: [0, 0, 20], fov: 25 }}>
+                <fog attach="fog" args={['black', 15, 22.5]} />
+                <Stage intensity={0.5} environment="studio" shadows={{ type: 'accumulative', bias: -0.001, intensity: Math.PI }} adjustCamera={false}>
+                  <Robot expression={expression} />
+                </Stage>
+                <OrbitControls enableZoom={false} makeDefault minPolarAngle={Math.PI / 2} maxPolarAngle={Math.PI / 2} enableRotate={false} enablePan={false} target={new THREE.Vector3(0, -0.7, 0)} position={new THREE.Vector3(0, 0, 0)} />
+              </Canvas>
+              {/* <Image
               src={"/robot-face.png"}
               alt="Hero IMG"
               fill
               objectFit="contain"
-            />
+            /> */}
+
+            </div>
           </div>
           <div className="flex items-center gap-x-4 absolute -bottom-24 left-0 ">
             <Image
               width={72}
               height={72}
-              className="object-cover"
-              src={"/GrinningFace.png"}
-              alt="GrinningFace IMG"
-            />
-            <Image
-              width={72}
-              height={72}
-              className="object-cover"
+              className="object-cover cursor-pointer"
+              onMouseOver={() => { setExpression("Angry"); }}
+              onMouseLeave={() => { setExpression("Smile") }}
               src={"/PoutingFace.png"}
               alt="PoutingFace IMG"
             />
+
             <Image
               width={72}
               height={72}
-              className="object-cover"
+              onMouseOver={() => { setExpression("Cry"); }}
+              onMouseLeave={() => { setExpression("Smile") }}
+              className="object-cover cursor-pointer"
               src={"/LoudlyCryingFace.png"}
               alt="LoudlyCryingFace IMG"
             />
+
             <Image
               width={72}
               height={72}
-              className="object-cover"
-              src={"/PoutingFace.png"}
-              alt="PoutingFace IMG"
+              onMouseOver={() => { setExpression("Starry"); }}
+              onMouseLeave={() => { setExpression("Smile") }}
+              className="object-cover cursor-pointer"
+              src={"/StarStruck.png"}
+              alt="Star Struck IMG"
+            />
+            <Image
+              width={72}
+              height={72}
+              onMouseOver={() => { setExpression("Neutral"); }}
+              onMouseLeave={() => { setExpression("Smile") }}
+              className="object-cover cursor-pointer"
+              src={"/neutral_face.png"}
+              alt="Slightly smiling IMG"
             />
           </div>
         </div>
