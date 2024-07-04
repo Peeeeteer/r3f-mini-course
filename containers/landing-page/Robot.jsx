@@ -10,7 +10,6 @@ export function Robot(props) {
 
     const meshRef = useRef();
 
-
     useFrame(({ pointer, viewport, clock, dt }) => {
 
         const elapsedTime = clock.getElapsedTime();

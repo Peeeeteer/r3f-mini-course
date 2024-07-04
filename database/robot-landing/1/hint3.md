@@ -1,32 +1,16 @@
-###### Hint 3: This is the robot.
+###### Hint 3: Setup Setup
+
+For this milestone there are no hints, only the solution.
+
+If you want to do it without looking at the solution, do these steps.
 
 
-Create the **components** Directory:
-   * This directory will contain all your React components.
-   * Each component should have its own file, making it easy to manage and reuse.
-
-Create the **styles** Directory:
-   * This directory will contain your CSS or SCSS files.
-   * Include your TailwindCSS file here (e.g., tailwind.css) and any other custom styles you need
+Step 1: Follow the getting started instructions for Vite.
+https://docs.pmnd.rs/react-three-fiber/getting-started/installation
 
 
-![hint2-1](/portfolio-page-1/milestone-1/hint3-1.png "")
+Step 2: Add tailwind css by following these instructions:
+https://tailwindcss.com/docs/guides/vite#react
 
-Create **src/styles/tailwind.css** and import it in **src/index.js**:
-```css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-```
 
-![hint2-1](/portfolio-page-1/milestone-1/hint3-2.png "")
-
-![hint2-1](/portfolio-page-1/milestone-1/hint3-3.png "")
-
-**Start the project:**
-
-![hint2-1](/portfolio-page-1/milestone-1/hint3-4.png "")
-
-**The result:**
-
-![hint2-1](/portfolio-page-1/milestone-1/hint3-5.png "")
+If you want to see the solution, click "Milestone solution"

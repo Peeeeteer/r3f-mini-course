@@ -9,7 +9,7 @@ const robotMilestone: TPureMilestone[] = [
   {
     id: "0",
     currentHint: 0,
-    description: "This is the Milestone 1",
+    description: "Project setup",
     status: MilestoneStatus.TO_DO,
     hints: [
       {
@@ -30,14 +30,14 @@ const robotMilestone: TPureMilestone[] = [
       },
     ],
     isReveal: false,
-    label: "Milestone 1",
+    label: "1. Setup",
     totalHint: 4,
     url: "/projects/robot-landing/1/description",
   },
   {
     id: "1",
     currentHint: 0,
-    description: "This is the Milestone 2",
+    description: "Adding a cube",
     status: MilestoneStatus.TO_DO,
     hints: [
       {
@@ -58,7 +58,7 @@ const robotMilestone: TPureMilestone[] = [
       },
     ],
     isReveal: false,
-    label: "Milestone 2",
+    label: "2. Cube",
     totalHint: 4,
     url: "/projects/robot-landing/2/description",
   },

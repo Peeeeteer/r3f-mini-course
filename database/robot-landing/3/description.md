@@ -1,12 +1,27 @@
-###### Milestone 3: Setting Up the Project.
+###### Milestone 2: Cube
 
-**Description:** Set up the initial React project with TailwindCSS and create a basic file structure.
+Lets goo!
 
-**Expect:** By the end of this milestone, you should have a React project set up with TailwindCSS and a file structure ready for development.
+📄 **From this:**
+<img src="/robot-landing/image1.png" alt="index.js" width="860" height="620">
 
-**Tasks:** Set up a new React project.
+➡️ **To this:**
+<img src="/robot-landing/image9.png" alt="index.js" width="860" height="620">
 
 
-* **HINT 1:** Use Create React App to set up your project. Run `npx create-react-app my-portfolio`.
-* **HINT 2:**  Install TailwindCSS by following the [TailwindCSS installation guide for Create React App](https://tailwindcss.com/docs/guides/create-react-app).
-* **HINT 3:** Create a basic folder structure in the **src** directory **components**, and **styles**.
+We can do this by 
+<a href="https://docs.pmnd.rs/react-three-fiber/getting-started/your-first-scene" style="text-decoration: underline;" target="_blank" rel="noopener noreferrer">following the documentation</a>
+
+This is now going to be easy if this is your first time using R3F so take your time.
+Transform the default setup we started with into a version that includes an input field and displays a list.
+
+
+**Tip 💡**  
+You can use any tool to help you solve this issue, whether its google/ai/youtube... the goal is that you have a 3D cube in the center.
+
+
+**Task ✅**
+- Remove everything that unneeded from App.jsx
+- Add a simple cube scene from `"your-first-scene"`
+
+

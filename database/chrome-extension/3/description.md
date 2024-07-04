@@ -12,8 +12,7 @@ Transform the default setup we started with into a version that includes an inpu
 
 
 **Tip 💡**  
-To open the chrome console of the popup.jsx, you have to click on it and then inspect. 
-[Video of what the issue is](https://www.dropbox.com/scl/fi/c41r0ks0c9nnc68pdziqe/2024-06-09-10-01-54.mp4?rlkey=ygpoleznjmbmvejl275egpuqh&st=adwyotzv&dl=0).
+To open the chrome console of the popup.jsx<a href="https://www.dropbox.com/scl/fi/c41r0ks0c9nnc68pdziqe/2024-06-09-10-01-54.mp4?rlkey=ygpoleznjmbmvejl275egpuqh&st=adwyotzv&dl=0" style="text-decoration: underline;">, you have to click on it and then inspect. </a>
 
 **Task ✅**
 - Modify height of popup
