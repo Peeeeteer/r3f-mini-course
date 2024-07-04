@@ -295,6 +295,35 @@ const chromePluginMilestone: TPureMilestone[] = [
     totalHint: 4,
     url: "/projects/chrome-extension/10/description",
   },
+
+  {
+    id: "9",
+    currentHint: 0,
+    description: "Combining things",
+    status: MilestoneStatus.TO_DO,
+    hints: [
+      {
+        label: MilestoneDetailLabel.description,
+        markdown: "This is the introduction",
+      },
+      {
+        label: MilestoneDetailLabel.hint1,
+        markdown: "This is the introduction",
+      },
+      {
+        label: MilestoneDetailLabel.hint2,
+        markdown: "This is the introduction",
+      },
+      {
+        label: MilestoneDetailLabel.hint3,
+        markdown: "This is the introduction",
+      },
+    ],
+    isReveal: false,
+    label: "11. Make it pretty. ",
+    totalHint: 4,
+    url: "/projects/chrome-extension/11/description",
+  },
 ];
 
 export const ChromePluginProject: TProject = {
