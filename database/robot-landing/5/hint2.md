@@ -1,25 +1,23 @@
-###### Hint 2: Ignore some things
-
-Some things in the documentation we can ignore, for example:
-
-```javascript
-ReactDOM.createRoot(document.getElementById('root')).render...
-```
-
-Because we are already doing it in `main.jsx`
+###### Hint 2: Experiment
+To add `<OrbitControls />` place it inside the `<Canvas />`
 
 ```javascript
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+import { OrbitControls } from '@react-three/drei'
+...
+
+      <Canvas>
+        <ambientLight intensity={0.1} />
+        <directionalLight color="red" position={[0, 0, 5]} />
+        
+        <OrbitControls />
+        
+        <Robot />
+      </Canvas>
+      
+...
 ```
 
-**🚨 Dont forget 🚨**     
-Everything 3D happens within the `<Canvas>`, so make sure to import it. 
+Try adding other components to enhance the scene.   
+I liked the look of `<Stage />`, `<Environment />`, `<fog>` and `<ambientLight />`
 
-```javascript
-import { Canvas } from '@react-three/fiber';
-
-```
+Keep adding values and experimenting and get the Robot looking nice! 🤖

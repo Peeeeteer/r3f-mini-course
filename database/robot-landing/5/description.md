@@ -1,27 +1,28 @@
-###### Milestone 2: Cube
+###### Milestone 5: Lights & 3D
 
-Lets goo!
+Yes, we are back at the before & after... but I dont know any other way..
 
-📄 **From this:**
-<img src="/robot-landing/image1.png" alt="index.js" width="860" height="620">
+
+📄 **Lets go from this**
+<img src="/robot-landing/image3.png" alt="index.js" width="640" height="620">
 
 ➡️ **To this:**
-<img src="/robot-landing/image9.png" alt="index.js" width="860" height="620">
+<video width="640" height="480" controls preload>
+  <source src="/robot-landing/m5-1.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 
-We can do this by 
-<a href="https://docs.pmnd.rs/react-three-fiber/getting-started/your-first-scene" style="text-decoration: underline;" target="_blank" rel="noopener noreferrer">following the documentation</a>
+There are multiple examples on the <a href="https://docs.pmnd.rs/react-three-fiber/getting-started/examples" style="text-decoration: underline;" target="_blank" rel="noopener noreferrer">React-Three-Fiber examples page</a>
 
-This is now going to be easy if this is your first time using R3F so take your time.
-Transform the default setup we started with into a version that includes an input field and displays a list.
+Go through some examples to see which light setups you like the most.
 
+I liked the lights in the <a href="https://codesandbox.io/s/pbwi6i" style="text-decoration: underline;" target="_blank" rel="noopener noreferrer"> Drone Example</a>, so I went with that.
 
-**Tip 💡**  
-You can use any tool to help you solve this issue, whether its google/ai/youtube... the goal is that you have a 3D cube in the center.
 
 
 **Task ✅**
-- Remove everything that unneeded from App.jsx
-- Add a simple cube scene from `"your-first-scene"`
+- Look at the react-three-fiber examples
+- Recreate the light setup from Drone example
 
 

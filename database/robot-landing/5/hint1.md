@@ -1,28 +1,19 @@
-###### Hint 1: Read again and again
+###### Hint 1: Orbitcontrols 
 
-This is not easy, so take it slow.  
-Really make sure your read everything <a href="https://docs.pmnd.rs/react-three-fiber/getting-started/your-first-scene" style="text-decoration: underline;" target="_blank" rel="noopener noreferrer">line by line in the documentation</a>
-
-<br>
-
-Also some things to consider.
-
-**1.**  
-You will only be working in the `App.jsx` file right now.
-
-**2.**  
-Double check that you didnt forget to install `three` & `@react-three/fiber  `
-
-# Install 
-```bash
-cd your-app-name
-npm install three @react-three/fiber
-```
-
-# Start development server
-```bash
-npm run dev
-```
+When working with lights,  it's helpful to add `<OrbitControls />`    
+This allows you to **rotate, zoom, and pan** around the robot to see how it looks from different angles.
+<video width="640" height="480" controls preload>
+  <source src="/robot-landing/m5-2.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 
-💪 You got this 💪
+
+See how `<OrbitControls />` is added in the <a href="https://codesandbox.io/s/pbwi6i" style="text-decoration: underline;" target="_blank" rel="noopener noreferrer"> Drone Example</a> and do the same.
+
+
+After that,  
+try adding other light-related components and see how they affect the scene.
+
+
+Keep up the great work! 👏
