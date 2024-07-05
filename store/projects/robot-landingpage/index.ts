@@ -66,7 +66,7 @@ const robotMilestone: TPureMilestone[] = [
   {
     id: "2",
     currentHint: 0,
-    description: "This is the Milestone 2",
+    description: "Lets make a simple version of our goal",
     status: MilestoneStatus.TO_DO,
     hints: [
       {
@@ -87,10 +87,71 @@ const robotMilestone: TPureMilestone[] = [
       },
     ],
     isReveal: false,
-    label: "Milestone 3",
+    label: "3. Simple version",
     totalHint: 4,
     url: "/projects/robot-landing/3/description",
   },
+
+  {
+    id: "3",
+    currentHint: 0,
+    description: "Lets add the robot",
+    status: MilestoneStatus.TO_DO,
+    hints: [
+      {
+        label: MilestoneDetailLabel.description,
+        markdown: "This is the introduction",
+      },
+      {
+        label: MilestoneDetailLabel.hint1,
+        markdown: "This is the introduction",
+      },
+      {
+        label: MilestoneDetailLabel.hint2,
+        markdown: "This is the introduction",
+      },
+      {
+        label: MilestoneDetailLabel.hint3,
+        markdown: "This is the introduction",
+      },
+    ],
+    isReveal: false,
+    label: "4. Robot Time",
+    totalHint: 4,
+    url: "/projects/robot-landing/4/description",
+  },
+
+  {
+    id: "4",
+    currentHint: 0,
+    description: "Lets add the robot",
+    status: MilestoneStatus.TO_DO,
+    hints: [
+      {
+        label: MilestoneDetailLabel.description,
+        markdown: "This is the introduction",
+      },
+      {
+        label: MilestoneDetailLabel.hint1,
+        markdown: "This is the introduction",
+      },
+      {
+        label: MilestoneDetailLabel.hint2,
+        markdown: "This is the introduction",
+      },
+      {
+        label: MilestoneDetailLabel.hint3,
+        markdown: "This is the introduction",
+      },
+    ],
+    isReveal: false,
+    label: "5. Lights",
+    totalHint: 4,
+    url: "/projects/robot-landing/5/description",
+  },
+
+
+
 ];
 
 export const RobotLandingPageProject: TProject = {

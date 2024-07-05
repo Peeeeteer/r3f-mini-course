@@ -1,27 +1,20 @@
-###### Milestone 2: Cube
+###### Milestone 4: Robot Time
 
-Lets goo!
-
-📄 **From this:**
-<img src="/robot-landing/image1.png" alt="index.js" width="860" height="620">
-
-➡️ **To this:**
-<img src="/robot-landing/image9.png" alt="index.js" width="860" height="620">
+**Lets now go from this:**
+<img src="/robot-landing/image14.png" alt="index.js" width="860" height="620">
 
 
-We can do this by 
-<a href="https://docs.pmnd.rs/react-three-fiber/getting-started/your-first-scene" style="text-decoration: underline;" target="_blank" rel="noopener noreferrer">following the documentation</a>
+**To this:**
+<img src="/robot-landing/image3.png" alt="index.js" width="860" height="620">
 
-This is now going to be easy if this is your first time using R3F so take your time.
-Transform the default setup we started with into a version that includes an input field and displays a list.
+Basicly,  
+let's replace the cube with a robot. <a href="https://www.dropbox.com/scl/fi/p0j6mcexh1nknunlu5cni/robot-transformed.glb?rlkey=v9a0unzy0gl3k12e3w6n4ep1e&st=zdi4f6p8&dl=0" style="text-decoration: underline;" target="_blank" rel="noopener noreferrer">Download the robot.glb file here</a>
 
+We will be adding the robot using <a href="https://github.com/pmndrs/gltfjsx" style="text-decoration: underline;" target="_blank" rel="noopener noreferrer">GLTFJSX</a>
+Read the documentation and add the robot the scene.
 
-**Tip 💡**  
-You can use any tool to help you solve this issue, whether its google/ai/youtube... the goal is that you have a 3D cube in the center.
 
 
 **Task ✅**
-- Remove everything that unneeded from App.jsx
-- Add a simple cube scene from `"your-first-scene"`
-
-
+- Create Robot.jsx component using GLTFJSX
+- Change cube with robot 

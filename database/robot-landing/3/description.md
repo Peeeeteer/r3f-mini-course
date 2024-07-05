@@ -1,27 +1,24 @@
-###### Milestone 2: Cube
+###### Milestone 3: Simple Version
 
-Lets goo!
-
-📄 **From this:**
-<img src="/robot-landing/image1.png" alt="index.js" width="860" height="620">
-
-➡️ **To this:**
-<img src="/robot-landing/image9.png" alt="index.js" width="860" height="620">
+The goal is to make this.
+<img src="/robot-landing/image7.png" alt="index.js" width="860" height="620">
 
 
-We can do this by 
-<a href="https://docs.pmnd.rs/react-three-fiber/getting-started/your-first-scene" style="text-decoration: underline;" target="_blank" rel="noopener noreferrer">following the documentation</a>
+So let us make a simpler version, like this:
+<img src="/robot-landing/image14.png" alt="index.js" width="860" height="620">
 
-This is now going to be easy if this is your first time using R3F so take your time.
-Transform the default setup we started with into a version that includes an input field and displays a list.
+<br>
+<br>
 
-
-**Tip 💡**  
-You can use any tool to help you solve this issue, whether its google/ai/youtube... the goal is that you have a 3D cube in the center.
+**Also ☝️🤓**,  
+You might have noticed that you are getting these typing errors even though everything is working.  
+Lets also fix that.
+<img src="/robot-landing/image11.png" alt="index.js" width="860" height="620">
 
 
 **Task ✅**
-- Remove everything that unneeded from App.jsx
-- Add a simple cube scene from `"your-first-scene"`
+- Fix linting error message
+- Add Title & Button
+- Scale, rotate and position the cube
 
 

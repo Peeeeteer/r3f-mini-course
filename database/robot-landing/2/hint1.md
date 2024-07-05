@@ -13,16 +13,13 @@ You will only be working in the `App.jsx` file right now.
 **2.**  
 Double check that you didnt forget to install `three` & `@react-three/fiber  `
 
-# Install 
+**Install & Start Dev Server** 
 ```bash
 cd your-app-name
 npm install three @react-three/fiber
-```
 
-# Start development server
-```bash
 npm run dev
-```
 
+```
 
 💪 You got this 💪

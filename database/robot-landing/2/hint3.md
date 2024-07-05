@@ -16,7 +16,6 @@ function App() {
         <ambientLight />
         <directionalLight />
         <mesh>
-          // Add things here
         </mesh>
       </Canvas>
     </>

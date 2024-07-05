@@ -1,28 +1,15 @@
-###### Hint 1: Read again and again
+###### Hint 1: Step by step
 
-This is not easy, so take it slow.  
-Really make sure your read everything <a href="https://docs.pmnd.rs/react-three-fiber/getting-started/your-first-scene" style="text-decoration: underline;" target="_blank" rel="noopener noreferrer">line by line in the documentation</a>
+Go step by step of what is shown in the <a href="https://github.com/pmndrs/gltfjsx" style="text-decoration: underline;" target="_blank" rel="noopener noreferrer">the documentation</a>  
+They give a typical use case example which looks like exactly what we need.
 
-<br>
-
-Also some things to consider.
-
-**1.**  
-You will only be working in the `App.jsx` file right now.
-
-**2.**  
-Double check that you didnt forget to install `three` & `@react-three/fiber  `
-
-# Install 
-```bash
-cd your-app-name
-npm install three @react-three/fiber
-```
-
-# Start development server
-```bash
-npm run dev
-```
+<img src="/robot-landing/image16.png" alt="index.js" width="640" height="480">
+<img src="/robot-landing/image17.png" alt="index.js" width="640" height="480">
 
 
-💪 You got this 💪
+You can also create the robot.jsx component <a href="https://gltf.pmnd.rs/" style="text-decoration: underline;" target="_blank" rel="noopener noreferrer">using the browser version.</a>
+
+<video width="640" height="480" controls preload>
+  <source src="/robot-landing/m4-1.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
