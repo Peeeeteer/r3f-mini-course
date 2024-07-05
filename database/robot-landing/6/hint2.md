@@ -1,25 +1,31 @@
-###### Hint 2: Ignore some things
+###### Hint 2: Expressions
 
-Some things in the documentation we can ignore, for example:
 
-```javascript
-ReactDOM.createRoot(document.getElementById('root')).render...
-```
-
-Because we are already doing it in `main.jsx`
+Inside `App.jsx`  
+we can pass down `props` to the `<Robot />` component, just like this:
 
 ```javascript
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+<Robot expression={expression} />
 ```
 
-**🚨 Dont forget 🚨**     
-Everything 3D happens within the `<Canvas>`, so make sure to import it. 
+And then inside the `Robot.jsx` file we can use it:
 
 ```javascript
-import { Canvas } from '@react-three/fiber';
 
+export function Robot(props) {
+  const { nodes, materials } = useGLTF('/robot-transformed.glb');
+
+  console.log(props.expression);
+
+...
 ```
+
+
+With the `props.expression` value do something like this.
+ 
+If expression = “Smile”:  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shows a smile mesh.
+
+If expression = “Angry”:  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;show the angry mesh.
+

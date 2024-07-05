@@ -150,6 +150,35 @@ const robotMilestone: TPureMilestone[] = [
     url: "/projects/robot-landing/5/description",
   },
 
+  {
+    id: "5",
+    currentHint: 0,
+    description: "Lets add the robot",
+    status: MilestoneStatus.TO_DO,
+    hints: [
+      {
+        label: MilestoneDetailLabel.description,
+        markdown: "This is the introduction",
+      },
+      {
+        label: MilestoneDetailLabel.hint1,
+        markdown: "This is the introduction",
+      },
+      {
+        label: MilestoneDetailLabel.hint2,
+        markdown: "This is the introduction",
+      },
+      {
+        label: MilestoneDetailLabel.hint3,
+        markdown: "This is the introduction",
+      },
+    ],
+    isReveal: false,
+    label: "6. 😊 -> 😠",
+    totalHint: 4,
+    url: "/projects/robot-landing/6/description",
+  },
+
 
 
 ];

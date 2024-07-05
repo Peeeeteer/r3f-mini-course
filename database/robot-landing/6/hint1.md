@@ -1,28 +1,64 @@
-###### Hint 1: Read again and again
+###### Hint 1: Hide
 
-This is not easy, so take it slow.  
-Really make sure your read everything <a href="https://docs.pmnd.rs/react-three-fiber/getting-started/your-first-scene" style="text-decoration: underline;" target="_blank" rel="noopener noreferrer">line by line in the documentation</a>
+To show/hide the facial expressions,
+Inside `Robot.jsx` remove/comment other `<mesh>` expressions besides “Smile”
 
-<br>
-
-Also some things to consider.
-
-**1.**  
-You will only be working in the `App.jsx` file right now.
-
-**2.**  
-Double check that you didnt forget to install `three` & `@react-three/fiber  `
-
-# Install 
-```bash
-cd your-app-name
-npm install three @react-three/fiber
+```javascript
+...
+return (
+    <group {...props} dispose={null}>
+      <mesh
+        geometry={nodes.Computer_Head.geometry}
+        material={materials.Computer}
+      />
+      <mesh
+        geometry={nodes.Cube.geometry}
+        material={materials.Parts}
+        position={[1.995, 0.04, 0.378]}
+        rotation={[-0.41, 0, 0.438]}
+        scale={0.974}
+      />
+      {/* <mesh
+        name="Angry"
+        geometry={nodes.Angry.geometry}
+        material={materials.Expression}
+        morphTargetDictionary={nodes.Angry.morphTargetDictionary}
+        morphTargetInfluences={nodes.Angry.morphTargetInfluences}
+      /> */}
+      {/* <mesh
+        name="Cry"
+        geometry={nodes.Cry.geometry}
+        material={materials.Expression}
+        morphTargetDictionary={nodes.Cry.morphTargetDictionary}
+        morphTargetInfluences={nodes.Cry.morphTargetInfluences}
+      /> */}
+      {/* <mesh
+        name="Neutral"
+        geometry={nodes.Neutral.geometry}
+        material={materials.Expression}
+        morphTargetDictionary={nodes.Neutral.morphTargetDictionary}
+        morphTargetInfluences={nodes.Neutral.morphTargetInfluences}
+      /> */}
+      <mesh
+        name="Smile"
+        geometry={nodes.Smile.geometry}
+        material={materials.Expression}
+        morphTargetDictionary={nodes.Smile.morphTargetDictionary}
+        morphTargetInfluences={nodes.Smile.morphTargetInfluences}
+      />
+      {/* <mesh
+        name="Starry"
+        geometry={nodes.Starry.geometry}
+        material={materials.Expression}
+        morphTargetDictionary={nodes.Starry.morphTargetDictionary}
+        morphTargetInfluences={nodes.Starry.morphTargetInfluences}
+      /> */}
+    </group>
+  );
 ```
 
-# Start development server
-```bash
-npm run dev
-```
+So basicly you get this  
+Try to figure out how you can now change the faces when the mouse hovers over the button.
+<img src="/robot-landing/image8.png" alt="index.js" width="640" height="620">
 
 
-💪 You got this 💪
