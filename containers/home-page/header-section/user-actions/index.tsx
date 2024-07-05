@@ -48,7 +48,7 @@ const HeaderUserActions: FC<HeaderUserActionsProps> = ({}) => {
     >
       <div className="flex w-full py-[30px]  relative h-full justify-center items-center border-l border-[#303334]">
         {user && (
-          <div className="flex w-full items-center">
+          <div className="flex w-full items-center  px-[50px]">
             <div className="relative">
               <div className="flex items-center">
                 <div className="relative w-8 h-8 rounded-full">
@@ -65,8 +65,13 @@ const HeaderUserActions: FC<HeaderUserActionsProps> = ({}) => {
                   </button>
                   {isOpen && (
                     <div className="absolute right-0 mt-2 py-2 w-48 bg-[#FFFFFF14] rounded-md shadow-xl z-20 max-w-[150px]">
+                      <Link href={"/dashboard"}
+                        className="block px-3 py-1 text-sm text-white hover:bg-[#FFFFFF1A] w-full text-left"
+                      >
+                        Dashboard
+                      </Link>
                       <button
-                        className="block px-3 py-1 text-sm text-white hover:bg-[#FFFFFF1A]"
+                        className="block px-3 py-1 text-sm text-white hover:bg-[#FFFFFF1A]  w-full text-left"
                         onClick={handleLogout}
                       >
                         Sign out

@@ -96,8 +96,8 @@ const HeroSection: FC<HeroSectionProps> = ({ }) => {
         </div>
         <div className="relative w-full max-w-[328px] min-h-[280px]">
           <div className="flex flex-col w-full items-center justify-center ">
-            <div >
-              <Canvas flat shadows camera={{ position: [0, 0, 20], fov: 25 }}>
+            <div className="h-[280px] w-[328px]">
+              <Canvas flat shadows camera={{ position: [0, 0, 20], fov: 18 }}>
                 <fog attach="fog" args={['black', 15, 22.5]} />
                 <Stage intensity={0.5} environment="studio" shadows={{ type: 'accumulative', bias: -0.001, intensity: Math.PI }} adjustCamera={false}>
                   <Robot expression={expression} />
@@ -110,10 +110,9 @@ const HeroSection: FC<HeroSectionProps> = ({ }) => {
               fill
               objectFit="contain"
             /> */}
-
             </div>
           </div>
-          <div className="flex items-center gap-x-4 absolute -bottom-24 left-0 ">
+          <div className="flex items-center gap-x-4 absolute -bottom-16 left-0 ">
             <Image
               width={72}
               height={72}

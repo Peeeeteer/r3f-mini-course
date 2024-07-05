@@ -14,34 +14,11 @@ import { Stage, OrbitControls, Scroll, ScrollControls, } from '@react-three/drei
 import { Canvas } from "@react-three/fiber";
 import * as THREE from 'three';
 
-
 export default function LandingPage() {
-  const [headerBackground, setHeaderBackground] = useState(false);
-
   const [expression, setExpression] = useState("Smile");
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      if (scrollPosition >= 80) {
-        setHeaderBackground(true);
-      } else {
-        setHeaderBackground(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
   return (
     <main>
       <HeaderSection />
-
       {/* Robot section  */}
       <div className="relative w-full h-screen">
         <Canvas flat shadows camera={{ position: [0, 0, 20], fov: 25 }}>

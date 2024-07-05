@@ -78,3 +78,22 @@ body {
 .scrollable::-webkit-scrollbar-thumb:hover {
   background-color: #ffffff52;
 }
+.faq-item .faq-checkbox:checked + .faq-content .faq-sub-content {
+  display: block;
+}
+.faq-item  .faq-content .faq-sub-content {
+  display: none;
+}
+
+.faq-checkbox-open{
+  display: block;
+}
+.faq-checkbox-close {
+  display: none;
+}
+.faq-item .faq-checkbox:checked ~ .faq-label .faq-checkbox-open {
+  display: none;
+}
+.faq-item .faq-checkbox:checked ~ .faq-label .faq-checkbox-close {
+  display: block;
+}
