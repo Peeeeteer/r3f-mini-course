@@ -5,21 +5,72 @@ import DataFlowSvg from "@/components/Icons/DataFlowSvg";
 import StarsSvg from "@/components/Icons/StartsSvg";
 
 import Image from "next/image";
-import React, { FC, useState } from "react";
+import React, { FC, MouseEvent, useCallback, useState } from "react";
 
 import "./style.css";
 
-import { Robot } from "../../landing-page/Robot"
-import { Stage, OrbitControls, Scroll, ScrollControls, } from '@react-three/drei'
+import { Robot } from "../../landing-page/Robot";
+import {
+  Stage,
+  OrbitControls,
+  Scroll,
+  ScrollControls,
+} from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import * as THREE from 'three';
+import * as THREE from "three";
 
+interface HeroSectionProps {}
 
-interface HeroSectionProps { }
+const getSpreadByExpression = (expression: string) => {
+  console.log("🚀 ~ getSpreadByExpression ~ expression:", expression)
+  switch (expression) {
+    case "Angry":
+      return 0;
+    case "Cry":
+      return 30;
+    case "Starry":
+      return 60;
+    case "Neutral":
+      return 120;
+    default:
+      return 10;
+  }
+}
 
-const HeroSection: FC<HeroSectionProps> = ({ }) => {
+const HeroSection: FC<HeroSectionProps> = ({}) => {
   const [expression, setExpression] = useState("Smile");
+  const refCanvas = React.useRef<HTMLCanvasElement>(null);
 
+  const handleHoverIcon = useCallback(
+    (e: MouseEvent, exName: string) => {
+      let evt;
+      const spread = getSpreadByExpression(exName);
+      const x = e.clientX + spread;
+
+      if (refCanvas?.current?.dispatchEvent) {
+        evt = document.createEvent("MouseEvents");
+        evt.initMouseEvent(
+          "click",
+          true,
+          true,
+          window,
+          1,
+          0,
+          0,
+          x,
+          e.clientY,
+          false,
+          false,
+          false,
+          false,
+          0,
+          null
+        );
+        refCanvas.current.dispatchEvent(evt);
+      }
+    },
+    [refCanvas, expression]
+  );
   return (
     <>
       <section className="w-full flex justify-between items-start gap-x-10">
@@ -96,13 +147,36 @@ const HeroSection: FC<HeroSectionProps> = ({ }) => {
         </div>
         <div className="relative w-full max-w-[328px] min-h-[280px]">
           <div className="flex flex-col w-full items-center justify-center ">
-            <div className="h-[280px] w-[328px]">
-              <Canvas flat shadows camera={{ position: [0, 0, 20], fov: 18 }}>
-                <fog attach="fog" args={['black', 15, 22.5]} />
-                <Stage intensity={0.5} environment="studio" shadows={{ type: 'accumulative', bias: -0.001, intensity: Math.PI }} adjustCamera={false}>
+            <div className="h-[337px] w-[328px]">
+              <Canvas
+                ref={refCanvas}
+                flat
+                shadows
+                camera={{ position: [0, 0, 20], fov: 18 }}
+              >
+                <fog attach="fog" args={["black", 15, 22.5]} />
+                <Stage
+                  intensity={0.5}
+                  environment="studio"
+                  shadows={{
+                    type: "accumulative",
+                    bias: -0.001,
+                    intensity: Math.PI,
+                  }}
+                  adjustCamera={false}
+                >
                   <Robot expression={expression} />
                 </Stage>
-                <OrbitControls enableZoom={false} makeDefault minPolarAngle={Math.PI / 2} maxPolarAngle={Math.PI / 2} enableRotate={false} enablePan={false} target={new THREE.Vector3(0, -0.7, 0)} position={new THREE.Vector3(0, 0, 0)} />
+                <OrbitControls
+                  enableZoom={false}
+                  makeDefault
+                  minPolarAngle={Math.PI / 2}
+                  maxPolarAngle={Math.PI / 2}
+                  enableRotate={false}
+                  enablePan={false}
+                  target={new THREE.Vector3(0, -0.7, 0)}
+                  position={new THREE.Vector3(0, 0, 0)}
+                />
               </Canvas>
               {/* <Image
               src={"/robot-face.png"}
@@ -112,41 +186,61 @@ const HeroSection: FC<HeroSectionProps> = ({ }) => {
             /> */}
             </div>
           </div>
-          <div className="flex items-center gap-x-4 absolute -bottom-16 left-0 ">
+          <div className="flex items-center gap-x-4 -bottom-[5px] left-0 pointer-events-auto">
             <Image
-              width={72}
-              height={72}
+              width={70}
+              height={70}
               className="object-cover cursor-pointer"
-              onMouseOver={() => { setExpression("Angry"); }}
-              onMouseLeave={() => { setExpression("Smile") }}
+              onMouseOver={(e: MouseEvent) => {
+                setExpression("Angry");
+                handleHoverIcon(e, "Angry");
+              }}
+              onMouseLeave={() => {
+                setExpression("Smile");
+              }}
               src={"/PoutingFace.png"}
               alt="PoutingFace IMG"
             />
 
             <Image
-              width={72}
-              height={72}
-              onMouseOver={() => { setExpression("Cry"); }}
-              onMouseLeave={() => { setExpression("Smile") }}
+              width={70}
+              height={70}
+              onMouseOver={(e: MouseEvent) => {
+                setExpression("Cry");
+                handleHoverIcon(e, "Cry");
+              }}
+              onMouseLeave={() => {
+                setExpression("Smile");
+              }}
               className="object-cover cursor-pointer"
               src={"/LoudlyCryingFace.png"}
               alt="LoudlyCryingFace IMG"
             />
 
             <Image
-              width={72}
-              height={72}
-              onMouseOver={() => { setExpression("Starry"); }}
-              onMouseLeave={() => { setExpression("Smile") }}
+              width={70}
+              height={70}
+              onMouseOver={(e) => {
+                setExpression("Starry");
+                handleHoverIcon(e, "Starry");
+              }}
+              onMouseLeave={() => {
+                setExpression("Smile");
+              }}
               className="object-cover cursor-pointer"
               src={"/StarStruck.png"}
               alt="Star Struck IMG"
             />
             <Image
-              width={72}
-              height={72}
-              onMouseOver={() => { setExpression("Neutral"); }}
-              onMouseLeave={() => { setExpression("Smile") }}
+              width={70}
+              height={70}
+              onMouseOver={(e) => {
+                setExpression("Neutral");
+                handleHoverIcon(e, "Neutral");
+              }}
+              onMouseLeave={() => {
+                setExpression("Smile");
+              }}
               className="object-cover cursor-pointer"
               src={"/neutral_face.png"}
               alt="Slightly smiling IMG"
