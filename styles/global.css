@@ -78,14 +78,27 @@ body {
 .scrollable::-webkit-scrollbar-thumb:hover {
   background-color: #ffffff52;
 }
+.canvas-container > div > div::-webkit-scrollbar {
+  width: 0px;
+}
+.canvas-container > div {
+  position: relative;
+}
+.canvas-container > div > canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
 .faq-item .faq-checkbox:checked + .faq-content .faq-sub-content {
   display: block;
 }
-.faq-item  .faq-content .faq-sub-content {
+.faq-item .faq-content .faq-sub-content {
   display: none;
 }
 
-.faq-checkbox-open{
+.faq-checkbox-open {
   display: block;
 }
 .faq-checkbox-close {

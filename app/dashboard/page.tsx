@@ -13,11 +13,9 @@ import { signOut } from "./action";
 export default async function DashboardPage() {
   const supabase = createClient();
   const user = await supabase.auth.getUser();
-  console.log("🚀 ~ DashboardPage ~ user:", user?.error);
   if (!user.data?.user && user?.error?.message === "Auth session missing!") {
     return redirect("/auth/login");
   }
-
   return (
     <main>
       <HeaderSection />
@@ -64,9 +62,7 @@ export default async function DashboardPage() {
                           type="text"
                           disabled
                           className="w-full px-4 py-3 bg-transparent disabled:text-[#FFFFFF52]"
-                          defaultValue={
-                            user?.data?.user?.user_metadata?.user_name || ""
-                          }
+
                           value={
                             user?.data?.user?.user_metadata?.user_name || ""
                           }
@@ -86,7 +82,6 @@ export default async function DashboardPage() {
                           type="text"
                           disabled
                           className="w-full px-4 py-3 bg-transparent disabled:text-[#FFFFFF52]"
-                          defaultValue={user?.data?.user?.email || ""}
                           value={user?.data?.user?.email || ""}
                         />
                       </div>

@@ -22,7 +22,6 @@ import * as THREE from "three";
 interface HeroSectionProps {}
 
 const getSpreadByExpression = (expression: string) => {
-  console.log("🚀 ~ getSpreadByExpression ~ expression:", expression)
   switch (expression) {
     case "Angry":
       return 0;

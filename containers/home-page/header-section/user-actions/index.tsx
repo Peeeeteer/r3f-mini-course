@@ -6,7 +6,7 @@ import { createClient } from "@/utils/supabase/client";
 import { User } from "@supabase/supabase-js";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { FC, useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 
@@ -18,6 +18,8 @@ const HeaderUserActions: FC<HeaderUserActionsProps> = ({}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const router = useRouter();
+  const pathname = usePathname();
+
   const toggleDropdown = () => setIsOpen(!isOpen);
 
   const handleLogout = async () => {
@@ -27,7 +29,7 @@ const HeaderUserActions: FC<HeaderUserActionsProps> = ({}) => {
       router.push("/");
     }
   };
-
+  const isDashboard = pathname === "/dashboard";
   // const ref = useRef(null);
   // useClickOutside(ref, () => {
   //   setIsOpen(false);
@@ -63,9 +65,10 @@ const HeaderUserActions: FC<HeaderUserActionsProps> = ({}) => {
                       className="rounded-full"
                     />
                   </button>
-                  {isOpen && (
+                  {isOpen && !isDashboard &&(
                     <div className="absolute right-0 mt-2 py-2 w-48 bg-[#FFFFFF14] rounded-md shadow-xl z-20 max-w-[150px]">
-                      <Link href={"/dashboard"}
+                      <Link
+                        href={"/dashboard"}
                         className="block px-3 py-1 text-sm text-white hover:bg-[#FFFFFF1A] w-full text-left"
                       >
                         Dashboard
