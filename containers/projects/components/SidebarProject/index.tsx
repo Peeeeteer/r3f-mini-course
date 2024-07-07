@@ -7,12 +7,12 @@ import HeadPhoneSvg from "../../../../components/Icons/HeadPhoneSvg";
 import SidebarItem from "./SidebarItem";
 import SidebarProcess from "./SidebarProcess";
 
-interface SidebarProps {}
+interface SidebarProps { }
 
-const SidebarProject: FC<SidebarProps> = ({}) => {
+const SidebarProject: FC<SidebarProps> = ({ }) => {
   const [headPhoneColor, setHeadPhoneColor] = React.useState<string>("#8996A9");
   const { projectNameSelected, currentProject, listMilestone } = useMilestoneStore();
-  const { milestones = [],  } = currentProject || {};
+  const { milestones = [], } = currentProject || {};
 
   return (
     <div className="w-[250px] bg[#232627 ] max-w-[250px] h-screen fixed left-0 top-0 z-40 border-r border-[#303334] ">

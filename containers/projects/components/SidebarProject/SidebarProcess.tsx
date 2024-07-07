@@ -14,24 +14,30 @@ const SidebarProcess: FC<SidebarItemProps> = ({
       <div className="bg-[#2B2F30] rounded-lg mx-2">
         <div className="p-4 mb-4">
           <div className="flex items-center justify-between mb-2">
-            <p className="text-white text-sm font-bold">Progress</p>
+            <p className="text-white text-sm font-bold">Need help?</p>
             <p className="text-[#8996A9] text-sm text-right">
-              {totalMilestoneLeft} milestones left
+              Contact us
             </p>
           </div>
           <div className="p-[3px] mb-[10px]">
             <div
-              className="bg-[#FF5A50] h-[6px] rounded-full"
+              className="bg-[#635AFF] h-[6px] rounded-full"
               style={{
-                width: `${
-                  totalMilestoneLeft === 0
-                    ? 100
-                    : ((totalStep - totalMilestoneLeft) / totalStep) * 100
-                }%`,
+                width: "100%",
               }}
             ></div>
+            {/* <div
+              className="bg-[#FF5A50] h-[6px] rounded-full"
+              style={{
+                width: `${totalMilestoneLeft === 0
+                  ? 100
+                  : ((totalStep - totalMilestoneLeft) / totalStep) * 100
+                  }%`,
+              }}
+            >
+            </div> */}
           </div>
-          <button className=" flex justify-center items-center border border-[#3C404B] text-white rounded-md px-3 py-[6px] w-full gap-x-2">
+          <button className="flex justify-center items-center border border-[#3C404B] text-white rounded-md px-3 py-[6px] w-full gap-x-2 hover:border-[#4C505B]">
             <svg
               width="17"
               height="16"

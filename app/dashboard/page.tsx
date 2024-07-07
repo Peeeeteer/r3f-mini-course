@@ -114,9 +114,7 @@ export default async function DashboardPage() {
                       <th className="text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-3 px-6">
                         Name
                       </th>
-                      <th className="text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-3 px-6">
-                        Email
-                      </th>
+
                       <th className="text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-3 px-6">
                         Price
                       </th>
@@ -134,9 +132,7 @@ export default async function DashboardPage() {
                       <td className="py-[26px] px-6 text-[#FFFFFFCC] text-sm leading-[20px] border-b border-[#FFFFFF33]">
                         robot-landing page
                       </td>
-                      <td className="py-[26px] px-6 text-[#FFFFFFCC] text-sm leading-[20px] border-b border-[#FFFFFF33]">
-                        olivia@gmail.com
-                      </td>
+
                       <td className="py-[26px] px-6 text-[#FFFFFFCC] text-sm leading-[20px] border-b border-[#FFFFFF33]">
                         4.99 €
                       </td>
@@ -153,9 +149,6 @@ export default async function DashboardPage() {
                       </td>
                       <td className="py-[26px] px-6 text-[#FFFFFFCC] text-sm leading-[20px] ">
                         robot-landing page
-                      </td>
-                      <td className="py-[26px] px-6 text-[#FFFFFFCC] text-sm leading-[20px] ">
-                        olivia@gmail.com
                       </td>
                       <td className="py-[26px] px-6 text-[#FFFFFFCC] text-sm leading-[20px] ">
                         4.99 €
