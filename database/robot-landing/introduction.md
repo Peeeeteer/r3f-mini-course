@@ -1,132 +1,53 @@
 ### Robot landing page.
 
-Today project is all about Robot landing page
-
-`react-markdown` is a markdown component for React.
-
-👉 Changes are re-rendered as you type.
-
-👈 Try writing some markdown on the left.
-
-<u>This text is underlined.</u>
-
-![Project 1](/chrome-extension/image5.png "What we will be making")
-
-You probably got the same message as me when you opened a new tab.
-<iframe width="560" height="315" src="https://www.youtube.com/embed/QuW0n9LZhxM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-<video width="640" height="48" controls preload>
-  <source src="/chrome-extension/robot-1.mp4" type="video/mp4">
+<video width="640" height="480" controls preload>
+  <source src="/robot-landing/m5-1.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
-## Overview
+#### **Tech:**  
+- React     
+- Three.js _(React-Three-Fiber)_    
+- TailwindCSS    
 
-* Follows [CommonMark](https://commonmark.org)
-* Optionally follows [GitHub Flavored Markdown](https://github.github.com/gfm/)
-* Renders actual React elements instead of using `dangerouslySetInnerHTML`
-* Lets you define your own components (to render `MyHeading` instead of `'h1'`)
-* Has a lot of plugins
+<br>
 
-## Contents
+#### **Is this Project Right for Me?**  
 
-Here is an example of a plugin in action
-([`remark-toc`](https://github.com/remarkjs/remark-toc)).
-**This section is replaced by an actual table of contents**.
+Do you know React.js? **Yes.**  
+Do you know React-Three-Fiber? **No**  
+Do you know about anything 3D in the browser? **No**  
 
-## Syntax highlighting
+Then I think this coding project is the **perfect fit for you!**  
 
-Here is an example of a plugin to highlight code:
-[`rehype-highlight`](https://github.com/rehypejs/rehype-highlight).
+The project difficutly **🟪intermediate🟪**   
+If you have some experience with Three.js, than its going to be 🍰easy cake🍰
 
-```js
-import React from 'react'
-import ReactDOM from 'react-dom'
-import Markdown from 'react-markdown'
-import rehypeHighlight from 'rehype-highlight'
+<br>
 
-const markdown = `
-# Your markdown here
-`
+#### **What youll learn**  
+- 💎 Basics of Three.js _(React-Three-Fiber)_
+- 📚 Solve problems based on Milestone descriptions  
+- 👲 Make your own project _(No hand holding)_
 
-ReactDOM.render(
-  <Markdown rehypePlugins={[rehypeHighlight]}>{markdown}</Markdown>,
-  document.querySelector('#content')
-)
-```
+<br>
 
-Pretty neat, eh?
+#### **About justcode**  
 
-## GitHub flavored markdown (GFM)
+This is not a course but rather a coding project.  
+The project is devided into 10 milestones.  
+Each milestone has 3 tips/hints   
 
-For GFM, you can *also* use a plugin:
-[`remark-gfm`](https://github.com/remarkjs/react-markdown#use).
-It adds support for GitHub-specific extensions to the language:
-tables, strikethrough, tasklists, and literal URLs.
+Incase you cant solve a milestone, thers also a **solution** to each milestone.
 
-These features **do not work by default**.
-👆 Use the toggle above to add the plugin.
 
-| Feature    | Support              |
-| ---------: | :------------------- |
-| CommonMark | 100%                 |
-| GFM        | 100% w/ `remark-gfm` |
+So, in summery:  
+- 10 Milestones  
+- 30 Tips/Hints  
+- 10 Solutions _(just incase)_  
 
-~~strikethrough~~
+<br>
 
-* [ ] task list
-* [x] checked item
+#### **Live demo**    
 
-https://example.com
 
-## HTML in markdown
-
-⚠️ HTML in markdown is quite unsafe, but if you want to support it, you can
-use [`rehype-raw`](https://github.com/rehypejs/rehype-raw).
-You should probably combine it with
-[`rehype-sanitize`](https://github.com/rehypejs/rehype-sanitize).
-
-<blockquote>
-  👆 Use the toggle above to add the plugin.
-</blockquote>
-
-## Components
-
-You can pass components to change things:
-
-```js
-import React from 'react'
-import ReactDOM from 'react-dom'
-import Markdown from 'react-markdown'
-import MyFancyRule from './components/my-fancy-rule.js'
-
-const markdown = `
-# Your markdown here
-`
-
-ReactDOM.render(
-  <Markdown
-    components={{
-      // Use h2s instead of h1s
-      h1: 'h2',
-      // Use a component instead of hrs
-      hr(props) {
-        const {node, ...rest} = props
-        return <MyFancyRule {...rest} />
-      }
-    }}
-  >
-    {markdown}
-  </Markdown>,
-  document.querySelector('#content')
-)
-```
-
-## More info?
-
-Much more info is available in the
-[readme on GitHub](https://github.com/remarkjs/react-markdown)!
-
-***
-
-A component by [Espen Hovlandsdal](https://espen.codes/)

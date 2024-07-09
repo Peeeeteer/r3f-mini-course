@@ -16,6 +16,7 @@ export default async function DashboardPage() {
   if (!user.data?.user && user?.error?.message === "Auth session missing!") {
     return redirect("/auth/login");
   }
+
   return (
     <main>
       <HeaderSection />

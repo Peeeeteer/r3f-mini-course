@@ -1,29 +1,51 @@
-##### Introduction:
 
-You will build a chrome extension that helps you with your addictions.
-You will track domain changes and open a quiz after a certain amount and when the user answers, continue browsing… of course you can change that to be anything else you want!
+### Quiz Chrome Extension
+<iframe width="640" height="360" src="https://www.youtube.com/embed/QuW0n9LZhxM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Basicly, we will be building this. VIDEO INSTEAD OF IMAGE
-![Project 1](/chrome-extension/image11.png "What we will be making")
+<br>
 
+#### **Is this Project Right for Me?**  
 
-**You will do it the justcode way**
-- 10 milestones
-- each milestone has 3 hints
-
-The milestone will have a brief description and you need to try to solve them any means possible, either by googling,using ai, watching a video or  just solving it on your own…
-
-
-##### Requirement/Difficulty
-
-We will be working with: 
-* **React**
-* **Tailwind CSS**
-
-I would consider this to be **“EASY”** difficulty.     
-If you know a little React & Tailwind you should be all good, but **If** this is your first time touching Javascript or React then it will be a little harder.
+The difficulty is up to your skill level:   
+**If** you know a little `React` = **🟩EASY🟩**   
+**If** this is your first time touching `Javascript` = **🟥HARD AF🟥**   
 
 Basically,     
 This shit is **free…** just try it man. You literally have nothing to lose.
 
+
+#### **Tech:**  
+- React      
+- TailwindCSS    
+
+<br>
+
+#### **What youll learn**  
+- How chrome extensions work
+- Some basics of React.js
+- How to fetch & display data
+- 
+- 📚 How to Solve problems based on descriptions  
+- 👲 Make your own project _(No hand holding)_
+
+<br>
+
+#### **About justcode**  
+
+This is not a course but rather a coding project.  
+The project is devided into 10 milestones.  
+Each milestone has 3 tips/hints   
+
+
+Incase you cant solve a milestone, thers also a **solution** to each milestone.
+
+
+So, in summery:  
+- 10 Milestones  
+- 30 Tips/Hints  
+- 10 Solutions _(just incase)_  
+
+<br>
+
+#### **LIVE DEMO**    
 
