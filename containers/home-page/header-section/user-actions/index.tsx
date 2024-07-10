@@ -48,24 +48,25 @@ const HeaderUserActions: FC<HeaderUserActionsProps> = ({}) => {
     <div
       className={`h-full flex items-center cursor-pointer hover:bg-[#1d202179]`}
     >
-      <div className="flex w-full py-[30px]  relative h-full justify-center items-center border-l border-[#303334]">
+      <div className="flex w-full relative h-full justify-center items-center border-l border-[#303334]">
         {user && (
-          <div className="flex w-full items-center  px-[50px]">
-            <div className="relative">
-              <div className="flex items-center">
-                <div className="relative w-8 h-8 rounded-full">
-                  <button
-                    onClick={toggleDropdown}
-                    className="w-8 h-8 rounded-full"
-                  >
-                    <Image
-                      src={user?.user_metadata?.avatar_url}
-                      alt="avatar"
-                      fill
-                      className="rounded-full"
-                    />
-                  </button>
-                  {isOpen && !isDashboard &&(
+          <Link href={"/dashboard"}>
+            <div className="flex w-full items-center  py-[30px]   px-[50px]">
+              <div className="relative">
+                <div className="flex items-center">
+                  <div className="relative w-8 h-8 rounded-full">
+                    <button
+                      onClick={toggleDropdown}
+                      className="w-8 h-8 rounded-full"
+                    >
+                      <Image
+                        src={user?.user_metadata?.avatar_url}
+                        alt="avatar"
+                        fill
+                        className="rounded-full"
+                      />
+                    </button>
+                    {/* {isOpen && !isDashboard &&(
                     <div className="absolute right-0 mt-2 py-2 w-48 bg-[#FFFFFF14] rounded-md shadow-xl z-20 max-w-[150px]">
                       <Link
                         href={"/dashboard"}
@@ -80,16 +81,17 @@ const HeaderUserActions: FC<HeaderUserActionsProps> = ({}) => {
                         Sign out
                       </button>
                     </div>
-                  )}
+                  )} */}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </Link>
         )}
         {!user && (
           <Link
             href={"/auth/login"}
-            className="w-full h-full flex justify-center items-center px-[50px]"
+            className="w-full h-full flex justify-center items-center px-[50px]  py-[30px] "
           >
             <div className="flex gap-x-4 w-fit items-center">
               <button className="text-white font-normal text-sm leading-5">

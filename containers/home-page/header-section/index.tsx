@@ -16,10 +16,10 @@ const HeaderSection: FC<HeaderSectionProps> = ({ className }) => {
         "w-full flex justify-center border-b border-[#303334] relative"
       )}
     >
-      <div className="max-w-[1440px] w-full">
+      <div className="w-full">
         <div className="">
           <div className="w-full flex items-center justify-between ">
-            <div className="box-content px-[46px] py-6 w-[150px] border-r border-r-[#303334]">
+            <div className="box-content px-[24px] py-6 w-[150px] border-r border-r-[#303334]">
               <Link href={"/"}>
                 <Brand />
               </Link>
