@@ -5,7 +5,6 @@ import FilterSection from "@/containers/home-page/filter-section";
 import ProjectsSection from "@/containers/home-page/projects-section";
 import { mockProjects } from "@/store/milestone";
 import SubscribeBox from "@/containers/home-page/subscribe-box";
-import { createClient } from "@/utils/supabase/client";
 
 export default async function Home() {
   return (

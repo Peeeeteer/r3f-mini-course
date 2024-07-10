@@ -10,6 +10,7 @@ export const nanum_pen_script = Nanum_Pen_Script({
 });
 
 import "@/styles/global.css";
+import AuthContextProvider from "@/contexts/AuthContext";
 
 export const metadata: Metadata = {
   title: "Just code",
@@ -28,7 +29,11 @@ export default async function RootLayout({
       lang="en"
       className={`${nanum_pen_script.variable} ${inter.variable}`}
     >
-      <body className={`${inter.className}`}>{children}</body>
+      <body className={`${inter.className}`}>
+        <AuthContextProvider>
+          {children}
+        </AuthContextProvider>
+      </body>
     </html>
   );
 }
