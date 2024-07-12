@@ -21,13 +21,13 @@ export async function POST(req: Request) {
     switch (event?.type) {
       case "payment_intent.succeeded":
         const paymentIntent = event.data.object as Stripe.PaymentIntent;
-        const userEmail = paymentIntent.receipt_email;
+        const userId = paymentIntent.metadata?.userId
         const projectId = paymentIntent.metadata?.projectId
 
-        if (userEmail && projectId) {
+        if (userId && projectId) {
           const supabase = createClient()
           const { error } = await supabase.rpc('update_user_projects', {
-            u_email: userEmail,
+            u_id: userId,
             p_id: projectId
           })
 

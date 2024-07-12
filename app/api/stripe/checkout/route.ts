@@ -13,8 +13,8 @@ export async function POST(request: NextRequest) {
 
     // you can implement some basic check here like, is user valid or not
     const data = await request.json();
-    const { priceId, projectId } = data;
-    console.log(priceId, projectId, '=========== data from request')
+    const { priceId, projectId, userId } = data;
+    console.log(priceId, projectId, userId, '=========== data from request')
 
     const checkoutSession: Stripe.Checkout.Session =
       await stripe.checkout.sessions.create({
@@ -30,7 +30,8 @@ export async function POST(request: NextRequest) {
         cancel_url: `${process.env.NEXT_PUBLIC_HOST}/payment/cancel`,
         payment_intent_data: {
           metadata: {
-            projectId
+            projectId,
+            userId
           }
         }
       });

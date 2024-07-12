@@ -80,7 +80,8 @@ export default function MilestoneLayout({
         try {
           const response = await axios.post('/api/stripe/checkout', {
             priceId: projectInfo.price_id,
-            projectId: projectInfo.id
+            projectId: projectInfo.id,
+            userId: authUser?.id
           });
           const data = response.data;
           if (!data.ok) throw new Error('Something went wrong');
@@ -97,7 +98,7 @@ export default function MilestoneLayout({
       navigation.push('/auth/login')
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isAuthenticated, projectInfo])
+  }, [isAuthenticated, projectInfo, authUser])
 
   return (
     isLoading ? <p className="text-white">Loading</p> :
