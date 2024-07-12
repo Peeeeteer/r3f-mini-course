@@ -1,7 +1,6 @@
 {
   "extends": "next/core-web-vitals",
   "plugins": [
-    "react-refresh",
-    "react-three"
+    "react-refresh"
   ]
 }

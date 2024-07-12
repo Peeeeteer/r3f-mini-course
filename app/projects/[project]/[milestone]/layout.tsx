@@ -56,6 +56,7 @@ export default function MilestoneLayout({
     if (isAuthenticated) {
       getProjectInfo()
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated])
 
   const isViewable = useMemo(() => {
@@ -91,7 +92,8 @@ export default function MilestoneLayout({
     } else {
       navigation.push('/auth/login')
     }
-  }, [isAuthenticated, getProjectInfo, projectInfo])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAuthenticated, projectInfo])
 
   return (
     isAuthenticated ? <>
