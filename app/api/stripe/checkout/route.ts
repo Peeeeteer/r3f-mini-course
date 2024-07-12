@@ -13,8 +13,8 @@ export async function POST(request: NextRequest) {
 
     // you can implement some basic check here like, is user valid or not
     const data = await request.json();
-    const { priceId, projectId, userId } = data;
-    console.log(priceId, projectId, userId, '=========== data from request')
+    const { priceId, projectId, userId, projectName } = data;
+    console.log(priceId, projectId, userId, projectName, '=========== data from request')
 
     const checkoutSession: Stripe.Checkout.Session =
       await stripe.checkout.sessions.create({
@@ -31,7 +31,8 @@ export async function POST(request: NextRequest) {
         payment_intent_data: {
           metadata: {
             projectId,
-            userId
+            userId,
+            projectName
           }
         }
       });
