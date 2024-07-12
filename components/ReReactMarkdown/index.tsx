@@ -40,18 +40,18 @@ const ReReactMarkdown = (props: ReReactMarkdownProps) => {
         [rehypeRaw, rehypeSanitize],
       ]}
       components={{
-        p: Para.P,
-        span: Para.Span,
-        ul: Para.Ul,
-        li: Para.Li,
+        p: Para.P as any,
+        span: Para.Span as any,
+        ul: Para.Ul as any,
+        li: Para.Li as any,
         image: ({ src, alt, ...props }: any) => {
           return <CustomImage src={src} alt={alt} {...props} />;
         },
-        code({ node, inline, className, children, ...props }) {
+        code({ node, inline, className, children, ...props }: any) {
           const match = /language-(\w+)/.exec(className || "");
           return !inline && match ? (
             <SyntaxHighlighter
-              style={customStyle}
+              style={customStyle as any}
               language={match[1]}
               PreTag="div"
               {...props}
@@ -72,18 +72,18 @@ const ReReactMarkdown = (props: ReReactMarkdownProps) => {
             </span>
           );
         },
-        h1: Heading.H1,
-        h2: Heading.H2,
-        h3: Heading.H3,
-        h4: Heading.H4,
-        h5: Heading.H5,
-        h6: Heading.H6,
-        table: Table.Table,
-        tbody: Table.Tbody,
-        thead: Table.Thead,
-        tr: Table.Tr,
-        th: Table.Th,
-        td: Table.Td,
+        h1: Heading.H1 as any,
+        h2: Heading.H2 as any,
+        h3: Heading.H3 as any,
+        h4: Heading.H4 as any,
+        h5: Heading.H5 as any,
+        h6: Heading.H6 as any,
+        table: Table.Table as any,
+        tbody: Table.Tbody as any,
+        thead: Table.Thead as any,
+        tr: Table.Tr as any,
+        th: Table.Th as any,
+        td: Table.Td as any,
       }}
     >{props?.content}</ReactMarkdown>
   );

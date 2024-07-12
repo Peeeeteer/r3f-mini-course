@@ -3,18 +3,18 @@ import React from "react";
 import Select, { components } from "react-select";
 import "./select.css";
 const colourStyles = {
-  control: (styles) => ({ ...styles, backgroundColor: "#FFFFFF14" }),
-  option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+  control: (styles: any) => ({ ...styles, backgroundColor: "#FFFFFF14" }),
+  option: (styles: any, { data, isDisabled, isFocused, isSelected }: any) => {
     return {
       ...styles,
     };
   },
-  input: (styles) => ({ ...styles }),
-  placeholder: (styles) => ({ ...styles }),
-  singleValue: (styles, { data }) => ({ ...styles }),
+  input: (styles: any) => ({ ...styles }),
+  placeholder: (styles: any) => ({ ...styles }),
+  singleValue: (styles: any, { data }: any) => ({ ...styles }),
 };
 
-const Option = (props) => {
+const Option = (props: { children: any; className: any; cx: any; getStyles: any; isDisabled: any; isFocused: any; isSelected: any; innerRef: any; innerProps: any; }) => {
   const {
     children,
     className,
@@ -93,7 +93,7 @@ export const ReSelect = ({
         classNamePrefix="react-select"
         styles={colourStyles}
         placeholder=""
-        components={{ Option, ...(SingleValue ? { SingleValue } : {}) }}
+        components={{ Option: Option as any, ...(SingleValue ? { SingleValue } : {}) }}
         value={value}
         onChange={onChange}
       />

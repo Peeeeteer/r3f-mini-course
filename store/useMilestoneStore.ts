@@ -41,12 +41,12 @@ export const useMilestoneStore = create<MilestoneStore>()((set) => ({
     currentMilestone: string,
     currentHint: string = ""
   ) =>
-    set((state) => {
+    set((state: any) => {
       const project = state.projects.find(
-        (project) => project.projectName === projectName
+        (project: any) => project.projectName === projectName
       );
       const hint = state?.milestone?.hints?.findIndex(
-        (hint) =>
+        (hint: any) =>
           hint.label.toLocaleLowerCase() === currentHint.toLocaleLowerCase()
       );
 
@@ -66,9 +66,9 @@ export const useMilestoneStore = create<MilestoneStore>()((set) => ({
       };
     }),
   setCurrentHintByStepperName: (stepName: string) =>
-    set((state) => {
+    set((state: any) => {
       const currentHint = state?.milestone?.hints?.findIndex(
-        (hint) =>
+        (hint: any) =>
           hint.label.toLocaleLowerCase() === stepName.toLocaleLowerCase()
       );
       if (currentHint === -1) {

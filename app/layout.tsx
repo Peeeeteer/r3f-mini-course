@@ -1,16 +1,8 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-export const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-
-import { Nanum_Pen_Script } from "next/font/google";
-export const nanum_pen_script = Nanum_Pen_Script({
-  subsets: ["latin"],
-  variable: "--font-nanum-pen-script",
-  weight: "400",
-});
 
 import "@/styles/global.css";
 import AuthContextProvider from "@/contexts/AuthContext";
+import { inter, nanum_pen_script } from "./fonts";
 
 export const metadata: Metadata = {
   title: "Just code",
