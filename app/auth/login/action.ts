@@ -18,7 +18,7 @@ export async function login() {
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "github",
     options: {
-      redirectTo: `${getURL()}auth/callback`,
+      redirectTo: `${getURL()}/auth/callback`,
     },
   });
   console.log(`${getURL()}auth/callback`);
