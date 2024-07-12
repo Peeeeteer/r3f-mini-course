@@ -27,7 +27,6 @@ const customStyle = {
 const ReReactMarkdown = (props: ReReactMarkdownProps) => {
   return (
     <ReactMarkdown
-      children={props?.content}
       remarkPlugins={[
         [remarkParse],
         [remarkToc],
@@ -86,7 +85,7 @@ const ReReactMarkdown = (props: ReReactMarkdownProps) => {
         th: Table.Th,
         td: Table.Td,
       }}
-    ></ReactMarkdown>
+    >{props?.content}</ReactMarkdown>
   );
 };
 
