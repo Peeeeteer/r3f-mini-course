@@ -5,7 +5,7 @@ import { useFormState, useFormStatus } from "react-dom";
 import { Suspense, useState } from "react";
 import Loading from "@/components/Loading";
 
-export default async function Login() {
+export default function Login() {
   // State to manage loading
   const [isLoading, setLoading] = useState(false);
 
@@ -18,6 +18,7 @@ export default async function Login() {
       setLoading(false); // Stop loading after login attempt
     }
   };
+
   return (
     <>
       <form className="relative">

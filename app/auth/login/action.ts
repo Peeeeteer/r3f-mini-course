@@ -1,7 +1,6 @@
 "use server";
 import { createClient } from '@/utils/supabase/server'
 import { redirect } from "next/navigation";
-import { cookies } from "next/headers";
 const getURL = () => {
   let url =
     process.env.NEXT_PUBLIC_SITE_URL ?? // Set this to your site URL in production env.
@@ -22,6 +21,9 @@ export async function login() {
       redirectTo: `${getURL()}auth/callback`,
     },
   });
+  console.log(`${getURL()}auth/callback`);
+  console.log(data);
+  console.log(error);
   if (error) {
     redirect('/error')
   }

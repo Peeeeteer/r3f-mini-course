@@ -11,6 +11,8 @@ import FooterSection from "@/containers/home-page/footer-section";
 import HeaderSection from "@/containers/home-page/header-section";
 import { createClient } from "@/utils/supabase/client";
 import { useAuthContext } from "@/contexts/AuthContext";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 type PurchaseHistoryType = {
   id: string
@@ -22,6 +24,7 @@ type PurchaseHistoryType = {
 export const DashboardContent = () => {
   const [purchaseHistories, setPurchaseHistories] = useState<PurchaseHistoryType[]>([])
   const [isLoading, setIsLoading] = useState(true)
+  const router = useRouter();
 
   const supabase = createClient()
   const { isAuthenticated, authUser } = useAuthContext()
@@ -44,13 +47,17 @@ export const DashboardContent = () => {
   }, [isAuthenticated, getPurchaseHistory])
 
   const handleSignOut = useCallback(async () => {
-    await supabase.auth.signOut()
+    let res = await supabase.auth.signOut();
+    if (res) {
+      toast.success("Successfully signed out!");
+      router.push("/");
+    }
   }, [])
 
   return (
     isAuthenticated ? <main>
       <HeaderSection />
-      <div className="max-w-[1200px] w-full mx-auto pt-10 pb-20">
+      <div className="max-w-[1200px] w-full mx-auto pt-10 pb-20 px-6">
         <div className="flex justify-between items-center mb-8">
           <div>
             <h6 className="text-white text-2xl leading-[28px] font-bold">
