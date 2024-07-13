@@ -16,10 +16,10 @@ import {
   Scroll,
   ScrollControls,
 } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
-interface HeroSectionProps {}
+interface HeroSectionProps { }
 
 const getSpreadByExpression = (expression: string) => {
   switch (expression) {
@@ -36,7 +36,49 @@ const getSpreadByExpression = (expression: string) => {
   }
 }
 
-const HeroSection: FC<HeroSectionProps> = ({}) => {
+const GlowingCircle = () => {
+  const circleRef = React.useRef<THREE.Mesh>(null);
+
+  useFrame(() => {
+    if (circleRef.current) {
+      circleRef.current.scale.set(
+        1 + Math.sin(Date.now() / 1000) * 0.1,
+        1 + Math.sin(Date.now() / 1000) * 0.1,
+        0.1
+      );
+    }
+  });
+
+  const vertexShader = `
+    varying vec2 vUv;
+    void main() {
+      vUv = uv;
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    }
+  `;
+
+  const fragmentShader = `
+    varying vec2 vUv;
+    void main() {
+      float dist = distance(vUv, vec2(0.5, 0.5));
+      // Adjust the values to create a strong feather effect
+      float alpha = smoothstep(0.7, 0.0, dist);
+      gl_FragColor = vec4(0.8, 0.8, 0.8, alpha * 0.11);
+    }
+  `;
+  return (
+    <mesh ref={circleRef} position={[0, -0.5, -5]}>
+      <circleGeometry args={[3, 64]} />
+      <shaderMaterial
+        vertexShader={vertexShader}
+        fragmentShader={fragmentShader}
+        transparent
+      />
+    </mesh>
+  );
+};
+
+const HeroSection: FC<HeroSectionProps> = ({ }) => {
   const [expression, setExpression] = useState("Smile");
   const refCanvas = React.useRef<HTMLCanvasElement>(null);
 
@@ -153,6 +195,8 @@ const HeroSection: FC<HeroSectionProps> = ({}) => {
                 shadows
                 camera={{ position: [0, 0, 20], fov: 18 }}
               >
+                <GlowingCircle />
+
                 <fog attach="fog" args={["black", 15, 22.5]} />
                 <Stage
                   intensity={0.5}
@@ -165,6 +209,8 @@ const HeroSection: FC<HeroSectionProps> = ({}) => {
                   adjustCamera={false}
                 >
                   <Robot expression={expression} />
+
+
                 </Stage>
                 <OrbitControls
                   enableZoom={false}
