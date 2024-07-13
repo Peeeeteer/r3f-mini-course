@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:production": "env-cmd -f .env.production npm run build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -20,6 +21,7 @@
     "@supabase/ssr": "latest",
     "@supabase/supabase-js": "latest",
     "axios": "^1.7.2",
+    "env-cmd": "^10.1.0",
     "eslint-plugin-react-refresh": "^0.4.8",
     "gray-matter": "^4.0.3",
     "maath": "^0.10.7",
@@ -37,6 +39,7 @@
     "rehype-stringify": "^10.0.0",
     "remark-gfm": "^4.0.0",
     "remark-toc": "^9.0.0",
+    "sharp": "^0.33.4",
     "stripe": "^16.2.0",
     "tailwind-merge": "^2.3.0",
     "three": "^0.166.1",
