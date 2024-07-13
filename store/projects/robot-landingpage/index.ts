@@ -292,7 +292,7 @@ const robotMilestone: TPureMilestone[] = [
     isReveal: false,
     label: "10. Finale",
     totalHint: 4,
-    url: "/projects/robot-landing/9/description",
+    url: "/projects/robot-landing/10/description",
   },
 
 
@@ -306,7 +306,7 @@ export const RobotLandingPageProject: TProject = {
   difficulty: "Easy",
   category: "Frontend",
   tags: ["React", "Three.js", "Tailwindcss"],
-  // price: "4.99",
+  price: "$4.99",
   image: "/project-2.png",
   url: "projects/robot-landing/introduction",
   milestones: robotMilestone,

@@ -67,6 +67,7 @@ export default function MilestoneLayout({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated, isFree]);
 
+  // const isViewable = true
   const isViewable = useMemo(() => {
     if (isFree) return true;
     if (projectInfo?.is_paid) return true;
@@ -163,7 +164,7 @@ export default function MilestoneLayout({
             onClick={handlePurchaseClick}
             className="py-3 mt-8 text-base bg-[#635AFF] rounded-full w-full max-w-[313px] text-white"
           >
-            Buy for EUR 4.99
+            Buy for USD 4.99
           </button>
         </div>
       </div>
