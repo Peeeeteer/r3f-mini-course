@@ -12,7 +12,7 @@ export const Para = {
   ),
   Ul: ({ children, ...props }: { children: any }) => {
     return (
-      <ul className="list-disc text-base leading-[28px] font-normal text-white pl-4">
+      <ul className="list-disc text-base leading-[28px] font-normal text-white pl-5">
       {children}
     </ul>
     )
