@@ -6,7 +6,6 @@ import ReReactMarkdown from "@/components/ReReactMarkdown";
 import { useState } from "react";
 
 export default function Page(
-
   {
     params,
     searchParams,

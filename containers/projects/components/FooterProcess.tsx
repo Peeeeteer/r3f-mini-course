@@ -34,7 +34,7 @@ const FooterProcess: FC<FooterProcessProps> = ({
     if (!milestone) return 0;
     if (isReveal) return 100;
     return (
-      ((currentHint + 1 < totalHint ? currentHint + 1 : totalHint) /
+      ((currentHint  < totalHint ? currentHint  : totalHint) /
         totalHint) *
       100
     );
@@ -48,7 +48,8 @@ const FooterProcess: FC<FooterProcessProps> = ({
     const newUrl = urlSplit.join("/");
     navigation.push("/" + newUrl);
     toggleReveal(true);
-  }, [navigation, params]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [params]);
 
   const isIntroductionPage = useMemo(() => {
     return params.includes("introduction");
@@ -77,15 +78,13 @@ const FooterProcess: FC<FooterProcessProps> = ({
         </div>
         {!isIntroductionPage && (
           <div className="flex justify-between items-center">
-            <div className="w-fit bg-[#FFFFFF14] px-[10px] py-2 rounded-md border border-[#FFFFFF0F] flex gap-x-1 items-center">
-              <button
-                className="text-white text-sm hover:text-white56"
-                onClick={() => {
-                  handleRevealTheFinalCode();
-                }}
-              >
-                Reveal the final code
-              </button>
+            <button
+              className="w-fit bg-[#FFFFFF14] px-[10px] py-2 rounded-md border border-[#FFFFFF0F] flex gap-x-1 items-center text-white text-sm hover:text-white56 hover-effect"
+              onClick={() => {
+                handleRevealTheFinalCode();
+              }}
+            >
+              <span className=" text-sm ">Reveal the final code</span>
               <svg
                 width="16"
                 height="16"
@@ -105,16 +104,13 @@ const FooterProcess: FC<FooterProcessProps> = ({
                   strokeLinejoin="round"
                 />
               </svg>
-            </div>
-            <div className="flex gap-x-4">
+            </button>
+
+            {!isReveal && <div className="flex gap-x-4">
               <div className="flex gap-x-2 px-3 py-2 items-center w-fit cursor-pointer hover-lighter">
-                <ArrowLeftSvg
-                  strokeWidth={"1.2"}
-                  stroke={currentHint === 0 ? "#FFFFFF33" : "#FFFFFF"}
-                ></ArrowLeftSvg>
                 <button
                   onClick={() => {
-                    if (!milestone || currentHint === 0) return;
+                    if (!milestone || currentHint === 0 || isReveal) return;
                     const urlSplit = params.split("/");
                     urlSplit.shift();
                     urlSplit.pop();
@@ -124,19 +120,23 @@ const FooterProcess: FC<FooterProcessProps> = ({
                     const newUrl = urlSplit.join("/");
                     navigation.push("/" + newUrl);
                   }}
-                  className="text-[#FFFFFF33] text-sm"
+                  className="text-[#FFFFFF33] text-sm flex gap-x-2 items-center"
                   style={{
                     cursor: "pointer",
                     color: currentHint === 0 ? "#FFFFFF33" : "#FFFFFF",
                   }}
                 >
+                  <ArrowLeftSvg
+                    strokeWidth={"1.2"}
+                    stroke={currentHint === 0 ? "#FFFFFF33" : "#FFFFFF"}
+                  ></ArrowLeftSvg>
                   {labelPrevBtn}
                 </button>
               </div>
               <div className="">
                 <button
                   onClick={() => {
-                    if (!milestone || currentHint > milestone.hints.length - 2)
+                    if (!milestone || currentHint > milestone.hints.length - 2 || isReveal)
                       return;
                     const urlSplit = params.split("/");
                     urlSplit.shift();
@@ -152,8 +152,7 @@ const FooterProcess: FC<FooterProcessProps> = ({
                 >
                   <span className="text-sm font-bold block ">
                     {labelNextBtn}{" "}
-                    {currentHint + 1 < totalHint ? currentHint + 1 : totalHint}{" "}
-                    / {totalHint}
+                    {currentHint + 1 < totalHint ? currentHint + 1 : totalHint}
                   </span>
                   <ArrowRightSvg
                     color="#FFFFFF"
@@ -161,7 +160,7 @@ const FooterProcess: FC<FooterProcessProps> = ({
                   ></ArrowRightSvg>
                 </button>
               </div>
-            </div>
+            </div>}
           </div>
         )}
 
