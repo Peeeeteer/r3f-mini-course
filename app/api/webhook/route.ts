@@ -1,4 +1,5 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { headers } from "next/headers";
 import { Stripe } from "stripe";
 
 import { createClient } from "@/utils/supabase/server";
@@ -9,14 +10,15 @@ const stripe = require('stripe')(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY as st
 // We'll get this later and add it to the .env.local file when testing
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET as string;
 
-export async function POST(req: Request) {
-  const payload = await req.text(); // Get raw data of body
-  const signature = req.headers.get("stripe-signature");
+export async function POST(req: NextRequest) {
+  const body = await req.text(); // Get raw data of body
+
+  const sig = headers().get('stripe-signature') as string;
 
   let event: Stripe.Event;
 
   try {
-    event = stripe.webhooks.constructEvent(payload, signature!, webhookSecret);
+    event = stripe.webhooks.constructEvent(body, sig, webhookSecret);
 
     switch (event?.type) {
       case "payment_intent.succeeded":
