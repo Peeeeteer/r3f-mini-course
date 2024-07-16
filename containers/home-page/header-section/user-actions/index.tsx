@@ -39,7 +39,7 @@ const HeaderUserActions: FC<HeaderUserActionsProps> = ({}) => {
     >
       <div className="flex w-full relative h-full justify-center items-center border-l border-[#303334]">
         {isAuthenticated ? (
-          <Link href={"/dashboard"} className="py-[30px]  px-[50px] ">
+          <Link href={"/dashboard"} className="py-[24px]  px-[50px] ">
             <div className="flex w-full items-centerpx-[50px]">
               <div className="relative">
                 <div className="flex items-center">

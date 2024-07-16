@@ -35,7 +35,7 @@ const FooterProcess: FC<FooterProcessProps> = ({
     if (!milestone) return 0;
     if (isReveal) return 100;
     return (
-      ((currentHint + 1 < totalHint ? currentHint + 1 : totalHint) /
+      ((currentHint < totalHint ? currentHint : totalHint) /
         totalHint) *
       100
     );
@@ -49,6 +49,21 @@ const FooterProcess: FC<FooterProcessProps> = ({
     const newUrl = urlSplit.join("/");
     navigation.push("/" + newUrl);
     toggleReveal(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [params]);
+
+  const isIntroductionPage = useMemo(() => {
+    return params.includes("introduction");
+  }, [params]);
+
+  const goToNextHint = useCallback(() => {
+    if (!params.includes("introduction")) return;
+    const urlSplit = params.split("/");
+    urlSplit.shift();
+    urlSplit.pop();
+
+    const newUrl = urlSplit.join("/");
+    navigation.push("/" + newUrl + "/1/description");
   }, [navigation, params]);
 
   return (
@@ -62,15 +77,15 @@ const FooterProcess: FC<FooterProcessProps> = ({
             }}
           ></div>
         </div>
-        <div className="flex justify-between items-center">
-          <div className="w-fit bg-[#FFFFFF14] px-[10px] py-2 rounded-md border border-[#FFFFFF0F] flex gap-x-1 items-center">
+        {!isIntroductionPage && (
+          <div className="flex justify-between items-center">
             <button
-              className="text-white text-sm hover:text-white56"
+              className="w-fit bg-[#FFFFFF14] px-[10px] py-2 rounded-md border border-[#FFFFFF0F] flex gap-x-1 items-center text-white text-sm hover:text-white56 hover-effect"
               onClick={() => {
                 handleRevealTheFinalCode();
               }}
             >
-              Milestone Solution
+              Reveal the final code
             </button>
             <svg
               width="16"
@@ -148,7 +163,24 @@ const FooterProcess: FC<FooterProcessProps> = ({
               </button>
             </div>
           </div>
-        </div>
+        )}
+
+        {isIntroductionPage && (
+          <div className="flex justify-end">
+            <button
+              onClick={goToNextHint}
+              className="hover:text-white56 flex items-center gap-x-2 bg-[#635AFF] rounded-md px-3 py-[6px] w-fit text-white "
+            >
+              <span className="text-sm font-bold block ">
+                Go to Milestone 1
+              </span>
+              <ArrowRightSvg
+                color="#FFFFFF"
+                strokeWidth={"1.5"}
+              ></ArrowRightSvg>
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

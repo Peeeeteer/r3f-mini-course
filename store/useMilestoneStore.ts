@@ -45,7 +45,7 @@ export const useMilestoneStore = create<MilestoneStore>()((set) => ({
       const project = state.projects.find(
         (project: any) => project.projectName === projectName
       );
-      const hint = state?.milestone?.hints?.findIndex(
+      const hint = project?.milestones?.[currentMilestone]?.hints?.findIndex(
         (hint: any) =>
           hint.label.toLocaleLowerCase() === currentHint.toLocaleLowerCase()
       );
@@ -58,7 +58,7 @@ export const useMilestoneStore = create<MilestoneStore>()((set) => ({
           ...project?.milestones[
             Number.isNaN(parseInt(currentMilestone, 10))
               ? 0
-              : Math.min(parseInt(currentMilestone, 10) - 1, 0)
+              : Math.max(parseInt(currentMilestone, 10) - 1, 0)
           ],
           currentHint: hint,
         },

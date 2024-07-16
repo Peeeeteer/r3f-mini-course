@@ -297,7 +297,7 @@ const chromePluginMilestone: TPureMilestone[] = [
   },
 
   {
-    id: "9",
+    id: "10",
     currentHint: 0,
     description: "Combining things",
     status: MilestoneStatus.TO_DO,

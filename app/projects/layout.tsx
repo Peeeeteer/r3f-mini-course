@@ -20,7 +20,7 @@ export default function ProjectLayout({
 
   useEffect(() => {
     setProjectNameSelected(project || "", milestone, step);
-  }, [step, milestone, projectNameSelected]);
+  }, [step, milestone, project]);
 
   return <section>{children}</section>;
 }

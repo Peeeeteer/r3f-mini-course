@@ -110,3 +110,15 @@ body {
 .faq-item .faq-checkbox:checked ~ .faq-label .faq-checkbox-close {
   display: block;
 }
+
+.hover-effect svg,
+.hover-effect path {
+  transition: fill 0.3s ease; /* Hiệu ứng chuyển màu mượt mà */
+}
+
+.hover-effect path {
+  transition: stroke 0.3s ease; /* Hiệu ứng chuyển màu đường viền mượt mà */
+}
+.hover-effect:hover path{
+  stroke: #847efa; /* Thay đổi màu đường viền thành màu tím đậm khi hover */
+}
