@@ -1,9 +1,6 @@
 ### Robot landing page.
 
-<video width="640" height="480" controls preload>
-  <source src="/robot-landing/m5-1.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+<iframe width="640" height="360" src="https://www.youtube.com/embed/3h_OfSlKVho" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 #### **Tech:**  
 - React     
@@ -48,6 +45,7 @@ So, in summery:
 
 <br>
 
-#### **Live demo**    
+
+<h4><a href="https://robot-landingpage.vercel.app/" style="text-decoration: underline;" target="_blank" rel="noopener noreferrer"><strong>Live Demo</strong></a></h4>
 
 

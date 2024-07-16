@@ -15,7 +15,7 @@ const FooterProcess: FC<FooterProcessProps> = ({
   labelNextBtn = "Reveal Hint",
   labelPrevBtn = "Back",
 }) => {
-  const { milestone, isReveal,  toggleReveal} = useMilestoneStore();
+  const { milestone, isReveal, toggleReveal } = useMilestoneStore();
 
 
   const params = usePathname();
@@ -70,7 +70,7 @@ const FooterProcess: FC<FooterProcessProps> = ({
                 handleRevealTheFinalCode();
               }}
             >
-              Reveal the final code
+              Milestone Solution
             </button>
             <svg
               width="16"

@@ -28,11 +28,11 @@ const PaymentType: TOptionSelect[] = [
   { value: "free", label: "Free" },
 ];
 
-const tags = ["React", "Tailwindcss", "Ipsum", "Figma", "Color"];
+const tags = ["React", "Tailwindcss", "Three.js",];
 
-interface FilterSectionProps {}
+interface FilterSectionProps { }
 
-const FilterSection: FC<FilterSectionProps> = ({}) => {
+const FilterSection: FC<FilterSectionProps> = ({ }) => {
   const [tagSelected, setTagSelected] = useState<string[]>([]);
   const [search, setSearch] = useState<string>("");
   const [timeSelected, setTimeSelected] = useState<TOptionSelect>(

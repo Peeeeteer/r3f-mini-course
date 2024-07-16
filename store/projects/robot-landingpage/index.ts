@@ -301,8 +301,8 @@ const robotMilestone: TPureMilestone[] = [
 export const RobotLandingPageProject: TProject = {
   type: "yellow",
   date: "26 June 2024",
-  title: "3D Robot Landingpage ",
-  description: "You will be making the same landing page as on justcode",
+  title: "3D Robot Landing page ",
+  description: "3D landing page with a cute robot. Perfect for those who know React and want to try Three.js for the first time",
   difficulty: "Easy",
   category: "Frontend",
   tags: ["React", "Three.js", "Tailwindcss"],

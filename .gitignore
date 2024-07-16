@@ -37,3 +37,4 @@ next-env.d.ts
 todo.txt
 
 app/stripe-test
+.env.production

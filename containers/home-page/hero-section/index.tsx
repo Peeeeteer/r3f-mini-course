@@ -120,7 +120,7 @@ const HeroSection: FC<HeroSectionProps> = ({ }) => {
             Coding Projects
           </h1>
           <p className="text-white56 text-xl leading-8 mb-8">
-            No tutorials, No courses. Just code projects.
+            No tutorials, No courses. Just coding projects.
           </p>
           <div className="flex items-center gap-x-8">
             <div className="flex items-center gap-x-2">
