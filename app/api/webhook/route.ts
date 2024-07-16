@@ -14,11 +14,14 @@ export async function POST(req: NextRequest) {
   const body = await req.text(); // Get raw data of body
 
   const sig = headers().get('stripe-signature') as string;
+  console.log(body, 'request body')
+  console.log(body, 'stripe signature')
 
   let event: Stripe.Event;
 
   try {
     event = stripe.webhooks.constructEvent(body, sig, webhookSecret);
+    console.log(event, '=== event')
 
     switch (event?.type) {
       case "payment_intent.succeeded":
