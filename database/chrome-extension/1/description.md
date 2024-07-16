@@ -1,8 +1,8 @@
 ###### Milestone 1: Initial boilerplate setup
 
-There are many ways how to code a chrome plugin, but I just used <u>[this template](https://github.com/lxieyang/chrome-extension-boilerplate-react)</u>
+There are many ways how to code a chrome plugin, but I just used <a href="https://github.com/lxieyang/chrome-extension-boilerplate-react" style="text-decoration: underline;" target="_blank" rel="noopener noreferrer">this template </a>  
 
-It's built with webpack & react and has all the pages pre-built for you.   
+It's built with webpack & react and has all the pages pre-built for you.     
 What pages? What is happening? Dont worry... we will handle that in Milestone 2
 
 

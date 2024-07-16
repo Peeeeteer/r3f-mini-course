@@ -100,7 +100,7 @@ export function Robot(props) {
 
   const handleClick = () => {
     // Open a youtube url in a new tab
-    window.open("https://www.youtube.com/watch?v=6ZfuNTqbHE8", "_blank");
+    window.open("https://youtu.be/MDKogbx1NbI", "_blank");
   };
 
   // Function to revert cursor to default

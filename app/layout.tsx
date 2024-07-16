@@ -5,8 +5,8 @@ import AuthContextProvider from "@/contexts/AuthContext";
 import { inter, nanum_pen_script } from "./fonts";
 
 export const metadata: Metadata = {
-  title: "Just code",
-  description: "No tutorials, No courses. Just code projects.",
+  title: "justcode | make stuff",
+  description: "No tutorials, No courses. Just coding projects.",
 };
 
 export default async function RootLayout({

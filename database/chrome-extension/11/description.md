@@ -1,27 +1,21 @@
 ###### Milestone 11: Make it pretty.
 
-This is where I will leave you on your own.
-We have the main functionalitiy finished, using this final figma design.
-https://www.figma.com/design/sAVmx0WG6AuXkIKy3duZeS/Chrome-Plugin-Final-Design?node-id=0-1&t=GB8ra3XH19A79f8C-1
+This is where I will leave you on your own!  
+You just finished the **main functionalitiy**, now you have to make it 🎀 **_pretty_** 🎀 
 
 
-Make it pretty now.
+**`Popup.jsx`**
+<img src="/chrome-extension/image18.png" alt="index.js" width="640" height="480">
 
+**`Newtab.jsx`**
+<img src="/chrome-extension/image19.png" alt="index.js" width="640" height="480">
 
-For the Popup.jsx, we want to do this
+<br>
 
-
-
-For the Newtab.jsx, we want to do this
-
-
-
-
-This wont be easy and it will be a journey but you got this.
-
-
-You can also take a sneak peak of the final code and try to copy some stuff.
-
+⚒️**Tools**⚒️
+<br>  
+Find the  <a href="https://www.figma.com/design/sAVmx0WG6AuXkIKy3duZeS/Chrome-Plugin-Final-Design?node-id=0-1&t=GB8ra3XH19A79f8C-1" style="text-decoration: underline;" target="_blank" rel="noopener noreferrer">final figma design here</a>  
+Find the  <a href="https://github.com/llo7d/i_like_content" style="text-decoration: underline;" target="_blank" rel="noopener noreferrer">final code base here </a>  <- Try not to use this too much.
 
 **Task ✅**
 - Make it pretty.
