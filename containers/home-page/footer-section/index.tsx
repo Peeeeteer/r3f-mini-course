@@ -3,24 +3,24 @@ import Brand from "../../../components/Brand";
 import Link from "next/link";
 import { FooterNavs } from "./constants";
 
-interface FooterSectionProps {}
+interface FooterSectionProps { }
 
-const FooterSection: FC<FooterSectionProps> = ({}) => {
+const FooterSection: FC<FooterSectionProps> = ({ }) => {
   return (
-    <footer className="w-full flex justify-center border-t border-[#FFFFFF1A] py-8 gap-y-3">
-      <div className="flex flex-col text-center gap-y-3">
+    <footer className="w-full flex justify-center border-t border-[#FFFFFF1A] py-8 ">
+      <div className="flex flex-col text-center gap-y-1 ">
         <p className="text-[15.13px] leading-6 text-[#B2BECD] ">
-          Find an issue with this page?
-          <Link href={""} className="text-[#635AFF]">
+          Need help?
+          <Link href={"https://x.com/llo7d"} className="text-[#635AFF]">
             {" "}
-            Fix it on GitHub
+            Send us a message
           </Link>
         </p>
-        <p className="text-[15.13px] leading-6 text-[#B2BECD] ">
+        {/* <p className="text-[15.13px] leading-6 text-[#B2BECD] ">
           Need help? Email{" "}
           <strong className="font-bold text-white">hello@justcode.lol</strong>
-        </p>
-        <div className="flex gap-x-1">
+        </p> */}
+        <div className="flex gap-y-3">
           {FooterNavs.map((nav, index) => (
             <Link
               href={`/${nav.toLowerCase().replace(/ /g, "-")}`}
@@ -36,7 +36,7 @@ const FooterSection: FC<FooterSectionProps> = ({}) => {
             </Link>
           ))}
         </div>
-        <p className="text-[#B2BECD] text-[11.06px] leading-4 text-center">
+        <p className="text-[#B2BECD] text-[11.06px] leading-4 text-center py-4">
           Copyright © 2024 justcode
         </p>
       </div>

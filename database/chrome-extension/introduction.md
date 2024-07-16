@@ -1,14 +1,14 @@
 
 ### Quiz Chrome Extension
-<iframe width="640" height="360" src="https://www.youtube.com/embed/QuW0n9LZhxM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="640" height="360" src="https://www.youtube.com/embed/Oqp3grUg624" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 <br>
 
 #### **Is this Project Right for Me?**  
 
 The difficulty is up to your skill level:   
-**If** you know a little `React` = **🟩EASY🟩**   
-**If** this is your first time touching `Javascript` = **🟥HARD AF🟥**   
+**If** you know a some `React` then it will be **easy**   
+**If** this is your first time touching `Javascript` then it will be **🟥Hard af🟥**   
 
 Basically,     
 This shit is **free…** just try it man. You literally have nothing to lose.
@@ -24,9 +24,6 @@ This shit is **free…** just try it man. You literally have nothing to lose.
 - How chrome extensions work
 - Some basics of React.js
 - How to fetch & display data
-- 
-- 📚 How to Solve problems based on descriptions  
-- 👲 Make your own project _(No hand holding)_
 
 <br>
 
@@ -47,5 +44,8 @@ So, in summery:
 
 <br>
 
-#### **LIVE DEMO**    
+<h4><a href="https://chromewebstore.google.com/detail/i-like-content/mlgeihihfpkikbmnpagmmjlnbmgjacom?hl=en-GB&authuser=1" style="text-decoration: underline;" target="_blank" rel="noopener noreferrer"><strong>Live Demo</strong></a></h4>
 
+
+<br>
+<br>

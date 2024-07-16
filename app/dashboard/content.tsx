@@ -64,7 +64,7 @@ export const DashboardContent = () => {
               Account
             </h6>
             <p className="text-sm leading-[26px] font-normal text-[#FFFFFF8F]">
-              Ultricies ut viverra in laoreet sit volutpat. Sed nullam eu eget.
+              Purchase history & settings
             </p>
           </div>
           <div>
@@ -204,24 +204,26 @@ export const DashboardContent = () => {
                     <input
                       className="faq-checkbox"
                       type="checkbox"
-                      id="faq-1"
+                      id="faq-3"
                       hidden
                     />
 
                     <div className="flex flex-col gap-y-1 faq-content">
                       <p className="text-base leading-6 font-medium text-white">
-                        This is the quesitoon 1?
+                        Need help?
                       </p>
                       <p className="text-sm leading-[20px] text-[#FFFFFF8F] font-normal faq-sub-content">
-                        This is the answer, that is somewhat long but somehow
-                        not long enough to fill neough space
+                        Send me a msg on twitter and ill try to help you. https://x.com/llo7d
                       </p>
                     </div>
-                    <label htmlFor="faq-1" className="faq-label cursor-pointer">
+
+
+                    <label htmlFor="faq-3" className="faq-label cursor-pointer">
                       <PlusSvg className="faq-checkbox-open" />
                       <MinusSvg className="faq-checkbox-close" />
                     </label>
                   </div>
+
                   <div className="flex justify-between w-full items-start faq-item">
                     <input
                       className="faq-checkbox"
@@ -232,14 +234,41 @@ export const DashboardContent = () => {
 
                     <div className="flex flex-col gap-y-1 faq-content">
                       <p className="text-base leading-6 font-medium text-white">
-                        This is the quesitoon 1?
+                        Refunds.
                       </p>
                       <p className="text-sm leading-[20px] text-[#FFFFFF8F] font-normal faq-sub-content">
-                        This is the answer, that is somewhat long but somehow
-                        not long enough to fill neough space
+                        Dont like something? Send us a msg on twitter and will send you a refund.
                       </p>
                     </div>
+
+
+
                     <label htmlFor="faq-2" className="faq-label cursor-pointer">
+                      <PlusSvg className="faq-checkbox-open" />
+                      <MinusSvg className="faq-checkbox-close" />
+                    </label>
+                  </div>
+
+                  <div className="flex justify-between w-full items-start faq-item">
+                    <input
+                      className="faq-checkbox"
+                      type="checkbox"
+                      id="faq-4"
+                      hidden
+                    />
+
+                    <div className="flex flex-col gap-y-1 faq-content">
+                      <p className="text-base leading-6 font-medium text-white">
+                        Delete account.
+                      </p>
+                      <p className="text-sm leading-[20px] text-[#FFFFFF8F] font-normal faq-sub-content">
+                        We dont collect any data.
+                        Send us a msg and will delete your account.
+                      </p>
+                    </div>
+
+
+                    <label htmlFor="faq-4" className="faq-label cursor-pointer">
                       <PlusSvg className="faq-checkbox-open" />
                       <MinusSvg className="faq-checkbox-close" />
                     </label>
@@ -257,7 +286,7 @@ export const DashboardContent = () => {
                   DM via Twitter
                 </p>
                 <Link
-                  href={"#"}
+                  href={"https://x.com/llo7d"}
                   className="text-[#635AFF] text-sm leading-[24px] flex items-center"
                 >
                   @justcode

@@ -14,11 +14,16 @@
 Do you know React.js? **Yes.**  
 Do you know React-Three-Fiber? **No**  
 Do you know about anything 3D in the browser? **No**  
-
+p
 Then I think this coding project is the **perfect fit for you!**  
 
 The project difficutly **🟪intermediate🟪**   
 If you have some experience with Three.js, than its going to be 🍰easy cake🍰
+
+Also,  
+This project is inspired by <a href="https://www.youtube.com/watch?v=JPUSjRxQEKI&t=23s" style="text-decoration: underline;" target="_blank" rel="noopener noreferrer">Spline Robot Tutorial </a> &  <a href="https://www.instagram.com/gaurav_paints/" style="text-decoration: underline;" target="_blank" rel="noopener noreferrer">@gaurav_paints</a>   
+
+
 
 <br>
 
