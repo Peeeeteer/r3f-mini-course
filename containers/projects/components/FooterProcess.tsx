@@ -84,7 +84,7 @@ const FooterProcess: FC<FooterProcessProps> = ({
                 handleRevealTheFinalCode();
               }}
             >
-              <span className=" text-sm ">Reveal the final code</span>
+              <span className=" text-sm ">Milestone Solution</span>
               <svg
                 width="16"
                 height="16"

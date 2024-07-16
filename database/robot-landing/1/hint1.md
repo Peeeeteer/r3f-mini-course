@@ -1,7 +1,6 @@
-###### Hint 1: Setup Setup
+###### Hint 1: Setup
 
-**For this milestone there are no hints, only the solution.**
-
+For this milestone **there are no hints**, only the solution.  
 If you want to do it without looking at the solution, do these steps.  
 
 

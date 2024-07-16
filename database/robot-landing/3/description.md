@@ -1,7 +1,7 @@
 ###### Milestone 3: Simple Version
 
 The goal is to make this.
-<img src="/robot-landing/image7.png" alt="index.js" width="860" height="620">
+<img src="/robot-landing/image2.png" alt="index.js" width="860" height="620">
 
 
 So let us make a simpler version, like this:

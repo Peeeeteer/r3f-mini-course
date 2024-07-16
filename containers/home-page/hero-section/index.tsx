@@ -223,12 +223,7 @@ const HeroSection: FC<HeroSectionProps> = ({ }) => {
                   position={new THREE.Vector3(0, 0, 0)}
                 />
               </Canvas>
-              {/* <Image
-              src={"/robot-face.png"}
-              alt="Hero IMG"
-              fill
-              objectFit="contain"
-            /> */}
+
             </div>
           </div>
           <div className="flex items-center gap-x-4 -bottom-[5px] left-0 pointer-events-auto">

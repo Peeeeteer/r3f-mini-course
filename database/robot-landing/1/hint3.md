@@ -1,4 +1,4 @@
-###### Hint 3: Setup Setup
+###### Hint 3: Setup
 
 For this milestone there are no hints, only the solution.
 

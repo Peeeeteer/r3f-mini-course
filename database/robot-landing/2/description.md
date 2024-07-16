@@ -12,7 +12,7 @@ Lets goo!
 We can do this by 
 <a href="https://docs.pmnd.rs/react-three-fiber/getting-started/your-first-scene" style="text-decoration: underline;" target="_blank" rel="noopener noreferrer">following the documentation</a>
 
-This is now going to be easy if this is your first time using R3F so take your time.
+This is now going to be easy if this is your first time using R3F so take your time.  
 Transform the default setup we started with into a version that includes an input field and displays a list.
 
 
