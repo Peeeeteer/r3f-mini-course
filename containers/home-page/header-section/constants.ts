@@ -3,8 +3,8 @@ import { HeaderNav } from "@/types/HeaderNav";
 export const HeaderNavs: HeaderNav[] = [
   {
     id: 1,
-    value: "Do frontend",
-    href: "/projects",
+    value: "Wall of ideas",
+    href: "/wall-of-ideas",
   },
   {
     id: 2,
