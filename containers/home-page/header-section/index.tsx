@@ -7,7 +7,7 @@ import Brand from "../../../components/Brand";
 import HeaderUserActions from "./user-actions";
 import { twMerge } from "tailwind-merge";
 
-interface HeaderSectionProps extends React.HTMLAttributes<HTMLElement> {}
+interface HeaderSectionProps extends React.HTMLAttributes<HTMLElement> { }
 
 const HeaderSection: FC<HeaderSectionProps> = ({ className }) => {
   return (

@@ -15,7 +15,7 @@ export default async function Home() {
             <Suspense fallback={<Loading />}></Suspense>
             <main className="flex min-h-screen flex-col items-center justify-between p-[66px]">
                 <section className="max-w-[994px] w-full mx-auto">
-                    <h1>Project Ideas</h1>
+                    <h1>Tools</h1>
                 </section>
             </main>
             <FooterSection />
