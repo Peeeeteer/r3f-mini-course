@@ -6,6 +6,9 @@ import { Suspense } from "react";
 import Loading from "@/components/Loading";
 import { FC, useState } from "react";
 import { twMerge } from "tailwind-merge";
+import ProjectsSection from "@/containers/home-page/projects-section";
+import { mockProjects } from "@/store/milestone";
+import ToolSection from "@/containers/tools";
 
 
 const tags = ["React", "Tailwindcss", "Three.js",];
@@ -55,7 +58,9 @@ export default function Home() {
                     </span>
                 </div>
 
-                <div className="flex flex-wrap justify-center mt-[100px] gap-6">
+                <ToolSection projects={mockProjects} />
+
+                {/* <div className="flex flex-wrap justify-center mt-[100px] gap-6">
                     <div className="w-64 h-64 bg-gray-200 p-4 flex flex-col items-center">
                         <img src="dummy-image-1.jpg" alt="Dummy 1" className="w-full h-32 object-cover mb-4" />
                         <p className="text-lg font-semibold">Item 1</p>
@@ -75,7 +80,7 @@ export default function Home() {
                         <p className="text-lg font-semibold">Item 3</p>
                         <p className="text-gray-600">$30.00</p>
                     </div>
-                </div>
+                </div> */}
             </div>
 
             <FooterSection />
