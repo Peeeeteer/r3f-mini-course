@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import "@/styles/global.css";
 import AuthContextProvider from "@/contexts/AuthContext";
 import { inter, nanum_pen_script } from "./fonts";
+import { Analytics } from '@vercel/analytics/react';
 
 export const metadata: Metadata = {
   title: "justcode | make stuff",
@@ -23,6 +24,7 @@ export default async function RootLayout({
       <body className={`${inter.className}`}>
         <AuthContextProvider>
           {children}
+          <Analytics />
         </AuthContextProvider>
       </body>
     </html>

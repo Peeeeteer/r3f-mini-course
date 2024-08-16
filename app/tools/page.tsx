@@ -6,13 +6,44 @@ import { Suspense } from "react";
 import Loading from "@/components/Loading";
 import { FC, useState } from "react";
 import { twMerge } from "tailwind-merge";
-import ProjectsSection from "@/containers/home-page/projects-section";
-import { mockProjects } from "@/store/milestone";
 import ToolSection from "@/containers/tools";
 
 
-const tags = ["React", "Tailwindcss", "Three.js",];
+const tags = ["Frontend", "Backend", "Ideas", "Freelancing"];
 
+const projects = [
+    {
+        type: "purple",
+        date: "16 August 2024",
+        title: "Figma Plugin",
+        description: "Made by me A figma plugin with 800+  3D Character Illustrations. Add them with one click",
+        // difficulty: "Easy",
+        category: "Frontend",
+        tags: ["Figma", "Illustrations"],
+        price: "Free",
+        image: "/project-1.png",
+        url: "https://www.figma.com/community/plugin/1334158691756914016/zudrit-3d-character-illustrations",
+        milestones: "",
+        projectName: "chrome-extension",
+    },
+    // {
+    //     type: "yellow",
+    //     date: "26 June 2024",
+    //     title: "3D Robot Landing page ",
+    //     description: "3D landing page with a cute robot. Perfect for those who know React and want to try Three.js for the first time",
+    //     difficulty: "Easy",
+    //     category: "Ideas",
+    //     tags: ["React", "Three.js", "Tailwindcss"],
+    //     price: "Free",
+    //     image: "/project-2.png",
+    //     url: "projects/robot-landing/introduction",
+    //     milestones: "robotMilestone",
+    //     projectName: "robot-landing",
+    // }
+];
+
+
+// Projects to add: Gummysearch, Incomee
 
 export default function Home() {
 
@@ -24,7 +55,9 @@ export default function Home() {
             <Suspense fallback={<Loading />}></Suspense>
             <div className="min-h-screen flex flex-col justify-start items-center">
                 <h1 className="text-4xl font-bold mt-[140px]">Tools</h1>
-                <p className="text-gray-500">Everything you need to build better coding projects & some freelancer stuff...</p>
+                <p className="text-gray-500">Things that can help you to build better coding projects.</p>
+
+                {/* <p className="text-gray-500">Everything you need to build better coding projects & some freelancer stuff...</p> */}
 
                 <div className="w-full flex justify-center mt-[60px] relative">
                     <div className="flex gap-x-2">
@@ -58,7 +91,7 @@ export default function Home() {
                     </span>
                 </div>
 
-                <ToolSection projects={mockProjects} />
+                <ToolSection projects={projects} />
 
                 {/* <div className="flex flex-wrap justify-center mt-[100px] gap-6">
                     <div className="w-64 h-64 bg-gray-200 p-4 flex flex-col items-center">

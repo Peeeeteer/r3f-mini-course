@@ -16,7 +16,7 @@ const ToolSection: FC<ProjectsSectionProps> = (props: ProjectsSectionProps) => {
         <section className="w-1/2">
             <div className="project pt-[114px]">
                 {props.projects.map((project, index) => (
-                    <Link href={project.url} key={index}>
+                    <Link href={project.url} key={index} target="_blank" rel="noopener noreferrer">
                         <div key={index} className="relative hash-tag">
                             <div className="project-item flex justify-between gap-x-[80px]">
                                 <div className="project-item-left w-full">
@@ -34,18 +34,25 @@ const ToolSection: FC<ProjectsSectionProps> = (props: ProjectsSectionProps) => {
                                         {project?.title}
                                     </h2>
                                     <p className="text-white56 text-sm leading-5 h-[115px]">
-                                        {project?.description}
+                                        {project?.description.split('Made by me').map((part, index, array) => (
+                                            <span key={index}>
+                                                {part}
+                                                {index < array.length - 1 && (
+                                                    <span className="text-lightBlue"> Made by me!</span>
+                                                )}
+                                            </span>
+                                        ))}
                                     </p>
                                     <div>
                                         <div className="flex justify-between items-end">
                                             <div className="flex flex-col">
                                                 <div className="flex gap-x-4 mb-3">
-                                                    <div className="flex gap-x-2">
-                                                        <BarChartSvg strokeOpacity={0.2} />
-                                                        <p className="text-white56 text-sm leading-5">
-                                                            {project?.difficulty}
-                                                        </p>
-                                                    </div>
+                                                    {/* <div className="flex gap-x-2">
+                            <BarChartSvg strokeOpacity={0.2} />
+                            <p className="text-white56 text-sm leading-5">
+                              {project?.difficulty}
+                            </p>
+                          </div> */}
                                                     <div className="flex gap-x-2">
                                                         <CodeBrowserSvg strokeOpacity={0.2} />
                                                         <p className="text-white56 text-sm leading-5">
