@@ -7,15 +7,28 @@ import { Suspense, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 import Loading from "@/components/Loading";
-import Link from "next/link";
-import { twMerge } from "tailwind-merge";
 import { useAuthContext } from "@/contexts/AuthContext";
+
+interface Project {
+    id: string;
+    person: string;
+    category: string;
+    difficulty: string;
+    description: string;
+}
+
+type SortKey = 'category' | 'difficulty';
+
+interface SortConfig {
+    key: SortKey | null;
+    direction: 'asc' | 'desc' | null;
+}
 
 export default function Home() {
     const navigation = useRouter();
     const { isAuthenticated, authUser } = useAuthContext();
 
-    const [projects, setProjects] = useState([
+    const [projects, setProjects] = useState<Project[]>([
         {
             id: "1",
             person: "looyd",
@@ -41,27 +54,58 @@ export default function Home() {
 
     const [isLoading, setIsLoading] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [newProject, setNewProject] = useState({
+    const [newProject, setNewProject] = useState<Omit<Project, 'id' | 'person'>>({
         description: "",
         category: "",
         difficulty: "",
     });
 
-    const [sortConfig, setSortConfig] = useState({ key: null, direction: null });
+    const [errors, setErrors] = useState<{
+        description?: string;
+        category?: string;
+        difficulty?: string;
+    }>({});
+    const [sortConfig, setSortConfig] = useState<SortConfig>({ key: null, direction: null });
 
-    const handleChange = (e) => {
+    const handleChange = (e: React.ChangeEvent<HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
-        setNewProject({
-            ...newProject,
+        setNewProject(prev => ({
+            ...prev,
             [name]: value,
-        });
+        }));
+
+        if (name === 'description') {
+            const error = validateDescription(value);
+            setErrors(prev => ({
+                ...prev,
+                description: error || undefined,
+            }));
+        } else if (name === 'category' || name === 'difficulty') {
+            setErrors(prev => ({
+                ...prev,
+                [name]: value ? undefined : `Please select a ${name}`,
+            }));
+        }
     };
 
     const addNewProject = () => {
-        setProjects([
-            ...projects,
+        const descriptionError = validateDescription(newProject.description);
+        const newErrors = {
+            description: descriptionError || undefined,
+            category: newProject.category ? undefined : 'Please select a category',
+            difficulty: newProject.difficulty ? undefined : 'Please select a difficulty',
+        };
+
+        setErrors(newErrors);
+
+        if (Object.values(newErrors).some(error => error !== undefined)) {
+            return;
+        }
+
+        setProjects(prev => [
+            ...prev,
             {
-                id: (projects.length + 1).toString(),
+                id: (prev.length + 1).toString(),
                 person: authUser?.user_metadata.user_name || 'Anonymous',
                 ...newProject,
             },
@@ -71,8 +115,10 @@ export default function Home() {
             category: "",
             difficulty: "",
         });
-        setIsModalOpen(false); // Close the modal
+        setErrors({});
+        setIsModalOpen(false);
     };
+
 
     useEffect(() => {
         if (isModalOpen) {
@@ -82,8 +128,8 @@ export default function Home() {
         }
     }, [isModalOpen]);
 
-    const handleClickOutside = (e) => {
-        if (e.target.id === 'modal-overlay') {
+    const handleClickOutside = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (e.target instanceof HTMLElement && e.target.id === 'modal-overlay') {
             setIsModalOpen(false);
         }
     };
@@ -96,8 +142,48 @@ export default function Home() {
         }
     };
 
-    const handleSort = (key) => {
-        let direction = 'asc';
+    const validateDescription = (description: string): string | null => {
+        // Check for links
+        if (/(http|https):\/\/[^\s]+/g.test(description)) {
+            return "Links are not allowed in the description.";
+        }
+
+        // Check for weird symbols (you can adjust this regex as needed)
+        if (/[^\w\s.,!?-]/g.test(description)) {
+            return "Special characters are not allowed in the description.";
+        }
+
+        // Check for potential SQL injection attempts
+        if (/(\b(SELECT|INSERT|UPDATE|DELETE|FROM|WHERE|DROP)\b)/gi.test(description)) {
+            return "Invalid input detected.";
+        }
+
+        // Check for potential XSS attempts
+        if (/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi.test(description)) {
+            return "Invalid input detected.";
+        }
+
+        // Check for excessive capitalization (e.g., shouting)
+        if (description.toUpperCase() === description && description.length > 10) {
+            return "Please don't use all capital letters.";
+        }
+
+        // Check for minimum length
+        if (description.trim().length < 10) {
+            return "Description must be at least 10 characters long.";
+        }
+
+        // Check for maximum length
+        if (description.length > 500) {
+            return "Description must not exceed 500 characters.";
+        }
+
+        return null;
+    };
+
+
+    const handleSort = (key: SortKey) => {
+        let direction: 'asc' | 'desc' = 'asc';
         if (sortConfig.key === key && sortConfig.direction === 'asc') {
             direction = 'desc';
         }
@@ -112,7 +198,7 @@ export default function Home() {
         setProjects(sortedProjects);
     };
 
-    const renderSortIcon = (key) => {
+    const renderSortIcon = (key: SortKey) => {
         if (sortConfig.key === key) {
             if (sortConfig.direction === 'asc') {
                 return (
@@ -136,6 +222,35 @@ export default function Home() {
             );
         }
     };
+    // In the return statement, update the table headers:
+    <thead className="bg-[#FFFFFF0F]">
+        <tr>
+            <th className="w-1/12 text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-3 px-6">
+                Person
+            </th>
+            <th
+                className="w-1/12 text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-3 px-6 cursor-pointer"
+                onClick={() => handleSort('category')}
+            >
+                <div className="flex justify-between items-center">
+                    <span>Category</span>
+                    {renderSortIcon('category')}
+                </div>
+            </th>
+            <th
+                className="w-1/12 text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-3 px-6 cursor-pointer"
+                onClick={() => handleSort('difficulty')}
+            >
+                <div className="flex justify-between items-center">
+                    <span>Difficulty</span>
+                    {renderSortIcon('difficulty')}
+                </div>
+            </th>
+            <th className="w-8/12 text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-3 px-6">
+                Description
+            </th>
+        </tr>
+    </thead>
 
     return (
         <>
@@ -146,7 +261,7 @@ export default function Home() {
                 <h1 className="text-4xl font-bold mt-[140px]">Idea wall</h1>
                 <p className="text-gray-500">Project ideas by me and you. Share and care</p>
 
-                <div className="w-2/3 mt-[100px]">
+                <div className="w-2/3 mt-[100px] mb-[100px] flex-grow">
                     <div className="flex justify-start mb-4">
                         <button
                             onClick={handleAddNewIdeaClick}
@@ -166,13 +281,19 @@ export default function Home() {
                                     className="w-1/12 text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-3 px-6 cursor-pointer"
                                     onClick={() => handleSort('category')}
                                 >
-                                    {renderSortIcon('category')} Category
+                                    <div className="flex justify-between items-center">
+                                        Category
+                                        {renderSortIcon('category')}
+                                    </div>
                                 </th>
                                 <th
                                     className="w-1/12 text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-3 px-6 cursor-pointer"
                                     onClick={() => handleSort('difficulty')}
                                 >
-                                    {renderSortIcon('difficulty')} Difficulty
+                                    <div className="flex justify-between items-center">
+                                        Difficulty
+                                        {renderSortIcon('difficulty')}
+                                    </div>
                                 </th>
                                 <th className="w-8/12 text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-3 px-6">
                                     Description
@@ -222,6 +343,7 @@ export default function Home() {
                             &times;
                         </button>
                         <h2 className="text-lg font-bold text-white mb-4">Add New Idea</h2>
+
                         <div className="mb-4">
                             <label className="block text-white text-sm mb-2" htmlFor="category">Category</label>
                             <select
@@ -229,13 +351,16 @@ export default function Home() {
                                 id="category"
                                 value={newProject.category}
                                 onChange={handleChange}
-                                className="w-full mb-4 p-2 bg-[#1F1F1F] text-white border border-[#FFFFFF33] rounded"
+                                className={`w-full mb-2 p-2 bg-[#1F1F1F] text-white border ${errors.category ? 'border-red-500' : 'border-[#FFFFFF33]'} rounded`}
                             >
                                 <option value="" disabled>Select Category</option>
                                 <option value="frontend">Frontend</option>
                                 <option value="backend">Backend</option>
                                 <option value="scripts">Scripts</option>
                             </select>
+                            {errors.category && (
+                                <p className="text-red-500 text-xs italic">{errors.category}</p>
+                            )}
                         </div>
                         <div className="mb-4">
                             <label className="block text-white text-sm mb-2" htmlFor="difficulty">Difficulty</label>
@@ -244,13 +369,16 @@ export default function Home() {
                                 id="difficulty"
                                 value={newProject.difficulty}
                                 onChange={handleChange}
-                                className="w-full mb-4 p-2 bg-[#1F1F1F] text-white border border-[#FFFFFF33] rounded"
+                                className={`w-full mb-2 p-2 bg-[#1F1F1F] text-white border ${errors.difficulty ? 'border-red-500' : 'border-[#FFFFFF33]'} rounded`}
                             >
                                 <option value="" disabled>Select Difficulty</option>
                                 <option value="easy">Easy</option>
                                 <option value="medium">Medium</option>
                                 <option value="hard">Hard</option>
                             </select>
+                            {errors.difficulty && (
+                                <p className="text-red-500 text-xs italic">{errors.difficulty}</p>
+                            )}
                         </div>
                         <div className="mb-4">
                             <label className="block text-white text-sm mb-2" htmlFor="description">Description</label>
@@ -260,10 +388,14 @@ export default function Home() {
                                 value={newProject.description}
                                 onChange={handleChange}
                                 placeholder="Description"
-                                className="w-full mb-4 p-2 bg-[#1F1F1F] text-white border border-[#FFFFFF33] rounded"
-                                style={{ height: "100px", resize: "none" }} // Making the description input longer
+                                className={`w-full mb-2 p-2 bg-[#1F1F1F] text-white border ${errors.description ? 'border-red-500' : 'border-[#FFFFFF33]'} rounded`}
+                                style={{ height: "100px", resize: "none" }}
                             />
+                            {errors.description && (
+                                <p className="text-red-500 text-xs italic">{errors.description}</p>
+                            )}
                         </div>
+
                         <div className="flex justify-end">
                             <button
                                 onClick={() => setIsModalOpen(false)}
@@ -271,9 +403,11 @@ export default function Home() {
                             >
                                 Cancel
                             </button>
+
                             <button
                                 onClick={addNewProject}
-                                className="py-2 px-4 bg-blue-500 text-white rounded"
+                                className={`py-2 px-4 bg-blue-500 text-white rounded ${(Object.values(errors).some(error => error !== undefined) || !newProject.category || !newProject.difficulty || !newProject.description) ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                disabled={Object.values(errors).some(error => error !== undefined) || !newProject.category || !newProject.difficulty || !newProject.description}
                             >
                                 Add
                             </button>
