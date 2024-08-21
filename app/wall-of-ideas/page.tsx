@@ -12,7 +12,7 @@ import { createClient } from "@/utils/supabase/client";
 
 
 interface Project {
-    id: string;
+    id?: string;
     created_at?: string;
     created_by: string;
     category: string;
@@ -143,6 +143,8 @@ export default function Home() {
             const { data, error } = await supabase
                 .from('ideas')
                 .select("*")
+
+            // const { data, error } = await supabase.rpc('get_ideas')
             // .order('created_at', { ascending: false });
 
             console.log(JSON.stringify(data, null, 2))
