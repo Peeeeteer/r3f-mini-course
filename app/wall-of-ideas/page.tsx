@@ -8,15 +8,17 @@ import { useRouter } from "next/navigation";
 
 import Loading from "@/components/Loading";
 import { useAuthContext } from "@/contexts/AuthContext";
+import { createClient } from "@/utils/supabase/client";
+
 
 interface Project {
     id: string;
-    person: string;
+    created_at?: string;
+    created_by: string;
     category: string;
     difficulty: string;
     description: string;
 }
-
 type SortKey = 'category' | 'difficulty';
 
 interface SortConfig {
@@ -25,40 +27,47 @@ interface SortConfig {
 }
 
 export default function Home() {
-    const navigation = useRouter();
+
     const { isAuthenticated, authUser } = useAuthContext();
+    const navigation = useRouter();
+    const supabase = createClient();
 
-    const [projects, setProjects] = useState<Project[]>([
-        {
-            id: "1",
-            person: "looyd",
-            category: "frontend",
-            difficulty: "easy",
-            description: "this is a project description",
-        },
-        {
-            id: "2",
-            person: "looyd",
-            category: "backend",
-            difficulty: "easy",
-            description: "chrome plugin that makes you more productive chrome plugin that makes you more productivechrome plugin that makes you more productivechrome plugin that makes you more productivechrome plugin that makes you more productivechrome plugin that makes you more productivechrome plugin that makes you more productive chrome plugin that makes you more productivechrome plugin that makes you more productivechrome plugin that makes you more productive",
-        },
-        {
-            id: "3",
-            person: "looyd",
-            category: "backend",
-            difficulty: "easy",
-            description: "chrome plugin that makes you more productive",
-        },
-    ]);
+    // const [projects, setProjects] = useState<Project[]>([
+    //     {
+    //         id: "1",
+    //         created_at: new Date(),
+    //         created_by: "looyd",
+    //         category: "frontend",
+    //         difficulty: "easy",
+    //         description: "this is a project description",
+    //     },
+    //     {
+    //         id: "2",
+    //         created_at: new Date(),
+    //         created_by: "looyd",
+    //         category: "backend",
+    //         difficulty: "easy",
+    //         description: "chrome plugin that makes you more productive chrome plugin that makes you more productivechrome plugin that makes you more productivechrome plugin that makes you more productivechrome plugin that makes you more productivechrome plugin that makes you more productivechrome plugin that makes you more productive chrome plugin that makes you more productivechrome plugin that makes you more productivechrome plugin that makes you more productive",
+    //     },
+    //     {
+    //         id: "3",
+    //         created_at: new Date(),
+    //         created_by: "looyd",
+    //         category: "backend",
+    //         difficulty: "easy",
+    //         description: "chrome plugin that makes you more productive",
+    //     },
+    // ]);
 
-    const [isLoading, setIsLoading] = useState(false);
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [projects, setProjects] = useState<Project[]>([])
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [newProject, setNewProject] = useState<Omit<Project, 'id' | 'person'>>({
         description: "",
         category: "",
         difficulty: "",
     });
+
 
     const [errors, setErrors] = useState<{
         description?: string;
@@ -126,7 +135,36 @@ export default function Home() {
         } else {
             document.body.style.overflow = 'auto';
         }
+
+        const fetchProjects = async () => {
+            setIsLoading(true);
+            console.log('Fetching projects...');
+
+            const { data, error } = await supabase
+                .from('ideas')
+                .select("*")
+            // .order('created_at', { ascending: false });
+
+            console.log(JSON.stringify(data, null, 2))
+
+            if (error) {
+                console.error('Error fetching projects:', error);
+            } else {
+                console.log('Fetched data:', data);
+                setProjects(data as Project[]);
+            }
+
+            console.log('Is data an array?', Array.isArray(data));
+            console.log('Projects after setting state:', projects);
+
+            setIsLoading(false);
+        };
+
+        fetchProjects();
+
+
     }, [isModalOpen]);
+
 
     const handleClickOutside = (e: React.MouseEvent<HTMLDivElement>) => {
         if (e.target instanceof HTMLElement && e.target.id === 'modal-overlay') {
@@ -182,68 +220,25 @@ export default function Home() {
     };
 
 
-    const handleSort = (key: SortKey) => {
-        let direction: 'asc' | 'desc' = 'asc';
-        if (sortConfig.key === key && sortConfig.direction === 'asc') {
-            direction = 'desc';
-        }
-
-        const sortedProjects = [...projects].sort((a, b) => {
-            if (a[key] < b[key]) return direction === 'asc' ? -1 : 1;
-            if (a[key] > b[key]) return direction === 'asc' ? 1 : -1;
-            return 0;
-        });
-
-        setSortConfig({ key, direction });
-        setProjects(sortedProjects);
-    };
-
-    const renderSortIcon = (key: SortKey) => {
-        if (sortConfig.key === key) {
-            if (sortConfig.direction === 'asc') {
-                return (
-                    <svg className="inline-block ml-1 w-3 h-3" fill="currentColor" viewBox="0 0 320 512">
-                        <path d="M279 224H41c-21.4 0-32.1 25.9-17 41l119 136c11.2 12.7 31 12.7 42.3 0l119-136c15-15.1 4.4-41-17-41z" />
-                    </svg>
-                );
-            } else {
-                return (
-                    <svg className="inline-block ml-1 w-3 h-3" fill="currentColor" viewBox="0 0 320 512">
-                        <path d="M41 288h238c21.4 0 32.1-25.9 17-41l-119-136c-11.2-12.7-31-12.7-42.3 0L24 247c-15 15.1-4.4 41 17 41z" />
-                    </svg>
-                );
-            }
-        } else {
-            // Default unsorted icon
-            return (
-                <svg className="inline-block ml-1 w-3 h-3 opacity-50" fill="currentColor" viewBox="0 0 192 512">
-                    <path d="M96 48c13.3 0 24-10.7 24-24s-10.7-24-24-24S72 10.7 72 24s10.7 24 24 24zM24 264h144c13.3 0 24-10.7 24-24s-10.7-24-24-24H24c-13.3 0-24 10.7-24 24s10.7 24 24 24zm144 160H24c-13.3 0-24 10.7-24 24s10.7 24 24 24h144c13.3 0 24-10.7 24-24s-10.7-24-24-24zm-72 80c-13.3 0-24 10.7-24 24s10.7 24 24 24 24-10.7 24-24-10.7-24-24-24z" />
-                </svg>
-            );
-        }
-    };
-    // In the return statement, update the table headers:
     <thead className="bg-[#FFFFFF0F]">
         <tr>
             <th className="w-1/12 text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-3 px-6">
                 Person
             </th>
-            <th
-                className="w-1/12 text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-3 px-6 cursor-pointer"
-                onClick={() => handleSort('category')}
-            >
+            <th className="w-1/12 text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-3 px-6 cursor-pointer" >
                 <div className="flex justify-between items-center">
-                    <span>Category</span>
-                    {renderSortIcon('category')}
+                    Category
+                    <svg className="inline-block ml-1 w-3 h-3" fill="currentColor" viewBox="0 0 192 512">
+                        <path d="M96 48c13.3 0 24-10.7 24-24s-10.7-24-24-24S72 10.7 72 24s10.7 24 24 24zM24 264h144c13.3 0 24-10.7 24-24s-10.7-24-24-24H24c-13.3 0-24 10.7-24 24s10.7 24 24 24zm144 160H24c-13.3 0-24 10.7-24 24s10.7 24 24 24h144c13.3 0 24-10.7 24-24s-10.7-24-24-24zm-72 80c-13.3 0-24 10.7-24 24s10.7 24 24 24 24-10.7 24-24-10.7-24-24-24z" />
+                    </svg>
                 </div>
             </th>
-            <th
-                className="w-1/12 text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-3 px-6 cursor-pointer"
-                onClick={() => handleSort('difficulty')}
-            >
+            <th className="w-1/12 text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-3 px-6 cursor-pointer">
                 <div className="flex justify-between items-center">
-                    <span>Difficulty</span>
-                    {renderSortIcon('difficulty')}
+                    Difficulty
+                    <svg className="inline-block ml-1 w-3 h-3" fill="currentColor" viewBox="0 0 192 512">
+                        <path d="M96 48c13.3 0 24-10.7 24-24s-10.7-24-24-24S72 10.7 72 24s10.7 24 24 24zM24 264h144c13.3 0 24-10.7 24-24s-10.7-24-24-24H24c-13.3 0-24 10.7-24 24s10.7 24 24 24zm144 160H24c-13.3 0-24 10.7-24 24s10.7 24 24 24h144c13.3 0 24-10.7 24-24s-10.7-24-24-24zm-72 80c-13.3 0-24 10.7-24 24s10.7 24 24 24 24-10.7 24-24-10.7-24-24-24z" />
+                    </svg>
                 </div>
             </th>
             <th className="w-8/12 text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-3 px-6">
@@ -251,7 +246,6 @@ export default function Home() {
             </th>
         </tr>
     </thead>
-
     return (
         <>
             <HeaderSection />
@@ -279,20 +273,24 @@ export default function Home() {
                                 </th>
                                 <th
                                     className="w-1/12 text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-3 px-6 cursor-pointer"
-                                    onClick={() => handleSort('category')}
+                                    onClick={() => {
+
+                                    }}
                                 >
                                     <div className="flex justify-between items-center">
                                         Category
-                                        {renderSortIcon('category')}
+
                                     </div>
                                 </th>
                                 <th
                                     className="w-1/12 text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-3 px-6 cursor-pointer"
-                                    onClick={() => handleSort('difficulty')}
+                                    onClick={() => {
+
+                                    }}
                                 >
                                     <div className="flex justify-between items-center">
                                         Difficulty
-                                        {renderSortIcon('difficulty')}
+                                        { }
                                     </div>
                                 </th>
                                 <th className="w-8/12 text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-3 px-6">
@@ -310,7 +308,7 @@ export default function Home() {
                                     projects.map((project) => (
                                         <tr className="" key={project.id}>
                                             <td className="w-1/12 py-[26px] px-6 text-[#FFFFFFCC] text-sm leading-[20px] border-b border-[#FFFFFF33]">
-                                                {project.person}
+                                                {project.created_by}
                                             </td>
                                             <td className="w-1/12 py-[26px] px-6 text-[#FFFFFFCC] text-sm leading-[20px] border-b border-[#FFFFFF33]">
                                                 {project.category}
