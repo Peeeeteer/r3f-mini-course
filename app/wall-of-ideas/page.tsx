@@ -3,7 +3,7 @@
 import FooterSection from "@/containers/home-page/footer-section";
 import HeaderSection from "@/containers/home-page/header-section";
 
-import { Suspense, useState, useEffect } from "react";
+import { Suspense, useState, useEffect, useCallback, useRef } from "react";
 import { useRouter } from "next/navigation";
 
 import Loading from "@/components/Loading";
@@ -31,34 +31,6 @@ export default function Home() {
     const { isAuthenticated, authUser } = useAuthContext();
     const navigation = useRouter();
     const supabase = createClient();
-
-    // const [projects, setProjects] = useState<Project[]>([
-    //     {
-    //         id: "1",
-    //         created_at: new Date(),
-    //         created_by: "looyd",
-    //         category: "frontend",
-    //         difficulty: "easy",
-    //         description: "this is a project description",
-    //     },
-    //     {
-    //         id: "2",
-    //         created_at: new Date(),
-    //         created_by: "looyd",
-    //         category: "backend",
-    //         difficulty: "easy",
-    //         description: "chrome plugin that makes you more productive chrome plugin that makes you more productivechrome plugin that makes you more productivechrome plugin that makes you more productivechrome plugin that makes you more productivechrome plugin that makes you more productivechrome plugin that makes you more productive chrome plugin that makes you more productivechrome plugin that makes you more productivechrome plugin that makes you more productive",
-    //     },
-    //     {
-    //         id: "3",
-    //         created_at: new Date(),
-    //         created_by: "looyd",
-    //         category: "backend",
-    //         difficulty: "easy",
-    //         description: "chrome plugin that makes you more productive",
-    //     },
-    // ]);
-
     const [projects, setProjects] = useState<Project[]>([])
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -74,7 +46,23 @@ export default function Home() {
         category?: string;
         difficulty?: string;
     }>({});
-    const [sortConfig, setSortConfig] = useState<SortConfig>({ key: null, direction: null });
+
+    // Page loading
+    const [page, setPage] = useState<number>(1);
+    const [hasMore, setHasMore] = useState<boolean>(true);
+    const itemsPerPage = 20; // Change this to 20 later
+
+    const observer = useRef<IntersectionObserver | null>(null);
+    const lastProjectElementRef = useCallback((node: HTMLElement | null) => {
+        if (isLoading) return;
+        if (observer.current) observer.current.disconnect();
+        observer.current = new IntersectionObserver(entries => {
+            if (entries[0].isIntersecting && hasMore) {
+                handleLoadMore();
+            }
+        });
+        if (node) observer.current.observe(node);
+    }, [isLoading, hasMore]);
 
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -128,6 +116,28 @@ export default function Home() {
         setIsModalOpen(false);
     };
 
+    const fetchProjects = async (pageNumber: number) => {
+        setIsLoading(true);
+        console.log('Fetching projects...');
+
+        const { data, error } = await supabase.rpc('get_ideas', {
+            page_number: pageNumber,
+            items_per_page: itemsPerPage
+        });
+
+        if (error) {
+            console.error('Error fetching projects:', error);
+        } else {
+            console.log('Fetched data:', data);
+            if (data.length < itemsPerPage) {
+                setHasMore(false);
+            }
+            setProjects(prevProjects => [...prevProjects, ...data]);
+            setPage(pageNumber);
+        }
+
+        setIsLoading(false);
+    };
 
     useEffect(() => {
         if (isModalOpen) {
@@ -135,38 +145,16 @@ export default function Home() {
         } else {
             document.body.style.overflow = 'auto';
         }
-
-        const fetchProjects = async () => {
-            setIsLoading(true);
-            console.log('Fetching projects...');
-
-            const { data, error } = await supabase
-                .from('ideas')
-                .select("*")
-
-            // const { data, error } = await supabase.rpc('get_ideas')
-            // .order('created_at', { ascending: false });
-
-            console.log(JSON.stringify(data, null, 2))
-
-            if (error) {
-                console.error('Error fetching projects:', error);
-            } else {
-                console.log('Fetched data:', data);
-                setProjects(data as Project[]);
-            }
-
-            console.log('Is data an array?', Array.isArray(data));
-            console.log('Projects after setting state:', projects);
-
-            setIsLoading(false);
-        };
-
-        fetchProjects();
-
+        fetchProjects(1);
 
     }, [isModalOpen]);
 
+
+    const handleLoadMore = () => {
+        if (!isLoading && hasMore) {
+            fetchProjects(page + 1);
+        }
+    };
 
     const handleClickOutside = (e: React.MouseEvent<HTMLDivElement>) => {
         if (e.target instanceof HTMLElement && e.target.id === 'modal-overlay') {
@@ -307,8 +295,12 @@ export default function Home() {
                                         <td colSpan={4} className="text-center py-5 italic">Getting history data</td>
                                     </tr>
                                     :
-                                    projects.map((project) => (
-                                        <tr className="" key={project.id}>
+                                    projects.map((project, index) => (
+                                        <tr
+                                            className=""
+                                            key={project.id}
+                                            ref={index === projects.length - 1 ? lastProjectElementRef : null}
+                                        >
                                             <td className="w-1/12 py-[26px] px-6 text-[#FFFFFFCC] text-sm leading-[20px] border-b border-[#FFFFFF33]">
                                                 {project.created_by}
                                             </td>
@@ -327,6 +319,19 @@ export default function Home() {
                         </tbody>
                     </table>
                 </div>
+
+
+                {isLoading && (
+                    <div className="text-center py-4">
+                        <p className="text-[#FFFFFFCC]">Loading more ideas...</p>
+                    </div>
+                )}
+
+                {!hasMore && (
+                    <div className="text-center py-4">
+                        <p className="text-[#FFFFFFCC]">You found the end of the wall</p>
+                    </div>
+                )}
             </div>
 
             {isModalOpen && (
