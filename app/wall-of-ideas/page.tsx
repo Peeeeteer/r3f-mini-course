@@ -48,12 +48,12 @@ export default function Home() {
     }>({});
 
     // Page loading
-    const [page, setPage] = useState<number>(1);
     const [hasMore, setHasMore] = useState<boolean>(true);
+    const [offset, setOffset] = useState<number>(0);
     const itemsPerPage = 20; // Change this to 20 later
 
     const observer = useRef<IntersectionObserver | null>(null);
-    const lastProjectElementRef = useCallback((node: HTMLElement | null) => {
+    const lastProjectElementRef = useCallback((node) => {
         if (isLoading) return;
         if (observer.current) observer.current.disconnect();
         observer.current = new IntersectionObserver(entries => {
@@ -63,6 +63,7 @@ export default function Home() {
         });
         if (node) observer.current.observe(node);
     }, [isLoading, hasMore]);
+
 
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -116,27 +117,31 @@ export default function Home() {
         setIsModalOpen(false);
     };
 
-    const fetchProjects = async (pageNumber: number) => {
+    const fetchProjects = async () => {
         setIsLoading(true);
-        console.log('Fetching projects...');
 
         const { data, error } = await supabase.rpc('get_ideas', {
-            page_number: pageNumber,
+            offset_value: offset,
             items_per_page: itemsPerPage
         });
 
         if (error) {
             console.error('Error fetching projects:', error);
         } else {
-            console.log('Fetched data:', data);
             if (data.length < itemsPerPage) {
                 setHasMore(false);
             }
             setProjects(prevProjects => [...prevProjects, ...data]);
-            setPage(pageNumber);
+            setOffset(prevOffset => prevOffset + data.length);
         }
 
         setIsLoading(false);
+    };
+
+    const handleLoadMore = () => {
+        if (!isLoading && hasMore) {
+            fetchProjects();
+        }
     };
 
     useEffect(() => {
@@ -145,16 +150,11 @@ export default function Home() {
         } else {
             document.body.style.overflow = 'auto';
         }
-        fetchProjects(1);
-
+        if (offset === 0) {
+            fetchProjects();
+        }
     }, [isModalOpen]);
 
-
-    const handleLoadMore = () => {
-        if (!isLoading && hasMore) {
-            fetchProjects(page + 1);
-        }
-    };
 
     const handleClickOutside = (e: React.MouseEvent<HTMLDivElement>) => {
         if (e.target instanceof HTMLElement && e.target.id === 'modal-overlay') {
@@ -209,8 +209,14 @@ export default function Home() {
         return null;
     };
 
+    function formatDate(dateString: string): string {
+        const date = new Date(dateString);
+        const day = date.getUTCDate();
+        const month = date.toLocaleString('default', { month: 'short' });
+        return `${day}. ${month}`;
+    }
 
-    <thead className="bg-[#FFFFFF0F]">
+    <thead className="bg-[#FFFFFF0F]" >
         <tr>
             <th className="w-1/12 text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-3 px-6">
                 Person
@@ -235,7 +241,7 @@ export default function Home() {
                 Description
             </th>
         </tr>
-    </thead>
+    </thead >
     return (
         <>
             <HeaderSection />
@@ -258,6 +264,9 @@ export default function Home() {
                     <table className="border-collapse table-fixed w-full text-sm mt-[20px]">
                         <thead className="bg-[#FFFFFF0F]">
                             <tr>
+                                <th className="w-1/12 text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-3 px-6">
+                                    Date
+                                </th>
                                 <th className="w-1/12 text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-3 px-6">
                                     Person
                                 </th>
@@ -290,35 +299,33 @@ export default function Home() {
                         </thead>
                         <tbody>
                             {
-                                isLoading ?
-                                    <tr>
-                                        <td colSpan={4} className="text-center py-5 italic">Getting history data</td>
+                                projects.map((project, index) => (
+                                    <tr className="" key={`${project.id}-${index}`}>
+
+                                        <td className="w-1/12 py-[26px] px-6 text-[#FFFFFFCC] text-sm leading-[20px] border-b border-[#FFFFFF33]">
+                                            {project.created_at ? formatDate(project.created_at) : ''}
+                                        </td>
+                                        <td className="w-1/12 py-[26px] px-6 text-[#FFFFFFCC] text-sm leading-[20px] border-b border-[#FFFFFF33]">
+                                            {project.created_by}
+                                        </td>
+                                        <td className="w-1/12 py-[26px] px-6 text-[#FFFFFFCC] text-sm leading-[20px] border-b border-[#FFFFFF33]">
+                                            {project.category}
+                                        </td>
+                                        <td className="w-1/12 py-[26px] px-6 text-[#FFFFFFCC] text-sm leading-[20px] border-b border-[#FFFFFF33]">
+                                            {project.difficulty}
+                                        </td>
+                                        <td className="w-8/12 py-[26px] px-6 text-[#FFFFFFCC] text-sm leading-[20px] border-b border-[#FFFFFF33]">
+                                            {project.description}
+                                        </td>
                                     </tr>
-                                    :
-                                    projects.map((project, index) => (
-                                        <tr
-                                            className=""
-                                            key={project.id}
-                                            ref={index === projects.length - 1 ? lastProjectElementRef : null}
-                                        >
-                                            <td className="w-1/12 py-[26px] px-6 text-[#FFFFFFCC] text-sm leading-[20px] border-b border-[#FFFFFF33]">
-                                                {project.created_by}
-                                            </td>
-                                            <td className="w-1/12 py-[26px] px-6 text-[#FFFFFFCC] text-sm leading-[20px] border-b border-[#FFFFFF33]">
-                                                {project.category}
-                                            </td>
-                                            <td className="w-1/12 py-[26px] px-6 text-[#FFFFFFCC] text-sm leading-[20px] border-b border-[#FFFFFF33]">
-                                                {project.difficulty}
-                                            </td>
-                                            <td className="w-8/12 py-[26px] px-6 text-[#FFFFFFCC] text-sm leading-[20px] border-b border-[#FFFFFF33]">
-                                                {project.description}
-                                            </td>
-                                        </tr>
-                                    ))
+                                ))
                             }
                         </tbody>
                     </table>
                 </div>
+
+                {/* Intersection Observer target */}
+                <div ref={lastProjectElementRef} style={{ height: '20px' }}></div>
 
 
                 {isLoading && (
@@ -327,11 +334,12 @@ export default function Home() {
                     </div>
                 )}
 
-                {!hasMore && (
+                {!isLoading && !hasMore && (
                     <div className="text-center py-4">
                         <p className="text-[#FFFFFFCC]">You found the end of the wall</p>
                     </div>
                 )}
+
             </div>
 
             {isModalOpen && (
