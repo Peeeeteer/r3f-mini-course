@@ -14,7 +14,7 @@ import { createClient } from "@/utils/supabase/client";
 interface Project {
     id?: string;
     created_at?: string;
-    created_by: string;
+    created_by?: string;
     category: string;
     difficulty: string;
     description: string;
@@ -48,7 +48,7 @@ export default function Home() {
     }>({});
 
 
-    // Modal & user can post stuff
+    //    //! Modal & user can post stuff
     const addNewProject = async () => {
         const descriptionError = validateDescription(newProject.description);
         const newErrors = {
@@ -65,36 +65,39 @@ export default function Home() {
 
         setIsLoading(true);
 
-        const { data, error } = await supabase
-            .from('ideas')
-            .insert([
-                {
-                    created_at: new Date().toISOString(),
-                    created_by: authUser?.user_metadata.user_name || 'Anonymous',
-                    category: newProject.category,
-                    difficulty: newProject.difficulty,
-                    description: newProject.description,
-                }
-            ])
-            .select();
+        // If the authUser, just triple checking
+        if (authUser) {
+            const { data, error } = await supabase
+                .from('ideas')
+                .insert([
+                    {
+                        created_at: new Date().toISOString(),
+                        created_by: authUser.user_metadata.user_name,
+                        category: newProject.category,
+                        difficulty: newProject.difficulty,
+                        description: newProject.description,
+                    }
+                ])
+                .select();
 
-        setIsLoading(false);
+            setIsLoading(false);
 
-        if (error) {
-            console.error('Error adding new project:', error);
-            // You might want to show an error message to the user here
-        } else if (data) {
-            // Add the new project to the local state
-            setProjects(prev => [data[0], ...prev]);
+            if (error) {
+                console.error('Error adding new project:', error);
+                // You might want to show an error message to the user here
+            } else if (data) {
+                // Add the new project to the local state
+                setProjects(prev => [data[0], ...prev]);
 
-            // Reset the form
-            setNewProject({
-                description: "",
-                category: "",
-                difficulty: "",
-            });
-            setErrors({});
-            setIsModalOpen(false);
+                // Reset the form
+                setNewProject({
+                    description: "",
+                    category: "",
+                    difficulty: "",
+                });
+                setErrors({});
+                setIsModalOpen(false);
+            }
         }
     };
 
@@ -191,7 +194,7 @@ export default function Home() {
     }, [isModalOpen]);
 
 
-    // Loading & Filtering project ideas
+    //  //! Loading & Filtering project ideas
     const [hasMore, setHasMore] = useState<boolean>(true);
     const [offset, setOffset] = useState<number>(0);
     const itemsPerPage = 20;
@@ -242,34 +245,14 @@ export default function Home() {
         difficulty: 'All'
     });
 
-    const [sort, setSort] = useState<{ column: string, direction: 'asc' | 'desc' }>({
-        column: 'date',
-        direction: 'desc'
-    });
-
-    const [dateSort, setDateSort] = useState<{ display: string, direction: 'asc' | 'desc' }>({
-        display: 'Date',
-        direction: 'desc'
-    });
-
     const handleFilterChange = (type: 'category' | 'difficulty', value: string) => {
         setFilter(prev => ({ ...prev, [type]: value }));
         console.log(`Changing ${type} filter to: ${value}`);
     };
 
-    const handleDateSortChange = (direction: 'asc' | 'desc') => {
-        setDateSort({
-            display: direction === 'asc' ? 'Asc ↑' : 'Desc ↓',
-            direction: direction
-        });
-        // Here you would also update your data sorting
-    };
-
-    // Add these state variables at the top of your component
     const [categoryDropdownOpen, setCategoryDropdownOpen] = useState(false);
     const [difficultyDropdownOpen, setDifficultyDropdownOpen] = useState(false);
 
-    // Add this useEffect to handle closing dropdowns when clicking outside
     useEffect(() => {
         const closeDropdowns = (e: MouseEvent) => {
             if (!(e.target as HTMLElement).closest('.dropdown-container')) {
@@ -281,8 +264,6 @@ export default function Home() {
         document.addEventListener('click', closeDropdowns);
         return () => document.removeEventListener('click', closeDropdowns);
     }, []);
-
-
 
 
     return (
@@ -298,7 +279,9 @@ export default function Home() {
                     <div className="flex justify-start mb-4">
                         <button
                             onClick={handleAddNewIdeaClick}
-                            className="py-2 px-3 rounded-md text-white text-sm leading-5 border border-[#FFFFFF0F] bg-[#635AFF] cursor-pointer mr-2"
+                            // Add the same onhover effect as the Category button 
+
+                            className="py-2 px-3 rounded-md text-white text-sm leading-5 border border-[#FFFFFF0F] bg-[#635AFF] cursor-pointer mr-2 hover:bg-[#635AFF] hover:bg-opacity-50 transition-colors duration-150"
                         >
                             Add new idea
                         </button>
@@ -352,8 +335,7 @@ export default function Home() {
                                             </div>
                                         )}
                                     </div>
-                                </th>
-                     */}
+                                </th>*/}
                                 <th className="w-[10%] text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-1 px-1">
                                     <div className="relative inline-block text-left dropdown-container w-full">
                                         <button
