@@ -306,7 +306,13 @@ export default function Home() {
                     <table className="border-collapse table-fixed w-full text-sm mt-[20px]">
                         <thead className="bg-[#FFFFFF0F]">
                             <tr>
-                                <th className="w-[7%] text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-1 px-1">
+                                <th className="pl-2 w-[5%] text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-3 px-2">
+                                    Date
+                                </th>
+                                <th className="w-[12%] text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-3 px-2">
+                                    Person
+                                </th>
+                                {/* <th className="w-[7%] text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-1 px-1">
                                     <div className="relative inline-block text-left dropdown-container w-full">
                                         <button
                                             type="button"
@@ -347,9 +353,7 @@ export default function Home() {
                                         )}
                                     </div>
                                 </th>
-                                <th className="w-[10%] text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-3 px-2">
-                                    Person
-                                </th>
+                     */}
                                 <th className="w-[10%] text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-1 px-1">
                                     <div className="relative inline-block text-left dropdown-container w-full">
                                         <button
@@ -422,7 +426,7 @@ export default function Home() {
                                         )}
                                     </div>
                                 </th>
-                                <th className="w-[65%] text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-3 px-2">
+                                <th className="w-[68%] text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-3 px-2">
                                     Description
                                 </th>
                             </tr>
