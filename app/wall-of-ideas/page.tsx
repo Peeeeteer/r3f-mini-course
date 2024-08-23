@@ -19,6 +19,7 @@ interface Project {
     difficulty: string;
     description: string;
 }
+
 type SortKey = 'category' | 'difficulty';
 
 interface SortConfig {
@@ -40,30 +41,62 @@ export default function Home() {
         difficulty: "",
     });
 
-
     const [errors, setErrors] = useState<{
         description?: string;
         category?: string;
         difficulty?: string;
     }>({});
 
-    // Page loading
-    const [hasMore, setHasMore] = useState<boolean>(true);
-    const [offset, setOffset] = useState<number>(0);
-    const itemsPerPage = 20; // Change this to 20 later
 
-    const observer = useRef<IntersectionObserver | null>(null);
-    const lastProjectElementRef = useCallback((node) => {
-        if (isLoading) return;
-        if (observer.current) observer.current.disconnect();
-        observer.current = new IntersectionObserver(entries => {
-            if (entries[0].isIntersecting && hasMore) {
-                handleLoadMore();
-            }
-        });
-        if (node) observer.current.observe(node);
-    }, [isLoading, hasMore]);
+    // Modal & user can post stuff
+    const addNewProject = async () => {
+        const descriptionError = validateDescription(newProject.description);
+        const newErrors = {
+            description: descriptionError || undefined,
+            category: newProject.category ? undefined : 'Please select a category',
+            difficulty: newProject.difficulty ? undefined : 'Please select a difficulty',
+        };
 
+        setErrors(newErrors);
+
+        if (Object.values(newErrors).some(error => error !== undefined)) {
+            return;
+        }
+
+        setIsLoading(true);
+
+        const { data, error } = await supabase
+            .from('ideas')
+            .insert([
+                {
+                    created_at: new Date().toISOString(),
+                    created_by: authUser?.user_metadata.user_name || 'Anonymous',
+                    category: newProject.category,
+                    difficulty: newProject.difficulty,
+                    description: newProject.description,
+                }
+            ])
+            .select();
+
+        setIsLoading(false);
+
+        if (error) {
+            console.error('Error adding new project:', error);
+            // You might want to show an error message to the user here
+        } else if (data) {
+            // Add the new project to the local state
+            setProjects(prev => [data[0], ...prev]);
+
+            // Reset the form
+            setNewProject({
+                description: "",
+                category: "",
+                difficulty: "",
+            });
+            setErrors({});
+            setIsModalOpen(false);
+        }
+    };
 
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -85,76 +118,6 @@ export default function Home() {
             }));
         }
     };
-
-    const addNewProject = () => {
-        const descriptionError = validateDescription(newProject.description);
-        const newErrors = {
-            description: descriptionError || undefined,
-            category: newProject.category ? undefined : 'Please select a category',
-            difficulty: newProject.difficulty ? undefined : 'Please select a difficulty',
-        };
-
-        setErrors(newErrors);
-
-        if (Object.values(newErrors).some(error => error !== undefined)) {
-            return;
-        }
-
-        setProjects(prev => [
-            ...prev,
-            {
-                id: (prev.length + 1).toString(),
-                person: authUser?.user_metadata.user_name || 'Anonymous',
-                ...newProject,
-            },
-        ]);
-        setNewProject({
-            description: "",
-            category: "",
-            difficulty: "",
-        });
-        setErrors({});
-        setIsModalOpen(false);
-    };
-
-    const fetchProjects = async () => {
-        setIsLoading(true);
-
-        const { data, error } = await supabase.rpc('get_ideas', {
-            offset_value: offset,
-            items_per_page: itemsPerPage
-        });
-
-        if (error) {
-            console.error('Error fetching projects:', error);
-        } else {
-            if (data.length < itemsPerPage) {
-                setHasMore(false);
-            }
-            setProjects(prevProjects => [...prevProjects, ...data]);
-            setOffset(prevOffset => prevOffset + data.length);
-        }
-
-        setIsLoading(false);
-    };
-
-    const handleLoadMore = () => {
-        if (!isLoading && hasMore) {
-            fetchProjects();
-        }
-    };
-
-    useEffect(() => {
-        if (isModalOpen) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'auto';
-        }
-        if (offset === 0) {
-            fetchProjects();
-        }
-    }, [isModalOpen]);
-
 
     const handleClickOutside = (e: React.MouseEvent<HTMLDivElement>) => {
         if (e.target instanceof HTMLElement && e.target.id === 'modal-overlay') {
@@ -216,32 +179,112 @@ export default function Home() {
         return `${day}. ${month}`;
     }
 
-    <thead className="bg-[#FFFFFF0F]" >
-        <tr>
-            <th className="w-1/12 text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-3 px-6">
-                Person
-            </th>
-            <th className="w-1/12 text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-3 px-6 cursor-pointer" >
-                <div className="flex justify-between items-center">
-                    Category
-                    <svg className="inline-block ml-1 w-3 h-3" fill="currentColor" viewBox="0 0 192 512">
-                        <path d="M96 48c13.3 0 24-10.7 24-24s-10.7-24-24-24S72 10.7 72 24s10.7 24 24 24zM24 264h144c13.3 0 24-10.7 24-24s-10.7-24-24-24H24c-13.3 0-24 10.7-24 24s10.7 24 24 24zm144 160H24c-13.3 0-24 10.7-24 24s10.7 24 24 24h144c13.3 0 24-10.7 24-24s-10.7-24-24-24zm-72 80c-13.3 0-24 10.7-24 24s10.7 24 24 24 24-10.7 24-24-10.7-24-24-24z" />
-                    </svg>
-                </div>
-            </th>
-            <th className="w-1/12 text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-3 px-6 cursor-pointer">
-                <div className="flex justify-between items-center">
-                    Difficulty
-                    <svg className="inline-block ml-1 w-3 h-3" fill="currentColor" viewBox="0 0 192 512">
-                        <path d="M96 48c13.3 0 24-10.7 24-24s-10.7-24-24-24S72 10.7 72 24s10.7 24 24 24zM24 264h144c13.3 0 24-10.7 24-24s-10.7-24-24-24H24c-13.3 0-24 10.7-24 24s10.7 24 24 24zm144 160H24c-13.3 0-24 10.7-24 24s10.7 24 24 24h144c13.3 0 24-10.7 24-24s-10.7-24-24-24zm-72 80c-13.3 0-24 10.7-24 24s10.7 24 24 24 24-10.7 24-24-10.7-24-24-24z" />
-                    </svg>
-                </div>
-            </th>
-            <th className="w-8/12 text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-3 px-6">
-                Description
-            </th>
-        </tr>
-    </thead >
+    useEffect(() => {
+        if (isModalOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
+        if (offset === 0) {
+            fetchProjects();
+        }
+    }, [isModalOpen]);
+
+
+    // Loading & Filtering project ideas
+    const [hasMore, setHasMore] = useState<boolean>(true);
+    const [offset, setOffset] = useState<number>(0);
+    const itemsPerPage = 20;
+
+    const observer = useRef<IntersectionObserver | null>(null);
+    const lastProjectElementRef = useCallback((node) => {
+        if (isLoading) return;
+        if (observer.current) observer.current.disconnect();
+        observer.current = new IntersectionObserver(entries => {
+            if (entries[0].isIntersecting && hasMore) {
+                handleLoadMore();
+            }
+        });
+        if (node) observer.current.observe(node);
+    }, [isLoading, hasMore]);
+
+    const fetchProjects = async () => {
+        setIsLoading(true);
+
+        const { data, error } = await supabase.rpc('get_ideas', {
+            offset_value: offset,
+            items_per_page: itemsPerPage
+        });
+
+        if (error) {
+            console.error('Error fetching projects:', error);
+        } else {
+            if (data.length < itemsPerPage) {
+                setHasMore(false);
+            }
+            setProjects(prevProjects => [...prevProjects, ...data]);
+            setOffset(prevOffset => prevOffset + data.length);
+        }
+
+        setIsLoading(false);
+    };
+
+    const handleLoadMore = () => {
+        if (!isLoading && hasMore) {
+            fetchProjects();
+        }
+    };
+
+    const [dateDropdownOpen, setDateDropdownOpen] = useState(false);
+
+    const [filter, setFilter] = useState<{ category: string, difficulty: string }>({
+        category: 'All',
+        difficulty: 'All'
+    });
+
+    const [sort, setSort] = useState<{ column: string, direction: 'asc' | 'desc' }>({
+        column: 'date',
+        direction: 'desc'
+    });
+
+    const [dateSort, setDateSort] = useState<{ display: string, direction: 'asc' | 'desc' }>({
+        display: 'Date',
+        direction: 'desc'
+    });
+
+    const handleFilterChange = (type: 'category' | 'difficulty', value: string) => {
+        setFilter(prev => ({ ...prev, [type]: value }));
+        console.log(`Changing ${type} filter to: ${value}`);
+    };
+
+    const handleDateSortChange = (direction: 'asc' | 'desc') => {
+        setDateSort({
+            display: direction === 'asc' ? 'Asc ↑' : 'Desc ↓',
+            direction: direction
+        });
+        // Here you would also update your data sorting
+    };
+
+    // Add these state variables at the top of your component
+    const [categoryDropdownOpen, setCategoryDropdownOpen] = useState(false);
+    const [difficultyDropdownOpen, setDifficultyDropdownOpen] = useState(false);
+
+    // Add this useEffect to handle closing dropdowns when clicking outside
+    useEffect(() => {
+        const closeDropdowns = (e: MouseEvent) => {
+            if (!(e.target as HTMLElement).closest('.dropdown-container')) {
+                setCategoryDropdownOpen(false);
+                setDifficultyDropdownOpen(false);
+            }
+        };
+
+        document.addEventListener('click', closeDropdowns);
+        return () => document.removeEventListener('click', closeDropdowns);
+    }, []);
+
+
+
+
     return (
         <>
             <HeaderSection />
@@ -260,66 +303,150 @@ export default function Home() {
                             Add new idea
                         </button>
                     </div>
-
                     <table className="border-collapse table-fixed w-full text-sm mt-[20px]">
                         <thead className="bg-[#FFFFFF0F]">
                             <tr>
-                                <th className="w-1/12 text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-3 px-6">
-                                    Date
+                                <th className="w-[7%] text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-1 px-1">
+                                    <div className="relative inline-block text-left dropdown-container w-full">
+                                        <button
+                                            type="button"
+                                            className="inline-flex justify-between items-center w-full px-2 py-1 text-xs font-medium text-white bg-[#635AFF] rounded-sm hover:bg-opacity-80 focus:outline-none"
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                setDateDropdownOpen(!dateDropdownOpen);
+                                                setCategoryDropdownOpen(false);
+                                                setDifficultyDropdownOpen(false);
+                                            }}
+                                        >
+                                            {dateSort.display}
+                                            <svg className="w-3 h-3 ml-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                                            </svg>
+                                        </button>
+                                        {dateDropdownOpen && (
+                                            <div className="absolute z-10 left-0 w-[120%] mt-1 origin-top-left bg-[#1F1F1F] rounded-sm shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                                <button
+                                                    onClick={() => {
+                                                        handleDateSortChange('asc');
+                                                        setDateDropdownOpen(false);
+                                                    }}
+                                                    className={`${dateSort.direction === 'asc' ? 'bg-[#635AFF] text-white' : 'text-[#FFFFFFCC]'} block w-full text-left px-2 py-1 text-xs hover:bg-[#635AFF] hover:bg-opacity-50 transition-colors duration-150`}
+                                                >
+                                                    Asc ↑
+                                                </button>
+                                                <button
+                                                    onClick={() => {
+                                                        handleDateSortChange('desc');
+                                                        setDateDropdownOpen(false);
+                                                    }}
+                                                    className={`${dateSort.direction === 'desc' ? 'bg-[#635AFF] text-white' : 'text-[#FFFFFFCC]'} block w-full text-left px-2 py-1 text-xs hover:bg-[#635AFF] hover:bg-opacity-50 transition-colors duration-150`}
+                                                >
+                                                    Desc ↓
+                                                </button>
+                                            </div>
+                                        )}
+                                    </div>
                                 </th>
-                                <th className="w-1/12 text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-3 px-6">
+                                <th className="w-[10%] text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-3 px-2">
                                     Person
                                 </th>
-                                <th
-                                    className="w-1/12 text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-3 px-6 cursor-pointer"
-                                    onClick={() => {
-
-                                    }}
-                                >
-                                    <div className="flex justify-between items-center">
-                                        Category
-
+                                <th className="w-[10%] text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-1 px-1">
+                                    <div className="relative inline-block text-left dropdown-container w-full">
+                                        <button
+                                            type="button"
+                                            className="inline-flex justify-between items-center w-full px-2 py-1 text-xs font-medium text-white bg-[#635AFF] rounded-sm hover:bg-opacity-80 focus:outline-none"
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                setCategoryDropdownOpen(!categoryDropdownOpen);
+                                                setDateDropdownOpen(false);
+                                                setDifficultyDropdownOpen(false);
+                                            }}
+                                        >
+                                            {filter.category === 'All' ? 'Category' : filter.category}
+                                            <svg className="w-3 h-3 ml-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                                            </svg>
+                                        </button>
+                                        {categoryDropdownOpen && (
+                                            <div className="absolute z-10 left-0 w-full mt-1 origin-top-left bg-[#1F1F1F] rounded-sm shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                                {['All', 'Frontend', 'Backend', 'Scripts'].map((category) => (
+                                                    <button
+                                                        key={category}
+                                                        onClick={() => {
+                                                            handleFilterChange('category', category);
+                                                            setCategoryDropdownOpen(false);
+                                                        }}
+                                                        className={`${filter.category === category ? 'bg-[#635AFF] text-white' : 'text-[#FFFFFFCC]'
+                                                            } block w-full text-left px-2 py-1 text-xs hover:bg-[#635AFF] hover:bg-opacity-50 transition-colors duration-150`}
+                                                    >
+                                                        {category}
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        )}
                                     </div>
                                 </th>
-                                <th
-                                    className="w-1/12 text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-3 px-6 cursor-pointer"
-                                    onClick={() => {
-
-                                    }}
-                                >
-                                    <div className="flex justify-between items-center">
-                                        Difficulty
-                                        { }
+                                <th className="w-[10%] text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-1 px-1">
+                                    <div className="relative inline-block text-left dropdown-container w-full">
+                                        <button
+                                            type="button"
+                                            className="inline-flex justify-between items-center w-full px-2 py-1 text-xs font-medium text-white bg-[#635AFF] rounded-sm hover:bg-opacity-80 focus:outline-none"
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                setDifficultyDropdownOpen(!difficultyDropdownOpen);
+                                                setDateDropdownOpen(false);
+                                                setCategoryDropdownOpen(false);
+                                            }}
+                                        >
+                                            {filter.difficulty === 'All' ? 'Difficulty' : filter.difficulty}
+                                            <svg className="w-3 h-3 ml-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                                            </svg>
+                                        </button>
+                                        {difficultyDropdownOpen && (
+                                            <div className="absolute z-10 left-0 w-full mt-1 origin-top-left bg-[#1F1F1F] rounded-sm shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                                {['All', 'Easy', 'Medium', 'Hard'].map((difficulty) => (
+                                                    <button
+                                                        key={difficulty}
+                                                        onClick={() => {
+                                                            handleFilterChange('difficulty', difficulty);
+                                                            setDifficultyDropdownOpen(false);
+                                                        }}
+                                                        className={`${filter.difficulty === difficulty ? 'bg-[#635AFF] text-white' : 'text-[#FFFFFFCC]'
+                                                            } block w-full text-left px-2 py-1 text-xs hover:bg-[#635AFF] hover:bg-opacity-50 transition-colors duration-150`}
+                                                    >
+                                                        {difficulty}
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        )}
                                     </div>
                                 </th>
-                                <th className="w-8/12 text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-3 px-6">
+                                <th className="w-[65%] text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-3 px-2">
                                     Description
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            {
-                                projects.map((project, index) => (
-                                    <tr className="" key={`${project.id}-${index}`}>
-
-                                        <td className="w-1/12 py-[26px] px-6 text-[#FFFFFFCC] text-sm leading-[20px] border-b border-[#FFFFFF33]">
-                                            {project.created_at ? formatDate(project.created_at) : ''}
-                                        </td>
-                                        <td className="w-1/12 py-[26px] px-6 text-[#FFFFFFCC] text-sm leading-[20px] border-b border-[#FFFFFF33]">
-                                            {project.created_by}
-                                        </td>
-                                        <td className="w-1/12 py-[26px] px-6 text-[#FFFFFFCC] text-sm leading-[20px] border-b border-[#FFFFFF33]">
-                                            {project.category}
-                                        </td>
-                                        <td className="w-1/12 py-[26px] px-6 text-[#FFFFFFCC] text-sm leading-[20px] border-b border-[#FFFFFF33]">
-                                            {project.difficulty}
-                                        </td>
-                                        <td className="w-8/12 py-[26px] px-6 text-[#FFFFFFCC] text-sm leading-[20px] border-b border-[#FFFFFF33]">
-                                            {project.description}
-                                        </td>
-                                    </tr>
-                                ))
-                            }
+                            {projects.map((project, index) => (
+                                <tr className="" key={`${project.id}-${index}`}>
+                                    <td className="w-[5%] py-[26px] px-2 text-[#FFFFFFCC] text-s leading-[20px] border-b border-[#FFFFFF33]">
+                                        {project.created_at ? formatDate(project.created_at) : ''}
+                                    </td>
+                                    <td className="w-[8%] py-[26px] px-2 text-[#FFFFFFCC] text-s leading-[20px] border-b border-[#FFFFFF33]">
+                                        {project.created_by}
+                                    </td>
+                                    <td className="w-[10%] py-[26px] px-2 text-[#FFFFFFCC] text-s leading-[20px] border-b border-[#FFFFFF33]">
+                                        {project.category}
+                                    </td>
+                                    <td className="w-[10%] py-[26px] px-2 text-[#FFFFFFCC] text-s leading-[20px] border-b border-[#FFFFFF33]">
+                                        {project.difficulty}
+                                    </td>
+                                    <td className="w-[67%] py-[26px] px-2 text-[#FFFFFFCC] text-sm leading-[20px] border-b border-[#FFFFFF33]">
+                                        {project.description}
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>
@@ -419,11 +546,12 @@ export default function Home() {
 
                             <button
                                 onClick={addNewProject}
-                                className={`py-2 px-4 bg-blue-500 text-white rounded ${(Object.values(errors).some(error => error !== undefined) || !newProject.category || !newProject.difficulty || !newProject.description) ? 'opacity-50 cursor-not-allowed' : ''}`}
-                                disabled={Object.values(errors).some(error => error !== undefined) || !newProject.category || !newProject.difficulty || !newProject.description}
+                                className={`py-2 px-4 bg-blue-500 text-white rounded ${(isLoading || Object.values(errors).some(error => error !== undefined) || !newProject.category || !newProject.difficulty || !newProject.description) ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                disabled={isLoading || Object.values(errors).some(error => error !== undefined) || !newProject.category || !newProject.difficulty || !newProject.description}
                             >
-                                Add
+                                {isLoading ? 'Adding...' : 'Add'}
                             </button>
+
                         </div>
                     </div>
                 </div>
