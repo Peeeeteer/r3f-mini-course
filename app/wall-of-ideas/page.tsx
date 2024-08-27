@@ -47,9 +47,16 @@ export default function Home() {
         difficulty?: string;
     }>({});
 
+    const [canSubmit, setCanSubmit] = useState(true);
+    const timeoutRef = useRef(null);
 
     //    //! Modal & user can post stuff
     const addNewProject = async () => {
+        if (!canSubmit) {
+            alert("Please wait 1 minute before submitting another idea.");
+            return;
+        }
+
         const descriptionError = validateDescription(newProject.description);
         const newErrors = {
             description: descriptionError || undefined,
@@ -65,7 +72,7 @@ export default function Home() {
 
         setIsLoading(true);
 
-        // If the authUser, just triple checking
+        // If the authUser exists, just triple checking
         if (authUser) {
             const { data, error } = await supabase
                 .from('ideas')
@@ -97,6 +104,11 @@ export default function Home() {
                 });
                 setErrors({});
                 setIsModalOpen(false);
+
+                // Update last submission time
+                localStorage.setItem('lastSubmissionTime', Date.now().toString());
+                setCanSubmit(false);
+                setTimeout(() => setCanSubmit(true), 60000);
             }
         }
     };
@@ -194,6 +206,29 @@ export default function Home() {
     }, [isModalOpen]);
 
 
+    useEffect(() => {
+        const checkSubmissionStatus = () => {
+            const lastSubmissionTime = localStorage.getItem('lastSubmissionTime');
+            if (lastSubmissionTime) {
+                const timeSinceLastSubmission = Date.now() - parseInt(lastSubmissionTime);
+                if (timeSinceLastSubmission < 60000) { // 60000 ms = 1 minute
+                    setCanSubmit(false);
+                    const remainingTime = 60000 - timeSinceLastSubmission;
+                    timeoutRef.current = setTimeout(() => setCanSubmit(true), remainingTime);
+                }
+            }
+        };
+
+        checkSubmissionStatus();
+
+        return () => {
+            if (timeoutRef.current) {
+                clearTimeout(timeoutRef.current);
+            }
+        };
+    }, []);
+
+
     //  //! Loading & Filtering project ideas
     const [hasMore, setHasMore] = useState<boolean>(true);
     const [offset, setOffset] = useState<number>(0);
@@ -266,6 +301,8 @@ export default function Home() {
     }, []);
 
 
+
+
     return (
         <>
             <HeaderSection />
@@ -292,7 +329,7 @@ export default function Home() {
                                 <th className="pl-2 w-[5%] text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-3 px-2">
                                     Date
                                 </th>
-                                <th className="w-[12%] text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-3 px-2">
+                                <th className="w-[10%] text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-3 px-2">
                                     Person
                                 </th>
                                 {/* <th className="w-[7%] text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-1 px-1">
@@ -408,7 +445,7 @@ export default function Home() {
                                         )}
                                     </div>
                                 </th>
-                                <th className="w-[68%] text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-3 px-2">
+                                <th className="w-[74%] text-[#FFFFFFCC] tracking-[0.2px] text-xs text-left leading-4 font-medium py-3 px-2">
                                     Description
                                 </th>
                             </tr>
