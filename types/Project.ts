@@ -5,7 +5,7 @@ export interface TProject {
   date: string;
   title: string;
   description: string;
-  difficulty: string;
+  difficulty?: string;
   category: string;
   tags: string[];
   price?: string;

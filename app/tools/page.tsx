@@ -10,20 +10,35 @@ import ToolSection from "@/containers/tools";
 
 
 const tags = ["Frontend", "Backend", "Ideas", "Freelancing"];
+interface TProject {
+    type: "purple" | "yellow" | "danger";
+    date: string;
+    title: string;
+    description: string;
+    difficulty?: string;
+    category: string;
+    tags: string[];
+    price?: string;
+    image: string;
+    url: string;
+    projectName: string;
+}
 
-const projects = [
+interface ProjectsSectionProps {
+    projects: TProject[];
+}
+
+const projects: TProject[] = [
     {
         type: "purple",
         date: "16 August 2024",
         title: "Figma Plugin",
         description: "Made by me A figma plugin with 800+  3D Character Illustrations. Add them with one click",
-        // difficulty: "Easy",
         category: "Frontend",
         tags: ["Figma", "Illustrations"],
         price: "Free",
         image: "/project-1.png",
         url: "https://www.figma.com/community/plugin/1334158691756914016/zudrit-3d-character-illustrations",
-        milestones: "",
         projectName: "chrome-extension",
     },
     // {

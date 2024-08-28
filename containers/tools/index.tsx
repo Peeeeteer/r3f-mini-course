@@ -4,8 +4,22 @@ import CodeBrowserSvg from "@/components/Icons/CodeBrowserSvg";
 import BarChartSvg from "@/components/Icons/BarChartSvg";
 import Image from "next/image";
 import { twMerge } from "tailwind-merge";
-import { TProject } from "@/types/Project";
 import Link from "next/link";
+
+
+interface TProject {
+    type: "purple" | "yellow" | "danger";
+    date: string;
+    title: string;
+    description: string;
+    difficulty?: string;
+    category: string;
+    tags: string[];
+    price?: string;
+    image: string;
+    url: string;
+    projectName: string;
+}
 
 interface ProjectsSectionProps {
     projects: TProject[];

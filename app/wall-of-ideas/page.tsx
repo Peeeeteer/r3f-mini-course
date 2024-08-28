@@ -9,8 +9,6 @@ import { useRouter } from "next/navigation";
 import Loading from "@/components/Loading";
 import { useAuthContext } from "@/contexts/AuthContext";
 import { createClient } from "@/utils/supabase/client";
-import { log } from "node:console";
-
 
 interface Project {
     id?: string;
@@ -21,12 +19,6 @@ interface Project {
     description: string;
 }
 
-type SortKey = 'category' | 'difficulty';
-
-interface SortConfig {
-    key: SortKey | null;
-    direction: 'asc' | 'desc' | null;
-}
 
 export default function Home() {
 
@@ -54,7 +46,8 @@ export default function Home() {
     }>({});
 
     const [canSubmit, setCanSubmit] = useState(true);
-    const timeoutRef = useRef(null);
+    const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
 
     //    //! Modal & user can post stuff
     const addNewProject = async () => {
@@ -235,11 +228,12 @@ export default function Home() {
 
     //  //! Loading & Filtering project ideas
     const [hasMore, setHasMore] = useState<boolean>(true);
-    const [offset, setOffset] = useState<number>(0);
+
+    const [cursor, setCursor] = useState<string | null>(null);
     const itemsPerPage = 20;
 
     const observer = useRef<IntersectionObserver | null>(null);
-    const lastProjectElementRef = useCallback((node) => {
+    const lastProjectElementRef = useCallback((node: HTMLDivElement | null) => {
         if (isLoading) return;
         if (observer.current) observer.current.disconnect();
         observer.current = new IntersectionObserver(entries => {
@@ -250,13 +244,14 @@ export default function Home() {
         if (node) observer.current.observe(node);
     }, [isLoading, hasMore]);
 
+
     const fetchProjects = async () => {
         setIsLoading(true);
 
         console.log('Fetching projects with filters:', filter);
 
         const { data, error } = await supabase.rpc('get_ideas', {
-            offset_value: offset,
+            cursor_value: cursor || null, // Ensure it's null if undefined
             items_per_page: itemsPerPage,
             category_filter: filter.category === 'All' ? null : filter.category,
             difficulty_filter: filter.difficulty === 'All' ? null : filter.difficulty
@@ -272,29 +267,31 @@ export default function Home() {
             } else {
                 setHasMore(true);
             }
+
             setProjects(prevProjects => {
-                // If offset is 0, replace the entire array, otherwise append
-                return offset === 0 ? data : [...prevProjects, ...data];
+                return cursor === null ? data : [...prevProjects, ...data];
             });
-            setOffset(prevOffset => prevOffset + data.length);
+
+            if (data.length > 0) {
+                setCursor(data[data.length - 1].created_at);
+            }
         }
 
         setIsLoading(false);
     };
 
-
     const handleLoadMore = () => {
         if (!isLoading && hasMore) {
-            setOffset(prevOffset => prevOffset + itemsPerPage);
             fetchProjects();
         }
     };
-
     useEffect(() => {
         console.log('Current filters:', filter);
 
-        setOffset(0);
-        setHasMore(true);
+        // These lines are now handled in handleFilterChange
+        // setCursor(null);
+        // setHasMore(true);
+
         fetchProjects();
     }, [filter.category, filter.difficulty]);
 
@@ -303,9 +300,11 @@ export default function Home() {
 
     const handleFilterChange = (type: 'category' | 'difficulty', value: string) => {
         setFilter(prev => ({ ...prev, [type]: value }));
-        setOffset(0); // Reset offset when filter changes
+        setCursor(null); // Reset cursor when filter changes
         setHasMore(true); // Reset hasMore when filter changes
+        setProjects([]); // Clear existing projects when filter changes
     };
+
 
     const [categoryDropdownOpen, setCategoryDropdownOpen] = useState(false);
     const [difficultyDropdownOpen, setDifficultyDropdownOpen] = useState(false);
@@ -321,6 +320,8 @@ export default function Home() {
         document.addEventListener('click', closeDropdowns);
         return () => document.removeEventListener('click', closeDropdowns);
     }, []);
+
+    console.log("Projects", projects);
 
 
     return (
