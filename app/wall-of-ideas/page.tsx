@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import Loading from "@/components/Loading";
 import { useAuthContext } from "@/contexts/AuthContext";
 import { createClient } from "@/utils/supabase/client";
+import { log } from "node:console";
 
 
 interface Project {
@@ -39,6 +40,11 @@ export default function Home() {
         description: "",
         category: "",
         difficulty: "",
+    });
+
+    const [filter, setFilter] = useState<{ category: string, difficulty: string }>({
+        category: 'All',
+        difficulty: 'All'
     });
 
     const [errors, setErrors] = useState<{
@@ -200,11 +206,8 @@ export default function Home() {
         } else {
             document.body.style.overflow = 'auto';
         }
-        if (offset === 0) {
-            fetchProjects();
-        }
-    }, [isModalOpen]);
 
+    }, [isModalOpen]);
 
     useEffect(() => {
         const checkSubmissionStatus = () => {
@@ -226,6 +229,7 @@ export default function Home() {
                 clearTimeout(timeoutRef.current);
             }
         };
+
     }, []);
 
 
@@ -249,40 +253,58 @@ export default function Home() {
     const fetchProjects = async () => {
         setIsLoading(true);
 
+        console.log('Fetching projects with filters:', filter);
+
         const { data, error } = await supabase.rpc('get_ideas', {
             offset_value: offset,
-            items_per_page: itemsPerPage
+            items_per_page: itemsPerPage,
+            category_filter: filter.category === 'All' ? null : filter.category,
+            difficulty_filter: filter.difficulty === 'All' ? null : filter.difficulty
         });
 
         if (error) {
             console.error('Error fetching projects:', error);
         } else {
+            console.log('Fetched data:', data);
+
             if (data.length < itemsPerPage) {
                 setHasMore(false);
+            } else {
+                setHasMore(true);
             }
-            setProjects(prevProjects => [...prevProjects, ...data]);
+            setProjects(prevProjects => {
+                // If offset is 0, replace the entire array, otherwise append
+                return offset === 0 ? data : [...prevProjects, ...data];
+            });
             setOffset(prevOffset => prevOffset + data.length);
         }
 
         setIsLoading(false);
     };
 
+
     const handleLoadMore = () => {
         if (!isLoading && hasMore) {
+            setOffset(prevOffset => prevOffset + itemsPerPage);
             fetchProjects();
         }
     };
 
-    const [dateDropdownOpen, setDateDropdownOpen] = useState(false);
+    useEffect(() => {
+        console.log('Current filters:', filter);
 
-    const [filter, setFilter] = useState<{ category: string, difficulty: string }>({
-        category: 'All',
-        difficulty: 'All'
-    });
+        setOffset(0);
+        setHasMore(true);
+        fetchProjects();
+    }, [filter.category, filter.difficulty]);
+
+
+    const [dateDropdownOpen, setDateDropdownOpen] = useState(false);
 
     const handleFilterChange = (type: 'category' | 'difficulty', value: string) => {
         setFilter(prev => ({ ...prev, [type]: value }));
-        console.log(`Changing ${type} filter to: ${value}`);
+        setOffset(0); // Reset offset when filter changes
+        setHasMore(true); // Reset hasMore when filter changes
     };
 
     const [categoryDropdownOpen, setCategoryDropdownOpen] = useState(false);
@@ -299,8 +321,6 @@ export default function Home() {
         document.addEventListener('click', closeDropdowns);
         return () => document.removeEventListener('click', closeDropdowns);
     }, []);
-
-
 
 
     return (
