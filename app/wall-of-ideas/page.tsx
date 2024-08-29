@@ -158,11 +158,6 @@ export default function Home() {
             return "Special characters are not allowed in the description.";
         }
 
-        // Check for potential SQL injection attempts
-        if (/(\b(SELECT|INSERT|UPDATE|DELETE|FROM|WHERE|DROP)\b)/gi.test(description)) {
-            return "Invalid input detected.";
-        }
-
         // Check for potential XSS attempts
         if (/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi.test(description)) {
             return "Invalid input detected.";
@@ -248,7 +243,7 @@ export default function Home() {
     const fetchProjects = async () => {
         setIsLoading(true);
 
-        console.log('Fetching projects with filters:', filter);
+        //console.log('Fetching projects with filters:', filter);
 
         const { data, error } = await supabase.rpc('get_ideas', {
             cursor_value: cursor || null, // Ensure it's null if undefined
@@ -260,7 +255,7 @@ export default function Home() {
         if (error) {
             console.error('Error fetching projects:', error);
         } else {
-            console.log('Fetched data:', data);
+            //console.log('Fetched data:', data);
 
             if (data.length < itemsPerPage) {
                 setHasMore(false);
@@ -286,7 +281,7 @@ export default function Home() {
         }
     };
     useEffect(() => {
-        console.log('Current filters:', filter);
+        //console.log('Current filters:', filter);
 
         // These lines are now handled in handleFilterChange
         // setCursor(null);
@@ -321,7 +316,7 @@ export default function Home() {
         return () => document.removeEventListener('click', closeDropdowns);
     }, []);
 
-    console.log("Projects", projects);
+    //console.log("Projects", projects);
 
 
     return (
@@ -507,7 +502,7 @@ export default function Home() {
 
                 {!isLoading && !hasMore && (
                     <div className="text-center py-4">
-                        <p className="text-[#FFFFFFCC]">You found the end of the wall</p>
+                        <p className="text-[#FFFFFFCC]">The end of the wall</p>
                     </div>
                 )}
 
