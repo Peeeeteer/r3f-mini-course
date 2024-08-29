@@ -79,8 +79,8 @@ export default function Home() {
                     {
                         created_at: new Date().toISOString(),
                         created_by: authUser.user_metadata.user_name,
-                        category: newProject.category,
-                        difficulty: newProject.difficulty,
+                        category: newProject.category.toLowerCase(),
+                        difficulty: newProject.difficulty.toLowerCase(),
                         description: newProject.description,
                     }
                 ])
@@ -246,11 +246,12 @@ export default function Home() {
         //console.log('Fetching projects with filters:', filter);
 
         const { data, error } = await supabase.rpc('get_ideas', {
-            cursor_value: cursor || null, // Ensure it's null if undefined
+            cursor_value: cursor || null,
             items_per_page: itemsPerPage,
-            category_filter: filter.category === 'All' ? null : filter.category,
-            difficulty_filter: filter.difficulty === 'All' ? null : filter.difficulty
+            category_filter: filter.category === 'All' ? null : filter.category.toLowerCase(),
+            difficulty_filter: filter.difficulty === 'All' ? null : filter.difficulty.toLowerCase()
         });
+
 
         if (error) {
             console.error('Error fetching projects:', error);
@@ -299,7 +300,6 @@ export default function Home() {
         setHasMore(true); // Reset hasMore when filter changes
         setProjects([]); // Clear existing projects when filter changes
     };
-
 
     const [categoryDropdownOpen, setCategoryDropdownOpen] = useState(false);
     const [difficultyDropdownOpen, setDifficultyDropdownOpen] = useState(false);
@@ -537,6 +537,7 @@ export default function Home() {
                                 <option value="backend">Backend</option>
                                 <option value="scripts">Scripts</option>
                             </select>
+
                             {errors.category && (
                                 <p className="text-red-500 text-xs italic">{errors.category}</p>
                             )}
