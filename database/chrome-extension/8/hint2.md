@@ -6,7 +6,7 @@ Here is more code, try to do the rest yourself.
 
 ```javascript
 useEffect(() => {
-    fetch('https://vdoqyjbnpwqkafxxssbb.supabase.co/rest/v1/questions?apikey=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZkb3F5amJucHdxa2FmeHhzc2JiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTEzNzIyMTUsImV4cCI6MjAyNjk0ODIxNX0.luuvoKY-udlAaD83Qf5pElsetmXVwPetr6C-v5gpjDg')
+    fetch('https://65-109-237-244.nip.io/api/quiz')
       .then(response => response.json())
 
       .then(data =>

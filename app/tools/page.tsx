@@ -2,7 +2,7 @@
 
 import FooterSection from "@/containers/home-page/footer-section";
 import HeaderSection from "@/containers/home-page/header-section";
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import Loading from "@/components/Loading";
 import { FC, useState } from "react";
 import { twMerge } from "tailwind-merge";
@@ -63,6 +63,18 @@ const projects: TProject[] = [
 export default function Home() {
 
     const [tagSelected, setTagSelected] = useState<string[]>([]);
+
+    // Add this useEffect to test the API
+    useEffect(() => {
+        fetch('https://65-109-237-244.nip.io/api/quiz')
+            .then(response => response.json())
+            .then(data => {
+                console.log('API Response:', data);
+            })
+            .catch(error => {
+                console.error('API Error:', error);
+            });
+    }, []);
 
     return (
         <>
