@@ -25,7 +25,7 @@ const HeaderUserActions: FC<HeaderUserActionsProps> = ({}) => {
                 <div className="relative w-8 h-8 rounded-full">
                   <div className="w-8 h-8 rounded-full">
                     <Image
-                      src={user?.user_metadata?.avatar_url}
+                      src={user?.user_metadata?.avatar_url || "/avatar-placeholder.png"}
                       alt="avatar"
                       fill
                       className="rounded-full"

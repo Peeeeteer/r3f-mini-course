@@ -50,6 +50,7 @@ const ReReactMarkdown = (props: ReReactMarkdownProps) => {
         code({ node, inline, className, children, ...props }: any) {
           const match = /language-(\w+)/.exec(className || "");
           return !inline && match ? (
+            // @ts-ignore
             <SyntaxHighlighter
               style={customStyle as any}
               language={match[1]}

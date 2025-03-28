@@ -71,42 +71,37 @@ export default function Home() {
 
         setIsLoading(true);
 
-        const { data, error } = await supabase
-            .from('ideas')
-            .insert([
-                {
-                    created_at: new Date().toISOString(),
-                    created_by: authUser?.user_metadata?.user_name || 'Anonymous',
-                    category: newProject.category.toLowerCase(),
-                    difficulty: newProject.difficulty.toLowerCase(),
-                    description: newProject.description,
-                }
-            ])
-            .select();
+        // Create a mock idea object
+        const mockNewIdea = {
+            id: Date.now().toString(),
+            created_at: new Date().toISOString(),
+            created_by: authUser?.user_metadata?.user_name || 'Anonymous',
+            category: newProject.category.toLowerCase(),
+            difficulty: newProject.difficulty.toLowerCase(),
+            description: newProject.description,
+        };
 
+        // Simulate network delay
+        await new Promise(resolve => setTimeout(resolve, 500));
+        
         setIsLoading(false);
 
-        if (error) {
-            console.error('Error adding new project:', error);
-            // You might want to show an error message to the user here
-        } else if (data) {
-            // Add the new project to the local state
-            setProjects(prev => [data[0], ...prev]);
+        // Add the new project to the local state
+        setProjects(prev => [mockNewIdea, ...prev]);
 
-            // Reset the form
-            setNewProject({
-                description: "",
-                category: "",
-                difficulty: "",
-            });
-            setErrors({});
-            setIsModalOpen(false);
+        // Reset the form
+        setNewProject({
+            description: "",
+            category: "",
+            difficulty: "",
+        });
+        setErrors({});
+        setIsModalOpen(false);
 
-            // Update last submission time
-            localStorage.setItem('lastSubmissionTime', Date.now().toString());
-            setCanSubmit(false);
-            setTimeout(() => setCanSubmit(true), 60000);
-        }
+        // Update last submission time
+        localStorage.setItem('lastSubmissionTime', Date.now().toString());
+        setCanSubmit(false);
+        setTimeout(() => setCanSubmit(true), 60000);
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -216,74 +211,79 @@ export default function Home() {
 
     //  //! Loading & Filtering project ideas
     const [hasMore, setHasMore] = useState<boolean>(true);
-
     const [cursor, setCursor] = useState<string | null>(null);
     const itemsPerPage = 20;
-
     const observer = useRef<IntersectionObserver | null>(null);
+
+    // Define fetchProjects function before it's used in the useCallback
+    const fetchProjects = useCallback(async () => {
+        setIsLoading(true);
+
+        // Mock data instead of calling supabase.rpc
+        const mockData = [
+            {
+                id: "1",
+                created_at: new Date().toISOString(),
+                created_by: "John Doe",
+                category: "frontend",
+                difficulty: "easy",
+                description: "Build a responsive portfolio website with HTML, CSS and JavaScript"
+            },
+            {
+                id: "2",
+                created_at: new Date(Date.now() - 86400000).toISOString(), // 1 day ago
+                created_by: "Jane Smith",
+                category: "backend",
+                difficulty: "medium",
+                description: "Create a REST API with Node.js and Express"
+            },
+            {
+                id: "3",
+                created_at: new Date(Date.now() - 172800000).toISOString(), // 2 days ago
+                created_by: "Alex Johnson",
+                category: "frontend",
+                difficulty: "hard",
+                description: "Build a state management system for React apps"
+            }
+        ];
+
+        // Filter the mock data
+        const filteredData = mockData.filter(item => {
+            if (filter.category !== 'All' && item.category !== filter.category.toLowerCase()) {
+                return false;
+            }
+            if (filter.difficulty !== 'All' && item.difficulty !== filter.difficulty.toLowerCase()) {
+                return false;
+            }
+            return true;
+        });
+
+        // Simulate delay
+        await new Promise(resolve => setTimeout(resolve, 500));
+
+        setHasMore(false); // No more data to fetch with mock data
+        setProjects(filteredData);
+        
+        setIsLoading(false);
+    }, [filter]);
+
     const lastProjectElementRef = useCallback((node: HTMLDivElement | null) => {
         if (isLoading) return;
         if (observer.current) observer.current.disconnect();
         observer.current = new IntersectionObserver(entries => {
             if (entries[0].isIntersecting && hasMore) {
-                handleLoadMore();
+                fetchProjects();
             }
         });
         if (node) observer.current.observe(node);
-    }, [isLoading, hasMore]);
+    }, [isLoading, hasMore, fetchProjects]);
 
-
-    const fetchProjects = async () => {
-        setIsLoading(true);
-
-        //console.log('Fetching projects with filters:', filter);
-
-        const { data, error } = await supabase.rpc('get_ideas', {
-            cursor_value: cursor || null,
-            items_per_page: itemsPerPage,
-            category_filter: filter.category === 'All' ? null : filter.category.toLowerCase(),
-            difficulty_filter: filter.difficulty === 'All' ? null : filter.difficulty.toLowerCase()
-        });
-
-
-        if (error) {
-            console.error('Error fetching projects:', error);
-        } else {
-            //console.log('Fetched data:', data);
-
-            if (data.length < itemsPerPage) {
-                setHasMore(false);
-            } else {
-                setHasMore(true);
-            }
-
-            setProjects(prevProjects => {
-                return cursor === null ? data : [...prevProjects, ...data];
-            });
-
-            if (data.length > 0) {
-                setCursor(data[data.length - 1].created_at);
-            }
-        }
-
-        setIsLoading(false);
-    };
-
-    const handleLoadMore = () => {
-        if (!isLoading && hasMore) {
-            fetchProjects();
-        }
-    };
+    // Fetch projects when component mounts or filters change
     useEffect(() => {
-        //console.log('Current filters:', filter);
-
-        // These lines are now handled in handleFilterChange
-        // setCursor(null);
-        // setHasMore(true);
-
+        setCursor(null);
+        setHasMore(true);
         fetchProjects();
-    }, [filter.category, filter.difficulty]);
-
+    }, [filter, fetchProjects]);
 
     const [dateDropdownOpen, setDateDropdownOpen] = useState(false);
 

@@ -9,7 +9,6 @@ import PlusSvg from "@/components/Icons/PlusSvg";
 import UserCircleSvg from "@/components/Icons/UserCircleSvg";
 import FooterSection from "@/containers/home-page/footer-section";
 import HeaderSection from "@/containers/home-page/header-section";
-import { createClient } from "@/utils/supabase/client";
 import { useAuthContext } from "@/contexts/AuthContext";
 
 type PurchaseHistoryType = {
@@ -19,27 +18,28 @@ type PurchaseHistoryType = {
   price: number
 }
 
-export const DashboardContent = () => {
-  const [purchaseHistories, setPurchaseHistories] = useState<PurchaseHistoryType[]>([])
-  const [isLoading, setIsLoading] = useState(true)
+// Mock purchase history data
+const mockPurchaseHistories: PurchaseHistoryType[] = [
+  {
+    id: "1",
+    name: "robot-landing",
+    purchased_at: new Date("2024-06-15"),
+    price: 0
+  }
+];
 
-  const supabase = createClient()
+export const DashboardContent = () => {
+  const [isLoading, setIsLoading] = useState(true)
   const { authUser } = useAuthContext()
 
-  const getPurchaseHistory = useCallback(async () => {
-    const { data, error } = await supabase.rpc('get_purchase_history')
-    setIsLoading(false)
-    if (error) {
-      console.error('An error occurred while getting purchase history')
-      setPurchaseHistories([])
-    } else {
-      setPurchaseHistories(data || [])
-    }
-  }, [])
-
+  // Simulate loading for a moment
   useEffect(() => {
-    getPurchaseHistory()
-  }, [getPurchaseHistory])
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 500);
+    
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <main>
@@ -140,8 +140,8 @@ export const DashboardContent = () => {
                           <td colSpan={5} className="text-center py-5 italic" >Getting history data</td>
                         </tr>
                         :
-                        purchaseHistories.length > 0 ? 
-                        purchaseHistories.map((history) => (
+                        mockPurchaseHistories.length > 0 ? 
+                        mockPurchaseHistories.map((history) => (
                           <tr className="" key={history.id}>
                             <td className="py-[26px] px-6 text-[#FFFFFFCC] text-sm leading-[20px] border-b border-[#FFFFFF33]">
                               {new Date(history.purchased_at).toLocaleDateString()}

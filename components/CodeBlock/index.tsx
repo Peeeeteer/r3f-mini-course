@@ -16,6 +16,7 @@ const CodeSyntaxHighlighter: FC<CodeBlockProps> = ({
       <div className="bg-[#364651] text-[#E5E7EB] text-sm leading-[18px] rounded-tl-xl rounded-tr-xl px-4 py-2">
         <p>_meta.json</p>
       </div>
+      {/* @ts-ignore */}
       <SyntaxHighlighter
         language={language}
         style={atomOneDark}
