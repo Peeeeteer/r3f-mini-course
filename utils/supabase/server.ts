@@ -1,32 +1,18 @@
-import { createServerClient, type CookieOptions } from "@supabase/ssr";
-import { cookies } from "next/headers";
-
-export const createClient = () => {
-  const cookieStore = cookies();
-  return createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        get(name: string) {
-          return cookieStore.get(name)?.value;
-        },
-        set(name: string, value: string, options: CookieOptions) {
-          try {
-            cookieStore.set({ name, value, ...options });
-          } catch (error) {
-          }
-        },
-        remove(name: string, options: CookieOptions) {
-          try {
-            cookieStore.delete({ name, ...options });
-          } catch (error) {
-            // The `delete` method was called from a Server Component.
-            // This can be ignored if you have middleware refreshing
-            // user sessions.
-          }
-        },
-      },
-    }
-  );
+// Mock Supabase server client
+const mockClient = {
+  auth: {
+    getUser: async () => ({ data: { user: null }, error: null }),
+    exchangeCodeForSession: async () => ({ error: null }),
+  },
+  from: (table: string) => ({
+    insert: () => ({
+      select: async () => ({ data: [], error: null })
+    }),
+    select: async () => ({ data: [], error: null })
+  }),
+  rpc: (proc: string, params?: any) => ({
+    then: (callback: any) => callback({ data: [], error: null })
+  })
 };
+
+export const createClient = () => mockClient;

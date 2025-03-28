@@ -10,11 +10,5 @@ export const HeaderNavs: HeaderNav[] = [
     id: 2,
     value: "Tools",
     href: "/tools",
-  },
-  {
-
-    id: 1,
-    value: "Wall of ideas",
-    href: "/wall-of-ideas",
-  },
+  }
 ];

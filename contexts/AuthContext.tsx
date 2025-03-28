@@ -1,9 +1,6 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-import { createContext, ReactNode, useContext, useState, useEffect } from 'react';
-
-import { createClient } from "@/utils/supabase/client";
+import { createContext, ReactNode, useContext, useState } from 'react';
 import { User } from '@supabase/supabase-js';
 
 type AuthContext = {
@@ -13,42 +10,18 @@ type AuthContext = {
 
 const Context = createContext<AuthContext | undefined>(undefined);
 
+const mockUser = {
+  id: 'mock-user-id',
+  user_metadata: {
+    user_name: 'Guest User',
+    avatar_url: 'https://avatars.githubusercontent.com/u/0',
+  }
+} as unknown as User;
+
 const AuthContextProvider = ({ children }: { children: ReactNode }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [authUser, setAuthUser] = useState<User | null>(null)
-
-  const router = useRouter()
-  const supabase = createClient();
-
-  useEffect(() => {
-    const checkSession = async () => {
-      const { data } = await supabase.auth.getUser();
-      if (data && data.user) {
-        setIsAuthenticated(true)
-        setAuthUser(data.user)
-      } else {
-        setIsAuthenticated(false)
-        setAuthUser(null)
-      }
-    };
-
-    checkSession();
-  }, []);
-
-  useEffect(() => {
-    const {
-      data: { subscription }
-    } = supabase.auth.onAuthStateChange((event) => {
-      if (event === 'SIGNED_OUT') {
-        setIsAuthenticated(false)
-        setAuthUser(null)
-      }
-    });
-
-    return () => {
-      subscription.unsubscribe();
-    };
-  }, [router]);
+  // Always authenticated with mock user
+  const [isAuthenticated] = useState(true);
+  const [authUser] = useState<User | null>(mockUser);
 
   return (
     <Context.Provider value={{ isAuthenticated, authUser }}>

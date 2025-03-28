@@ -2,7 +2,7 @@
 
 The goal is now to look at the cursor! 
 <video width="640" height="480" controls preload>
-  <source src="/robot-landing/m8-1.mp4" type="video/mp4">
+  <source src="https://bq46iimbxf.ufs.sh/f/d6oWbqcM0NRhZVH2KqTs7JzFMSbheYK8iEj6OxAV93L01Nmn" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 

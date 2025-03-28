@@ -11,8 +11,6 @@ import FooterSection from "@/containers/home-page/footer-section";
 import HeaderSection from "@/containers/home-page/header-section";
 import { createClient } from "@/utils/supabase/client";
 import { useAuthContext } from "@/contexts/AuthContext";
-import { toast } from "react-toastify";
-import { useRouter } from "next/navigation";
 
 type PurchaseHistoryType = {
   id: string
@@ -24,10 +22,9 @@ type PurchaseHistoryType = {
 export const DashboardContent = () => {
   const [purchaseHistories, setPurchaseHistories] = useState<PurchaseHistoryType[]>([])
   const [isLoading, setIsLoading] = useState(true)
-  const router = useRouter();
 
   const supabase = createClient()
-  const { isAuthenticated, authUser } = useAuthContext()
+  const { authUser } = useAuthContext()
 
   const getPurchaseHistory = useCallback(async () => {
     const { data, error } = await supabase.rpc('get_purchase_history')
@@ -36,26 +33,16 @@ export const DashboardContent = () => {
       console.error('An error occurred while getting purchase history')
       setPurchaseHistories([])
     } else {
-      setPurchaseHistories(data)
+      setPurchaseHistories(data || [])
     }
   }, [])
 
   useEffect(() => {
-    if (isAuthenticated) {
-      getPurchaseHistory()
-    }
-  }, [isAuthenticated, getPurchaseHistory])
-
-  const handleSignOut = useCallback(async () => {
-    let res = await supabase.auth.signOut();
-    if (res) {
-      toast.success("Successfully signed out!");
-      router.push("/");
-    }
-  }, [])
+    getPurchaseHistory()
+  }, [getPurchaseHistory])
 
   return (
-    isAuthenticated ? <main>
+    <main>
       <HeaderSection />
       <div className="max-w-[1200px] w-full mx-auto pt-10 pb-20 px-6">
         <div className="flex justify-between items-center mb-8">
@@ -66,16 +53,6 @@ export const DashboardContent = () => {
             <p className="text-sm leading-[26px] font-normal text-[#FFFFFF8F]">
               Purchase history & settings
             </p>
-          </div>
-          <div>
-            <form action="">
-              <button
-                onClick={handleSignOut}
-                className="bg-[#FFFFFF0F] hover:bg-[#FFFFFF0D] rounded-full py-3 px-10 text-[#FF5A50]"
-              >
-                Log out
-              </button>
-            </form>
           </div>
         </div>
         <div>
@@ -100,10 +77,7 @@ export const DashboardContent = () => {
                           type="text"
                           disabled
                           className="w-full px-4 py-3 bg-transparent disabled:text-[#FFFFFF52]"
-
-                          value={
-                            authUser?.user_metadata?.user_name || ""
-                          }
+                          value={authUser?.user_metadata?.user_name || "Guest User"}
                         />
                       </div>
                     </div>
@@ -120,7 +94,7 @@ export const DashboardContent = () => {
                           type="text"
                           disabled
                           className="w-full px-4 py-3 bg-transparent disabled:text-[#FFFFFF52]"
-                          value={authUser?.email || ""}
+                          value={authUser?.email || "guest@example.com"}
                         />
                       </div>
                     </div>
@@ -166,6 +140,7 @@ export const DashboardContent = () => {
                           <td colSpan={5} className="text-center py-5 italic" >Getting history data</td>
                         </tr>
                         :
+                        purchaseHistories.length > 0 ? 
                         purchaseHistories.map((history) => (
                           <tr className="" key={history.id}>
                             <td className="py-[26px] px-6 text-[#FFFFFFCC] text-sm leading-[20px] border-b border-[#FFFFFF33]">
@@ -188,6 +163,10 @@ export const DashboardContent = () => {
                             </td>
                           </tr>
                         ))
+                        :
+                        <tr>
+                          <td colSpan={5} className="text-center py-5 italic" >No purchase history found</td>
+                        </tr>
                     }
                   </tbody>
                 </table>
@@ -312,7 +291,7 @@ export const DashboardContent = () => {
         </div>
       </div>
       <FooterSection />
-    </main> : null
+    </main>
   );
 }
 

@@ -71,44 +71,41 @@ export default function Home() {
 
         setIsLoading(true);
 
-        // If the authUser exists, just triple checking
-        if (authUser) {
-            const { data, error } = await supabase
-                .from('ideas')
-                .insert([
-                    {
-                        created_at: new Date().toISOString(),
-                        created_by: authUser.user_metadata.user_name,
-                        category: newProject.category.toLowerCase(),
-                        difficulty: newProject.difficulty.toLowerCase(),
-                        description: newProject.description,
-                    }
-                ])
-                .select();
+        const { data, error } = await supabase
+            .from('ideas')
+            .insert([
+                {
+                    created_at: new Date().toISOString(),
+                    created_by: authUser?.user_metadata?.user_name || 'Anonymous',
+                    category: newProject.category.toLowerCase(),
+                    difficulty: newProject.difficulty.toLowerCase(),
+                    description: newProject.description,
+                }
+            ])
+            .select();
 
-            setIsLoading(false);
+        setIsLoading(false);
 
-            if (error) {
-                console.error('Error adding new project:', error);
-                // You might want to show an error message to the user here
-            } else if (data) {
-                // Add the new project to the local state
-                setProjects(prev => [data[0], ...prev]);
+        if (error) {
+            console.error('Error adding new project:', error);
+            // You might want to show an error message to the user here
+        } else if (data) {
+            // Add the new project to the local state
+            setProjects(prev => [data[0], ...prev]);
 
-                // Reset the form
-                setNewProject({
-                    description: "",
-                    category: "",
-                    difficulty: "",
-                });
-                setErrors({});
-                setIsModalOpen(false);
+            // Reset the form
+            setNewProject({
+                description: "",
+                category: "",
+                difficulty: "",
+            });
+            setErrors({});
+            setIsModalOpen(false);
 
-                // Update last submission time
-                localStorage.setItem('lastSubmissionTime', Date.now().toString());
-                setCanSubmit(false);
-                setTimeout(() => setCanSubmit(true), 60000);
-            }
+            // Update last submission time
+            localStorage.setItem('lastSubmissionTime', Date.now().toString());
+            setCanSubmit(false);
+            setTimeout(() => setCanSubmit(true), 60000);
         }
     };
 
@@ -140,11 +137,7 @@ export default function Home() {
     };
 
     const handleAddNewIdeaClick = () => {
-        if (!isAuthenticated) {
-            navigation.push("/auth/login");
-        } else {
-            setIsModalOpen(true);
-        }
+        setIsModalOpen(true);
     };
 
     const validateDescription = (description: string): string | null => {

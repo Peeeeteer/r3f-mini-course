@@ -306,7 +306,7 @@ export const RobotLandingPageProject: TProject = {
   difficulty: "Easy",
   category: "Frontend",
   tags: ["React", "Three.js", "Tailwindcss"],
-  price: "$4.99",
+  price: "Free",
   image: "/project-2.png",
   url: "projects/robot-landing/introduction",
   milestones: robotMilestone,

@@ -1,3 +1,4 @@
 export const freeProjects = [
-  'chrome-extension'
+  'chrome-extension',
+  'robot-landing'
 ]

@@ -5,7 +5,7 @@ import { ProfilePageProject } from "./projects/portfolio-page";
 import { RobotLandingPageProject } from "./projects/robot-landingpage";
 
 const mockProjects: TProject[] = [
-  ChromePluginProject,
+  // ChromePluginProject, // Hiding Chrome plugin for now
   RobotLandingPageProject,
   // ProfilePageProject,
   // ExampleProject,

@@ -1,8 +1,20 @@
-import { createBrowserClient } from "@supabase/ssr";
+// Mock Supabase client
+const mockClient = {
+  auth: {
+    getUser: async () => ({ data: { user: null }, error: null }),
+    onAuthStateChange: () => ({ data: { subscription: { unsubscribe: () => {} } } }),
+    signOut: async () => ({ error: null })
+  },
+  from: (table: string) => ({
+    insert: () => ({
+      select: async () => ({ data: [], error: null })
+    }),
+    select: async () => ({ data: [], error: null })
+  }),
+  rpc: (proc: string, params?: any) => ({
+    then: (callback: any) => callback({ data: [], error: null })
+  })
+};
 
-export const createClient = () =>
-  createBrowserClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-  );
+export const createClient = () => mockClient;
 

@@ -4,7 +4,6 @@ import { User } from "@supabase/supabase-js";
 import Link from "next/link";
 import { FC } from "react";
 import Brand from "../../../components/Brand";
-import HeaderUserActions from "./user-actions";
 import { twMerge } from "tailwind-merge";
 
 interface HeaderSectionProps extends React.HTMLAttributes<HTMLElement> { }
@@ -18,13 +17,13 @@ const HeaderSection: FC<HeaderSectionProps> = ({ className }) => {
     >
       <div className="w-full">
         <div className="">
-          <div className="w-full flex items-center justify-between ">
+          <div className="w-full flex items-center">
             <div className="box-content px-[24px] py-6 w-[150px] border-r border-r-[#303334]">
               <Link href={"/"}>
                 <Brand />
               </Link>
             </div>
-            <nav className="py-6 flex gap-x-8">
+            <nav className="py-6 flex gap-x-8 flex-1 justify-center">
               {HeaderNavs.map((el, _i) => (
                 <HeaderNav
                   key={_i}
@@ -34,7 +33,8 @@ const HeaderSection: FC<HeaderSectionProps> = ({ className }) => {
                 />
               ))}
             </nav>
-            <HeaderUserActions />
+            {/* Empty div to balance the layout */}
+            <div className="box-content px-[24px] py-6 w-[150px] border-l border-l-[#303334]"></div>
           </div>
         </div>
       </div>

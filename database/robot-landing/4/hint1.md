@@ -10,6 +10,6 @@ They give a typical use case example which looks like exactly what we need.
 You can also create the Robot.jsx component <a href="https://gltf.pmnd.rs/" style="text-decoration: underline;" target="_blank" rel="noopener noreferrer">using the browser version.</a>
 
 <video width="640" height="480" controls preload>
-  <source src="/robot-landing/m4-1.mp4" type="video/mp4">
+  <source src="https://bq46iimbxf.ufs.sh/f/d6oWbqcM0NRhIJQy38P1ah5JMSwvZ3YlIGD02jQLbErW8COe" type="video/mp4">
   Your browser does not support the video tag.
 </video>

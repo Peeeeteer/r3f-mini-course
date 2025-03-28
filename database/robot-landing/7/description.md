@@ -8,7 +8,7 @@ At least for me personally so take your time with this one.
 
 We want to basicly make this:
 <video width="640" height="480" controls preload>
-  <source src="/robot-landing/m7-1.mp4" type="video/mp4">
+  <source src="https://bq46iimbxf.ufs.sh/f/d6oWbqcM0NRhU7j7O73Ri0LhEWfj6sp5bCPcBr8DQIZkl279" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
