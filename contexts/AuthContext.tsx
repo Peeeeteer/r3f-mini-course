@@ -1,7 +1,15 @@
 'use client';
 
 import { createContext, ReactNode, useContext, useState } from 'react';
-import { User } from '@supabase/supabase-js';
+
+// Define our own User type instead of using Supabase's
+type User = {
+  id: string;
+  user_metadata: {
+    user_name: string;
+    avatar_url: string;
+  };
+};
 
 type AuthContext = {
   isAuthenticated: boolean
@@ -10,13 +18,13 @@ type AuthContext = {
 
 const Context = createContext<AuthContext | undefined>(undefined);
 
-const mockUser = {
+const mockUser: User = {
   id: 'mock-user-id',
   user_metadata: {
     user_name: 'Guest User',
     avatar_url: 'https://avatars.githubusercontent.com/u/0',
   }
-} as unknown as User;
+};
 
 const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   // Always authenticated with mock user

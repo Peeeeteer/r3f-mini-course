@@ -1,10 +1,8 @@
 "use client";
 
 import { useMilestoneStore } from "@/store/useMilestoneStore";
-import { TUser } from "@/types/User";
-import { User } from "@supabase/supabase-js";
 import React, { FC } from "react";
-import { twJoin, twMerge } from "tailwind-merge";
+import { twMerge } from "tailwind-merge";
 
 interface ProjectPageHeaderSectionProps
   extends React.HTMLAttributes<HTMLElement> {}

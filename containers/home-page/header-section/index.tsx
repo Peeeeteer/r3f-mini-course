@@ -1,6 +1,5 @@
 import HeaderNav from "@/components/Navs/HeaderNav";
 import { HeaderNavs } from "@/containers/home-page/header-section/constants";
-import { User } from "@supabase/supabase-js";
 import Link from "next/link";
 import { FC } from "react";
 import Brand from "../../../components/Brand";
