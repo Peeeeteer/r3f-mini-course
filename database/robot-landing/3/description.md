@@ -1,10 +1,7 @@
 ###### Milestone 3: Simple Version
 
-The goal is to make this.
-<img src="/robot-landing/image2.png" alt="index.js" width="860" height="620">
 
-
-So let us make a simpler version, like this:
+Make it bigger and add some UI elements, like this:
 <img src="/robot-landing/image14.png" alt="index.js" width="860" height="620">
 
 <br>
